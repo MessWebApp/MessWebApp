@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login,logout 
-from django.contrib import messages
+from django.contrib import messages 
+from django.conf import settings
+
 # from django.contrib.auth.models import User
 from .models import Customer,Supplier,MessDetails,MessBooking,MessReview,User
 import random
@@ -72,7 +74,7 @@ def SupplierRegister(request):
         mail = EmailMessage(
         subject='hellow rodld',
         body='email Body',
-        from_email='settings.EMAIL_HOST_USER',
+        from_email=settings.EMAIL_HOST_USER,
         to=[email,]
         )
         mail.send()
@@ -161,7 +163,7 @@ def CustomerRegister(request):
         mail = EmailMessage(
         subject='hellow rodld',
         body='email Body',
-        from_email='settings.EMAIL_HOST_USER',
+        from_email=settings.EMAIL_HOST_USER,
         to=[email,]
         )
         mail.send()
