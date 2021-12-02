@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ======= For colors ====== */
+:root{
+    --primary-color : #FB6514;
+    --secondary-color : #FD853A;
+    --light-primary : #FE8273;
+    --light-secondary : #FDDCAB;
+    --light-light-primary : #FFEAD5;
+    --light-light-secondary : #FFF6ED;
+    --X-light : #FFFAF5;
+    --white : #fff;
+    --black : #000;
+    --green : green;
+    --red : red;
+    --light-bg: #FFEFD8;
+}
+
+/* ======= For fonts ======= */
+:root{
+    --small-font: .8rem;
+    --primary-font: 1rem;
+    --large-primary-font : 1.15rem;
+    --secondary-font: 1.25rem;
+    --large-font: 1.5rem;
+    --x-large: 1.75rem;
+    --xx-large: 2rem;
+    --xxx-large : 2.5rem;
+}
+
+/* ====== For margins and paddings ======= */
+:root{
+   --mg-5: .5rem;
+   --mg-7 : .7rem;
+   --mg-8 : .8rem;
+   --mg-10 : 1rem;
+   --mg-12 : 1.2rem;
+   --mg-15 : 1.5rem;
+   --mg-20 : 2rem;
+   --mg-25 : 2.5rem;
+   --mg-30 : 3rem;
+   --mg-35: 3.5rem;
+   --mg-40: 4rem;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/* ======= Contact wrapper ====== */
+.contact__wrapper{
+    width: 70%;
+    height: 85%;
+    border-radius: var(--mg-15);
+    box-shadow: 1px 1px 10px .1px rgba(0, 0, 0, 0.151);
+    display: flex;
+    overflow: hidden;
+}
+
+.contact__wrapper .left{
+   flex-basis: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: space-between;
+   padding: var(--mg-5) 0;
+   padding-left: var(--mg-15);
+   padding-right: var(--mg-10);
+}
+
+
+.heading__txt_container{
+    padding: var(--mg-10) var(--mg-20);
+}
+
+.heading{
+    font-weight: 600;
+    font-size: var(--x-large);
+    color: var( --light-primary);
+    padding: var(--mg-10) 0;
+}
+
+.para{
+    line-height: 25px;
+}
+
+
+.info__container{
+    padding: var(--mg-20);
+}
+
+.info__field{
+    display: flex;
+    align-items: center;
+    margin: var(--mg-20) 0;
+}
+
+.info__field .icon{
+    width: 25px;
+    height: 25px;
+    margin-right: var(--mg-15);
+}
+
+.info__field .icon img{
+    width: 100%;
+    height: 100%;
+}
+
+.info__field p{
+    font-weight: 500;
+}
+
+
+
+
+.contact__wrapper .right{
+    flex-basis: 50%;
+    height: 100%;
+    background: var(--light-primary);
+}
+
+.contact__heading
+{
+    padding: 2px var(--mg-20);
+}
+
+.contact__heading h2{
+    font-weight: 700;
+    font-size: var(--x-large);
+    color: var(--white);
+    padding-top: var(--mg-15) ;
+    padding-left: var(--mg-20);
+}
+
+.icon__box{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    background: var(--light-primary);
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 5;
+}
+
+.input__field{
+    width: 80%;
+    margin: var(--mg-20) auto;
+    z-index: 10;
+}
+
+.input__field input,textarea{
+    width: 100%;
+    padding: var(--mg-8) var(--mg-20);
+    background-color: transparent;
+    border: 2px solid var(--white);
+    outline: none;
+    border-radius: var(--mg-30);
+    color: var(--white);
+}
+
+textarea{
+    border-radius: var(--mg-15);
+    resize: none;
+    color: var(--white);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--white);
+  }
+
+  .send__btn__container{
+      width: 100%;
+      padding: 0 var(--mg-35);
+  }
+
+  .send__btn__container button{
+      padding: 5px var(--mg-25);
+      color: var(--light-primary);
+      font-weight: 600;
+      font-size: var(--primary-font);
+      border-radius: var(--mg-20);
+      outline: none;
+      border: none;
+      box-shadow: 1px 3px 10px .1px rgba(0, 0, 0, 0.185);
+      cursor: pointer;
+  }
+
+
+  .social__container{
+      padding: var(--mg-10) var(--mg-20);
+  }
+
+  .social__heading{
+      font-weight: 600;
+      font-size: var(--secondary-font);
+  }
+
+  .social__container .icons{
+      display: flex;
+  }
+
+  .social__container .icons img{
+      width: 25px;
+      height: 25px;
+      margin: var(--mg-10) 0;
+      margin-right: var(--mg-20);
+  }
+
