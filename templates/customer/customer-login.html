@@ -33,7 +33,7 @@
                    <form action="#" method="POST">
                        {% csrf_token %}
                         <div class="input__field">
-                            <input type="email" placeholder="Email">
+                            <input type="email" name="email" placeholder="Email">
 
                             <div class="icon">
                               <img src="{% static 'icons/email.png' %}" alt="">
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="input__field">
-                           <input type="password" placeholder="Password">
+                           <input type="password" name="password" placeholder="Password">
 
                            <div class="icon">
                                <img src="{% static 'icons/padlock.png' %}" alt="">
@@ -53,9 +53,7 @@
                         </div>
 
                         <div class="login__btn">
-                            <button>
-                                Log In
-                            </button>
+                            <button type="submit">Log In</button>
                         </div>
 
                         <div class="bottom__link">
@@ -72,5 +70,17 @@
     </div>
 
     <script src="{% static 'js/loginForCustomer.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                swal({
+                    title: "{{message}}",
+                    text: "click the btn",
+                    icon: "{{message.tags}}",
+                });
+            {% endfor %}
+        {% endif %}
+    </script>
 </body>
 </html>
