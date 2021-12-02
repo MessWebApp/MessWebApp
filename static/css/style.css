@@ -590,7 +590,7 @@ body{
     width:250px;
     height: 160px;
     position: absolute;
-    top:4rem;
+    top:5rem;
     right: 90px;
     background:white;
     border-radius: 5px;
@@ -625,6 +625,8 @@ body{
     margin: var(--mg-5) var(--mg-10);
     display: block;
     text-decoration: none;
+    color: #000;
+    cursor: pointer;
 }
 
 /* ======= black Layer */
