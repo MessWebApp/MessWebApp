@@ -4,9 +4,416 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess App</title>
+    <title>Food Belly</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+     <!-- Link Swiper's CSS -->
+     <link
+     rel="stylesheet"
+     href="https://unpkg.com/swiper/swiper-bundle.min.css"
+   />
+
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    <h1>Hello world</h1>             
+    <!-- ======== header ========== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo__cont">
+                 <a href="#">
+                     <div class="logo__img">
+                         <img src="./images/hamburger.png" alt="logo">
+                     </div>
+
+                     <div class="logo__text">
+                         <h2><i>Food <br/> Belly</i></h2>
+                     </div>
+                 </a>
+            </div>
+
+            <div class="menu">
+                <ul class="ul-list">
+                    <li class="list-item"><a href="#" class="active">Home</a></li>
+                    <li class="list-item"><a href="#">Services</a></li>
+                    <li class="list-item"><a href="#">Contact</a></li>
+                    <li class="list-item"><a href="#">Suppliers</a></li>
+                </ul>
+            </div>
+
+            <div class="auth__container">
+                <div>
+                    <p class="auth">Auth</p>
+                </div>
+
+                <div class="down__btn">
+                    <i class="fas fa-angle-down"></i>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <!-- ========= header ======== -->
+    <main class="main">
+        <div class="left">
+             <div class="small__caption">
+                 <p>No Ordinary Burgers</p>
+             </div>
+
+             <div class="main__title">
+                <h1>Fastest & Cheapest<br>
+                    burger delivery<br>
+                    service </h1>
+             </div>
+
+             <div class="para__txt">
+                 <p>Get the best quality and most delicous burger in the world you can get them all at Burger Queen</p>
+             </div>
+
+             <div class="register__btn">
+                 <a href="#">Register Yourself</a>
+             </div>
+        </div>
+
+        <div class="right">
+             <div class="img__cont">
+                 <img src="./images/—Pngtree—indian food talley curry soup_6814449.png">
+             </div>
+        </div>
+    </main>  
+
+
+    <!-- ======= Search Section and Service======= -->
+    <section class="search__section">
+
+        <div class="title__section">
+            <div class="title">
+                <h2>Search The Mess Suitable For You</h2>
+            </div>
+
+            <div class="title__para">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, quibusdam.</p>
+            </div>
+        </div>
+
+
+        <div class="search__box__container">
+            
+            <form action="#" class="form1">
+                <div class="search__form__1">
+                    <div class="input__fields">
+                        <div class="input__field">
+                            <input type="text" placeholder="Country">
+                        </div>
+
+                        <div class="input__field">
+                            <input type="text" placeholder="District">
+                        </div>
+
+                        <div class="input__field">
+                            <input type="text" placeholder="City">
+                        </div>
+                    </div>
+
+                    <div class="search__btn">
+                        <button>Search</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <form action="#">
+                <div class="search__form__2">
+                     <div class="input__field">
+                         <input type="text" placeholder="Search Mess">
+                     </div>
+
+                    <div class="search__btn">
+                        <button>Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- ========= Services ========== -->
+       <div class="services__section">
+           
+            <div class="title__section">
+                <div class="title">
+                    <h2>Services</h2>
+                </div>
+
+                <div class="title__para">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
+
+            <div class="sercies__cards">
+                <div class="services__card">
+                    <div class="img__container">
+                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                    </div>
+
+                    <div class="info__container">
+                        <div class="services__heading">
+                            <h3>For Customer</h3>
+                        </div>
+
+                        <div class="services__para">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A dolorum modi, ut architecto libero veniam?</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="services__card">
+                    <div class="img__container">
+                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                    </div>
+
+                    <div class="info__container">
+                        <div class="services__heading">
+                            <h3>For Supplier</h3>
+                        </div>
+
+                        <div class="services__para">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A dolorum modi, ut architecto libero veniam?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       </div>        
+
+
+    </section>
+
+
+    <!-- =========== Top Suppliers ======== -->
+    <section class="top__suppliers__section">
+
+        <div class="title__section">
+            <div class="title">
+                <h2>Top Suppliers</h2>
+            </div>
+
+            <div class="title__para">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, quibusdam.</p>
+            </div>
+        </div>
+
+
+            <!-- Swiper -->
+        <div class="swiper mySwiper">
+            
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+
+
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+
+
+
+                <div class="swiper-slide" id="slider__card">
+                    <dic id="img__container">
+                        <img src="./images/download.jpg" alt="">
+                    </dic>
+
+                    <div class="name">
+                        <h3>John Smith</h3>
+                    </div>
+
+                    <div class="price__container">
+                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                    </div>
+
+                    <div class="address">
+                        <p>Kathora Nake Chauk
+                             , Amravati 445106
+                        </p>
+                    </div>
+
+                    <div class="button__container">
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- <div class="swiper-pagination"></div> -->
+        </div>
+    </section>
+
+
+
+
+
+    <!-- ======= modal for authentication -->
+    <div class="authentication__model">
+        <div>
+            <p class="auth__heading">Authentication</p>
+        </div>
+
+        <div>
+            <a href="#" class="auth__link customer__auth__link">Customer Auth</a>
+            <a href="#" class="auth__link supplier__auth__link">Mess Supplier Auth</a>
+        </div>
+    </div>
+
+    <div class="customer__authentication__model">
+        <div>
+            <p class="auth__heading">Customer Authentication</p>
+        </div>
+
+        <div>
+            <a href="#" class="auth__link customer__login__link">Login</a>
+            <a href="#" class="auth__link customer__register__link">Registration</a>
+        </div>
+    </div>
+
+
+    <div class="supplier__authentication__model">
+        <div>
+            <p class="auth__heading">Supplier Authentication</p>
+        </div>
+
+        <div>
+            <a href="#" class="auth__link supplier__login__link">Login </a>
+            <a href="#" class="auth__link supplier__register__link">Registration</a>
+        </div>
+    </div>
+
+    <!--====== black layer -->
+    <div class="black__layer">
+    </div>
+    
+      <!-- Swiper JS -->
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./js/topSupplierSlider.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
