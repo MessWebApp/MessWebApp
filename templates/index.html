@@ -406,8 +406,13 @@
         </div>
 
         <div>
-            <a href="{% url 'customer-login' %}" class="auth__link customer__login__link">Login</a>
-            <a href="{% url 'customer-register' %}" class="auth__link customer__register__link">Registration</a>
+            {% if customer %}
+                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link">UserPanal</a>
+                <a href="{% url 'logout' %}" class="auth__link customer__register__link">Logout</a>
+            {% else %}
+                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link">Login</a>
+                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link">Registration</a>
+            {% endif %}
         </div>
     </div>
 
@@ -418,8 +423,13 @@
         </div>
 
         <div>
-            <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link">Login </a>
-            <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link">Registration</a>
+            {% if supplier %}
+                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link">UserPanal </a>
+                <a href="{% url 'logout' %}" class="auth__link supplier__register__link">Logout</a>
+            {% else %}
+                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link">Login </a>
+                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link">Registration</a>
+            {% endif %}
         </div>
     </div>
 

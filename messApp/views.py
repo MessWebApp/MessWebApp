@@ -11,8 +11,20 @@ from .form import ContactForm
 
 # Create your views here.
 def Home(request):
-    print(request.user)
-    return render(request,'index.html',{})
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+    
+    context = {
+        'customer':customer,
+        'supplier':supplier
+    }
+    return render(request,'index.html',context)
 
 def Search(request):
     return render(request,'serach.html',{})
@@ -41,6 +53,7 @@ def SupplierLoginView(request):
 
     context = {}
     return render(request,'supplier/supplier-login.html',context)
+
 
 # =================== register supplier =============================
 
@@ -73,35 +86,42 @@ def SupplierRegister(request):
         supplier = Supplier(name = name,email = email,number = number,otp = otp)
         supplier.save()
 
+        mail_body = f'Hello {name}, \n welcome to messo web App. \n for verification her is your otp {otp}.\n enjoy the journey.'
+
+
         mail = EmailMessage(
-        subject='hellow rodld',
-        body='email Body',
+        subject='Account Verification',
+        body=mail_body,
         from_email=settings.EMAIL_HOST_USER,
         to=[email,]
         )
         mail.send()
+
         messages.success(request,'Verfiy your Profile.Otp sended to your email.')
-        return redirect('/supplier-sendOTP')
+        return redirect('/supplier-sendOtp')
 
     return render(request,'supplier/supplier-register.html',{})
 
 
 def SupplierSendOPT(request):
     email = request.session['email']
-    supplier = Supplier.objects.get(email = email)
+    if email:
+        supplier = Supplier.objects.get(email = email)
 
-    if request.method == 'POST':
-        otp = request.POST.get('otp')
+        if request.method == 'POST':
+            otp = request.POST.get('otp')
 
-        if supplier.otp == otp:
-            request.session['email'] = ''
-            supplier.email_verify = True
-            supplier.save()
-        else:
-            messages.info(request,'otp is wrong please try again')
-            return redirect('/supplier-sendOTP')
-    
-    return render(request,'supplier-otp.html',{'email':email})
+            if supplier.otp == otp:
+                request.session['email'] = ''
+                supplier.email_verify = True
+                supplier.save()
+            else:
+                messages.info(request,'otp is wrong please try again')
+                return redirect('/supplier-sendOTP')
+        
+        return render(request,'supplier/supplier-otp.html',{'email':email})
+    else:
+        return redirect('/supplier-login')
 
 
 # =================== register supplier =============================
@@ -109,7 +129,21 @@ def SupplierSendOPT(request):
 #===================== supplier userpanal =========================
 
 def SupplierUserpanal(request):
-    return render(request,'supplier-userpanal.html',{})
+    if request.user.is_active:
+        supplier = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            if not supplier.address or not supplier.id_proof:
+                messages.info(request,'complete Your Profile.')
+                return redirect('/')
+        context = {
+            'supplier':supplier
+        }
+            
+        return render(request,'supplier-userpanal.html',context)
+
+    return redirect('/supplier-login')
 
 
 
@@ -213,8 +247,8 @@ def CustomerUserPanal(request):
         user = User.objects.get(username = request.user.username)
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
-            if customer.address == 0 or not customer.id_proof:
-                return redirect('/')
+            if not customer.address or not customer.id_proof:
+                return redirect(f'/customer-details/{customer.id}')
 
         context = {
             'customer':customer
@@ -224,8 +258,43 @@ def CustomerUserPanal(request):
 
     return render(request,'customer/customer-userpanal.html',context)
 
+def CustomerDetails(request,pk):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            if request.method == 'POST':
+                print('hello world')
+                address = request.POST.get('address')
+                id_proof = request.FILES.get('id_proof')
+
+                print(id_proof)
+
+                customer.address = address
+                customer.id_proof = id_proof
+                customer.save()
+                messages.success(request,'Your details is updated Enjoy the Journey.')
+                return redirect('/customer-userpanal')
+        
+        else:
+            return redirect('/customer-login')
+        
+        return render(request,'customer/fill-details.html',{'customer':customer})
+
+    return redirect('/customer-login')
 
 
+
+
+# ================================ logout section ==============================
+
+def LogoutView(request):
+    if request.user.is_active:
+        logout(request)
+        messages.success(request,'You SuccessFully Logout.')
+    
+    return redirect('/')
 
 # =========================== contact page ====================
 

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Belly</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
      
      <!-- Link Swiper's CSS -->
      <link
@@ -14,13 +16,15 @@
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
    
-    <link rel="stylesheet" href="./css/userPanal_supplier__slider.css">
-    <link rel="stylesheet" href="./css/userPanal_supplier.css">
+    <link rel="stylesheet" href="{% static 'css/userPanal_supplier__slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/userPanal_supplier.css"' %}" >
 </head>
 
 <body>
       <!-- ======== User Panal ========= -->
       <div class="user__panal__container">
+        {% if supplier %}
+        {% if supplier.active %}
           <div class="left">
                   <div class="logo">
                       <a href="#">
@@ -99,158 +103,162 @@
                     </a>
                   </div>
           </div>
-
-
-
-
           <div class="right">
-                <header class="header">
-                    <div class="left">
-                        <h2 class="header__heading">Welcome, <br>
-                            <span>Aditya Chandrikapure</span></h2>
-                    </div>
+            <header class="header">
+                            <div class="left">
+                                <h2 class="header__heading">Welcome, <br>
+                                    <span>{{supplier.name}}</span></h2>
+                            </div>
 
-                    <div class="middle">
-                        <div class="input__field__header">
-                            <input type="text" placeholder="Search">
-                            <i class="fas fa-search search__btn__header"></i>
-                        </div>
-                    </div>
+                            <div class="middle">
+                                <div class="input__field__header">
+                                    <input type="text" placeholder="Search">
+                                    <i class="fas fa-search search__btn__header"></i>
+                                </div>
+                            </div>
 
-
-                    <div id="right">
-                        <div class="profile__container__header">
-                            <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                        </div>
-                    </div>
+                            <div id="right">
+                                <div class="profile__container__header">
+                                    {% if supplier.image %}
+                                        <img src="{{supplier.image.url}}" alt="">
+                                    {% else %}
+                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                    {% endif %}
+                                </div>
+                            </div>
             </header>
-
-
-
             <section id="mess__service_details">
-                    <div class="section__heading">
-                        <h2>Mess Services Details</h2>
-                    </div>
-
-                    <div id="details__wrapper">
-                        <div class="leftBox">
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
-                                    </div>
-                                </div>
-                                
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-pagination"></div>
-                              </div>
-                        </div>
-
-                        <div class="rightBox">
-                             <div class="mess__name">
-                                 <h2>Maharaja Mess</h2>
-                             </div>
-                 
-                             <div class="rating">
-                                <div class="wrapper">
-                                    <div class="stars">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-
-                                    <div class="rating__in__no">
-                                        <p>4.2</p>
-                                    </div>
-                                </div>
+                            <div class="section__heading">
+                                <h2>Mess Services Details</h2>
                             </div>
 
-                            <div class="features">
-                                <div class="features__title">
-                                    <p>Features</p>
+                            <div id="details__wrapper">
+                                <div class="leftBox">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="./images/—Pngtree—indian food talley curry soup_6814449.png" alt="">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
+                                        </div>
                                 </div>
 
-                                <div class="features__items">
-                                    <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                                    <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                                    <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                                    <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                                <div class="rightBox">
+                                    <div class="mess__name">
+                                        <h2>Maharaja Mess</h2>
+                                    </div>
+                        
+                                    <div class="rating">
+                                        <div class="wrapper">
+                                            <div class="stars">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+
+                                            <div class="rating__in__no">
+                                                <p>4.2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="features">
+                                        <div class="features__title">
+                                            <p>Features</p>
+                                        </div>
+
+                                        <div class="features__items">
+                                            <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                                            <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                                            <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                                            <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="address">
+                                        <div class="address__title">
+                                            <p>Address</p>
+                                        </div>
+
+                                        <div class="address__para">
+                                            <p>Universal Adventure gali, nagpur 441601</p>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <p class="availability__txt">Availability : </p>
+                                        <div class="availability__modes">
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Morning
+                                                </p>
+                                            </div>
+
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Afternoon
+                                                </p>
+                                            </div>
+
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Evening
+                                                </p>
+                                            </div>
+                                    </div>
+
+
+                                    <div class="bottom">
+                                        <div class="map">
+                                            <p>Map Link : 
+                                                <span class="map__link">
+                                                    <a href="#">www.google.map.com</a>
+                                                </span>
+                                            </p>
+                                        </div>
+            
+                                        <div id="view__details__btn">
+                                            <button>View Details</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            
-                            <div class="address">
-                                <div class="address__title">
-                                    <p>Address</p>
-                                </div>
-
-                                <div class="address__para">
-                                    <p>Universal Adventure gali, nagpur 441601</p>
-                                </div>
-                            </div>
-
-
-                             <div>
-                                <p class="availability__txt">Availability : </p>
-                                <div class="availability__modes">
-                                   <div class="availability__modes__item">
-                                       <p>
-                                           <i class="far fa-star"></i>
-                                           Morning
-                                       </p>
-                                   </div>
-
-                                   <div class="availability__modes__item">
-                                       <p>
-                                           <i class="far fa-star"></i>
-                                           Afternoon
-                                       </p>
-                                   </div>
-
-                                   <div class="availability__modes__item">
-                                       <p>
-                                           <i class="far fa-star"></i>
-                                           Evening
-                                       </p>
-                                   </div>
-                             </div>
-
-
-                             <div class="bottom">
-                                <div class="map">
-                                    <p>Map Link : 
-                                        <span class="map__link">
-                                            <a href="#">www.google.map.com</a>
-                                        </span>
-                                    </p>
-                                </div>
-   
-                                <div id="view__details__btn">
-                                    <button>View Details</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
             </section>
+        {% else %}
+            <div class="container">
+                <h2>Your Account is Not Activated At Wait for 1 Day. We Check Your Details Then Activate your Account Sortly.
+                    Thank You Register.
+                </h2>
+            </div>
+        {% endif %}
+        {% endif %}
 
           </div>
       </div>
