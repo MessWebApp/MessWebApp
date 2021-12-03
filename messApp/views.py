@@ -7,6 +7,7 @@ from django.conf import settings
 from .models import Customer,Supplier,MessDetails,MessBooking,MessReview,User
 import random
 from django.core.mail import EmailMessage , send_mail
+from .form import ContactForm
 
 # Create your views here.
 def Home(request):
@@ -222,5 +223,29 @@ def CustomerUserPanal(request):
         return redirect('/customer-login')
 
     return render(request,'customer/customer-userpanal.html',context)
+
+
+
+
+# =========================== contact page ====================
+
+def ContactUs(request):
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST or None)
+        print(form.errors)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.save()
+            form.save_m2m()
+            messages.success(request,'Your Response is accepted. We Contact You Sortly')
+            return redirect('/')
+
+    context = {
+        'form':form
+    }
+    return render(request,'contactus.html',context)
+
+
 
 
