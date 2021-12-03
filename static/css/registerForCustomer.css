@@ -165,7 +165,7 @@ form{
     height: 100%;
     border: none;
     outline: none;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.301);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.301);
     border-radius: 7px;
     padding: 0 var(--mg-10)
 }

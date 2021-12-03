@@ -10,6 +10,7 @@ from django.core.mail import EmailMessage , send_mail
 
 # Create your views here.
 def Home(request):
+    print(request.user)
     return render(request,'index.html',{})
 
 def Search(request):
@@ -104,6 +105,11 @@ def SupplierSendOPT(request):
 
 # =================== register supplier =============================
 
+#===================== supplier userpanal =========================
+
+def SupplierUserpanal(request):
+    return render(request,'supplier-userpanal.html',{})
+
 
 
 # ======================== customer login =========================
@@ -119,7 +125,8 @@ def CustomerLoginView(request):
                 customer = Customer.objects.get(user = user)
                 if customer.email_verify:
                     login(request,user)
-                    redirect('')
+                    print('hello world')
+                    redirect('/customer-userpanal')
                 else:
                     messages.warning(request,'your account not verified please verified then login.')
                     redirect('/email-verification')
@@ -160,41 +167,60 @@ def CustomerRegister(request):
         customer = Customer(user = user, name = name,email = email,number = number,otp = otp)
         customer.save()
 
+        mail_body = f'Hello {name}, \n welcome to messo web App. \n for verification her is your otp {otp}.\n enjoy the journey.'
+
+
         mail = EmailMessage(
-        subject='hellow rodld',
-        body='email Body',
+        subject='Account Verification',
+        body=mail_body,
         from_email=settings.EMAIL_HOST_USER,
         to=[email,]
         )
         mail.send()
         messages.success(request,'Verfiy your Profile.Otp sended to your email.')
-        return redirect('/customer-sendOTP')
+        return redirect('/customer-sendOtp')
 
     return render(request,'customer/customer-register.html',{})
 
 
 def CustomerSendOPT(request):
     email = request.session['email']
-    customer = Customer.objects.get(email = email)
+    if len(email) != 0:
+        customer = Customer.objects.get(email = email)
 
-    if request.method == 'POST':
-        otp = request.POST.get('otp')
+        if request.method == 'POST':
+            otp = request.POST.get('otp')
 
-        if customer.otp == otp:
-            request.session['email'] = ''
-            customer.email_verify = True
-            customer.save()
-        else:
-            messages.info(request,'otp is wrong please try again')
-            return redirect('/customer-sendOTP')
+            if customer.otp == otp:
+                request.session['email'] = ''
+                customer.email_verify = True
+                customer.save()
+                messages.info(request,'Your account is activated. Enjoy the experience of our site')
+                return redirect('/customer-login')
+            else:
+                messages.info(request,'otp is wrong please try again')
+    else:
+        return redirect('/customer-login')
     
-    return render(request,'customer-otp.html',{'email':email})
+    return render(request,'customer/customer-otp.html',{'email':email})
 
 
 
-#===================== supplier userpanal =========================
+def CustomerUserPanal(request):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            if customer.address == 0 or not customer.id_proof:
+                return redirect('/')
 
-def SupplierUserpanal(request):
-    return render(request,'supplier-userpanal.html',{})
+        context = {
+            'customer':customer
+        }
+    else:
+        return redirect('/customer-login')
+
+    return render(request,'customer/customer-userpanal.html',context)
 
 

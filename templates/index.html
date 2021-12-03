@@ -46,10 +46,7 @@
             </div>
 
             <div class="auth__container">
-                <div>
-                    <p class="auth">Auth</p>
-                </div>
-
+                <p class="auth">Auth</p>
                 <div class="down__btn">
                     <i class="fas fa-angle-down"></i>
                 </div>
@@ -63,7 +60,7 @@
     <main class="main">
         <div class="left">
              <div class="small__caption">
-                 <p>No Ordinary Burgers</p>
+                 <p> <i class="fas fa-hamburger"></i> No Ordinary Burgers</p>
              </div>
 
              <div class="main__title">
@@ -73,11 +70,11 @@
              </div>
 
              <div class="para__txt">
-                 <p>Get the best quality and most delicous burger in the world you can get them all at Burger Queen</p>
+                 <p>Get the best quality and most delicous burger in the world you can get them all at Burger Queen.</p>
              </div>
 
              <div class="register__btn">
-                 <a href="#">Register Yourself</a>
+                 <a href="#">Explore Idea</a>
              </div>
         </div>
 
@@ -85,7 +82,15 @@
              <div class="img__cont">
                  <img src="{% static 'images/—Pngtree—indian food talley curry soup_6814449.png' %}">
              </div>
+             <div class="abs__model">
+                 <img src="{% static 'images/—Pngtree—indian food talley curry soup_6814449.png' %}" alt="">
+                 <div class="abs_details">
+                     <p>Welcome to Mess App</p>
+                     <h1></h1>
+                 </div>
+             </div>
         </div>
+
     </main>  
 
 
@@ -94,7 +99,7 @@
 
         <div class="title__section">
             <div class="title">
-                <h2>Search The Mess Suitable For You</h2>
+                <h2>Search Messes</h2>
             </div>
 
             <div class="title__para">
@@ -109,15 +114,21 @@
                 <div class="search__form__1">
                     <div class="input__fields">
                         <div class="input__field">
-                            <input type="text" placeholder="Country">
+                            <select name="state">
+                                <option value="">select State</option>
+                            </select>
                         </div>
 
                         <div class="input__field">
-                            <input type="text" placeholder="District">
+                            <select name="District">
+                                <option value="">select District</option>
+                            </select>
                         </div>
 
                         <div class="input__field">
-                            <input type="text" placeholder="City">
+                            <select name="city">
+                                <option value="">select City</option>
+                            </select>
                         </div>
                     </div>
 
@@ -131,7 +142,7 @@
             <form action="#">
                 <div class="search__form__2">
                      <div class="input__field">
-                         <input type="text" placeholder="Search Mess">
+                         <input type="search" name="search" placeholder="Search Mess" />
                      </div>
 
                     <div class="search__btn">
@@ -382,8 +393,10 @@
         </div>
 
         <div>
-            <p class="auth__link customer__auth__link">Customer Auth</p>
-            <p class="auth__link supplier__auth__link">Mess Supplier Auth</p>
+            <p class="auth__link customer__auth__link">
+                <i class="fas fa-sign-in-alt"></i> Customer Auth</p>
+            <p class="auth__link supplier__auth__link">
+                <i class="fas fa-sign-in-alt"></i> Mess Supplier Auth</p>
         </div>
     </div>
 
