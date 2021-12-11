@@ -273,6 +273,7 @@ body{
     width: 75%;
     font-size: var(--small-font);
     margin-bottom: var(--mg-25);
+    color: rgb(190, 187, 187);
 
 }
 
@@ -400,11 +401,11 @@ body{
     width: 30%;
     background-color: #000;
 }
-.title__para p{
-    font-weight: 500;
+.title__para p
+{
     font-size: 12px;
     word-spacing: 3px;
-    color: gray;
+    color: rgb(194, 193, 193) !important;
 }
 
 
@@ -434,11 +435,14 @@ body{
     height: 100%;
     padding: var(--mg-8) var(--mg-10);
     border-radius: 5px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.281);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.281);
     border: none;
     outline: none;
 }
-
+.search__form__1 .input__field select:focus
+{
+    border-bottom: 2px solid var(--primary-color);
+}
 .search__btn button{
     padding: var(--mg-12) var(--mg-30);
     font-size: var(--primary-font);
@@ -472,11 +476,15 @@ body{
     font-size: 16px;
     padding: var(--mg-8) var(--mg-10);
     border-radius: 5px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.281);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.281);
     border: none;
     outline: none;
 }
 
+.search__form__2 .input__field input:focus
+{
+    border-bottom: 2px solid var(--primary-color);
+}
 .search__btn button:nth-child(2)
 {
     padding-top: var(--mg-30);

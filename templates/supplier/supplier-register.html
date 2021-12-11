@@ -31,7 +31,7 @@
                 </div>
 
                    <form action="#" method="POST">
-
+                        {% csrf_token %}
                         <div class="input__field">
                             <input type="text" name="name" placeholder="Full Name">
 
@@ -80,9 +80,7 @@
                         </div> -->
 
                         <div class="login__btn">
-                            <button type="submit">
-                               Create Account
-                            </button>
+                            <button type="submit">Create Account</button>
                         </div>
 
                         <div class="bottom__link">
