@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lobster', cursive;
+    font-family: 'Sansita', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+.happy__users__section{
+    width: 100%;
+}
+
+.happy__users__section .wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+
+}
+
+.happy__users__section .wrapper .card{
+    width: 320px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px .1px rgba(0,0,0,.2);
+    background-image: linear-gradient(to right bottom,#EE61A5,#FD853A);
+    margin: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding-top: 40px;
+}
+
+
+.happy__users__section .wrapper .card h3{
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
+    word-spacing: 5px;
+}
+
+.happy__users__section .wrapper .card .img__box{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px .1px rgba(0, 0, 0, 0.212);
+    background-image: linear-gradient(to right bottom,#EE61A5,#FD853A);
+    position: absolute;
+    top:-50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.happy__users__section .wrapper .card .img__box img{
+    width: 75%;
+    height: 75%;
+    object-fit: fill;
+}
+
+.happy__users__section .section__title{
+    text-align: center;
+    padding: 20px;
+}
+
+.happy__users__section .section__title h2{
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: .3px;
+    word-spacing: 2px;
+}
+
+.happy__users__section .section__title p{
+    padding: 10px 0;
+    letter-spacing: .3px;
+    word-spacing: 2px;
+}
