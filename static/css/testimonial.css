@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ======= For colors ====== */
+:root{
+    --primary-color : #FB6514;
+    --secondary-color : #FD853A;
+    --light-primary : #FE8273;
+    --light-secondary : #FDDCAB;
+    --light-light-primary : #FFEAD5;
+    --light-light-secondary : #FFF6ED;
+    --X-light : #FFFAF5;
+    --white : #fff;
+    --black : #000;
+    --green : green;
+    --red : red;
+    --light-bg: #FFEFD8;
+}
+
+/* ======= For fonts ======= */
+:root{
+    --small-font: .8rem;
+    --primary-font: 1rem;
+    --large-primary-font : 1.15rem;
+    --secondary-font: 1.25rem;
+    --large-font: 1.5rem;
+    --x-large: 1.75rem;
+    --xx-large: 2rem;
+    --xxx-large : 2.5rem;
+}
+
+/* ====== For margins and paddings ======= */
+:root{
+   --mg-5: .5rem;
+   --mg-7 : .7rem;
+   --mg-8 : .8rem;
+   --mg-10 : 1rem;
+   --mg-12 : 1.2rem;
+   --mg-15 : 1.5rem;
+   --mg-20 : 2rem;
+   --mg-25 : 2.5rem;
+   --mg-30 : 3rem;
+   --mg-35: 3.5rem;
+   --mg-40: 4rem;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+.testimonial__section{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--mg-15) 0;
+    background-color: var(--light-light-primary);
+    overflow: hidden;
+}
+
+.section__titile{
+    text-align: center;
+}
+
+.section__titile h2{
+    display: inline-block;
+    font-size: var(--x-large);
+    font-weight: 600;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section__titile h2::after{
+    content: "";
+    width: 50%;
+    height: 3px;
+    background-color: var(--secondary-color);
+    bottom: 0;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+/* swiper css */
+
+.swiper {
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 70px;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 320px;
+    filter:blur(2px);
+    background-color: #d1ebff;
+    border-radius: 7px;
+  }
+
+  .swiper-slide-active{
+      filter: blur(0px);
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+
+
+  .right__quote{
+      font-size: 60px;
+      color: var(--light-primary);
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      opacity: .5;
+  }
+
+  .testimonial__box{
+      position: relative;
+      width: 100%;
+      padding: 40px;
+      padding-top: 80px;
+      padding-bottom: 40px;
+      color: #999;
+      border-radius: 7px;
+      background: white;
+  }
+
+  .testimonial__box .details .imgBox img{
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+  }
+
+  .details{
+      display: flex;
+      align-items: center;
+      padding-top: 20px;
+  }
+
+  .testimonial__box .details h3{
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #2196f3;
+      line-height: 1.1em;
+  }
+
+  .testimonial__box .details h3 span{
+      font-size: 12px;
+      color: #666;
+  }
+
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right{
+      background-image: none;
+      opacity: 0;
+  }
+
