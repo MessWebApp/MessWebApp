@@ -1,0 +1,224 @@
+{% extends 'supplier/supplier-userpanal.html' %}
+{% load static %}
+
+{% block title %}
+ Add Mess Details
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/supplier-mess.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <section class="mess_details_form">
+        <div class="mess__heading">
+            <h2>Add Mess Details</h2>
+        </div>     
+        <form action="" class="messForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input__block">
+                <div class="label_box">
+                    <label>Mess Name :</label>
+                </div>
+                <div class="input_box">
+                    <input type="text" name="mess_name" placeholder="Add Mess Name" required />
+                </div>
+            </div>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>State :</label>
+                    </div>
+                    <div class="input_box">
+                       <select name="state">
+                           <option value="">Select State</option>
+                           <option value="Maharashtra">Maharashtra</option>
+                           <option value="Gujrat">Gujrat</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>City :</label>
+                    </div>
+                    <div class="input_box">
+                        <select name="city">
+                            <option value="">Select City</option>
+                            <option value="Amravati">Amravati</option>
+                            <option value="Gondia">Gondia</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="input__block">
+                <div class="label_box">
+                    <label>Mess Address :</label>
+                </div>
+                <div class="input_box">
+                    <textarea name="address" placeholder="Enter Mess Address" cols="30" rows=5"></textarea>
+                </div>
+            </div>
+            <div class="combo__container">
+
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Mobile Number :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="number" placeholder="Enter Number" required />
+                    </div>
+                </div>
+    
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Meal Type :</label>
+                    </div>
+                    <div class="input_box">
+                        <select name="meal_type">
+                            <option value="">Select Meal</option>
+                            <option value="Veg">Veg</option>
+                            <option value="Non-Veg">Non-Veg</option>
+                            <option value="Both">Both</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="input__block">
+                <div class="label_box">
+                    <label>Availiablity :</label>
+                </div>
+                <div class="input_box">
+                    <select name="mess_availability" id="">
+                        <option value="">Select Availiablity</option>
+                        <option value="morning-AfterNoon-Night">morning-AfterNoon-Night</option>
+                        <option value="morning-Night"> morning-Night </option>
+                        <option value="Morning">Morning</option>
+                        <option value="Night">Night</option>
+                        <option value="morning-AfterNoon">morning-AfterNoon</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input__block">
+                <div class="label_box">
+                    <label>Mess Features :</label>
+                </div>
+                <div class="input_box">
+                    <textarea name="meal_feature" placeholder="Enter Mess Feature" cols="30" rows=5"></textarea>
+                </div>
+            </div>
+
+            <div class="input__block">
+                <div class="label_box">
+                    <label>Meal food Special :</label>
+                </div>
+                <div class="input_box">
+                    <textarea name="meal_special" placeholder="Enter Mess Special Food" cols="30" rows=5"></textarea>
+                </div>
+            </div>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Google Map Link :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="url" name="map_link" placeholder="Enter Google Map Link" required />
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Mess Rating :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="rating" max="5" placeholder="Enter The Rating" required />
+                    </div>
+                </div>
+                
+            </div>
+            <h3>Price : </h3>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Price with veg:</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="price_with_veg" placeholder="RS.0,000" required />
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Extra for Non-veg :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="extra_for_non_veg" placeholder="Rs. 0,000" required />
+                    </div>
+                </div>
+            </div>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Price Per Tiffin :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="per_tiffin" placeholder="RS.0,000" required />
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Price Per Month :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" name="per_week" placeholder="Rs. 0,000" required />
+                    </div>
+                </div>
+            </div>
+            <h3>Images : </h3>
+            <p style="font-size:12px;margin-bottom:10px">Note : you have to upload max 3 images. one for tiffen pack one is kitchen and one is food image. other is option you can leave no problem.</p>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Image 1 :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="file" accept="image/*" name="image1" required />
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Image 2 :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="file" accept="image/*" name="image2" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="combo__container">
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Image 3 :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="file" accept="image/*" name="image3" />
+                    </div>
+                </div>
+                <div class="input__block">
+                    <div class="label_box">
+                        <label>Image 4 :</label>
+                    </div>
+                    <div class="input_box">
+                        <input type="file" accept="image/*" name="image4" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="send__btn">
+                <button type="submit">Add Mess</button>
+            </div>
+        </form>    
+    </section>
+{% endblock body %}
+
+{% block js %}
+    <script src="./js/userPanal_supplier.js"></script>
+{% endblock js %}
+

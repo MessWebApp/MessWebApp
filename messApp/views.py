@@ -43,7 +43,7 @@ def SupplierLoginView(request):
                 supplier = Supplier.objects.get(user = user)
                 if supplier.email_verify:
                     login(request,user)
-                    redirect('')
+                    return redirect('/supplier-userpanal')
                 else:
                     messages.warning(request,'your account not verified please verified then login.')
                     redirect('/email-verification')
@@ -83,7 +83,7 @@ def SupplierRegister(request):
 
         request.session['email'] = email
 
-        supplier = Supplier(name = name,email = email,number = number,otp = otp)
+        supplier = Supplier(user = user,name = name,email = email,number = number,otp = otp)
         supplier.save()
 
         mail_body = f'Hello {name}, \n welcome to messo web App. \n for verification her is your otp {otp}.\n enjoy the journey.'
@@ -115,6 +115,7 @@ def SupplierSendOPT(request):
                 request.session['email'] = ''
                 supplier.email_verify = True
                 supplier.save()
+                return redirect('/supplier-userpanal')
             else:
                 messages.info(request,'otp is wrong please try again')
                 return redirect('/supplier-sendOTP')
@@ -131,19 +132,93 @@ def SupplierSendOPT(request):
 def SupplierUserpanal(request):
     if request.user.is_active:
         supplier = None
+        mess_details = None
         user = User.objects.get(username = request.user.username)
         if Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
+            mess_details = MessDetails.objects.filter(supplier = supplier).first()
             if not supplier.address or not supplier.id_proof:
                 messages.info(request,'complete Your Profile.')
-                return redirect('/')
+                return redirect(f'/supplier-details/{supplier.id}')
         context = {
-            'supplier':supplier
+            'supplier':supplier,
+            'mess':mess_details
         }
             
-        return render(request,'supplier-userpanal.html',context)
+        return render(request,'supplier/supplier-userpanal.html',context)
 
     return redirect('/supplier-login')
+
+def SupplierUserDetails(request,pk):
+    supplier = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = request.user)
+            if request.method == 'POST':
+                address = request.POST.get('address')
+                id_proof = request.FILES.get('id_proof')
+
+                supplier.address = address
+                supplier.id_proof = id_proof
+                supplier.save()
+                messages.success(request,'Your details is updated Enjoy the Journey.')
+                return redirect('/supplier-userpanal')
+        
+        else:
+            return redirect('/supplier-login')
+        
+        return render(request,'supplier/fill-details.html',{'supplier':supplier})
+
+    return redirect('/supplier-login')
+
+
+def AddMessDetails(request):
+    if request.user.is_active:
+        supplier = None
+        mess_details = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            if request.method == 'POST':
+                name = request.POST.get('mess_name')
+                state = request.POST.get('state')
+                city = request.POST.get('city')
+                address = request.POST.get('address')
+                number = request.POST.get('number')
+                meal_type = request.POST.get('meal_type')
+                mess_availability = request.POST.get('mess_availability')
+                mess_feature = request.POST.get('meal_feature')
+                mess_special = request.POST.get('meal_special')
+                mess_map_link = request.POST.get('map_link')
+                rating = request.POST.get('rating')
+                price_per_tiffin = request.POST.get('per_tiffin')
+                price_per_month = request.POST.get('per_week')
+                price_with_veg = request.POST.get('price_with_veg')
+                extra_for_non_veg = request.POST.get('extra_for_non_veg')
+                image1 = request.FILES.get('image1')
+                image2 = request.FILES.get('image2')
+                image3 = request.FILES.get('image3')
+                image4 = request.FILES.get('image4')
+            
+                addMess = MessDetails(supplier = supplier , name = name,state = state,city = city , address = address , 
+                number = number,meal_type = meal_type,mess_availability = mess_availability , meal_feature = mess_feature , 
+                meal_special = mess_special , map_link = mess_map_link,rating = rating , price_per_tiffin = price_per_tiffin,
+                price_with_veg = price_with_veg , extra_for_non_veg = extra_for_non_veg, 
+                price_per_month = price_per_month , mess_image1 = image1 , mess_image2 = image2 , mess_image3 = image3 , mess_image4 = image4)
+
+                addMess.save()
+
+                messages.success(request,'Mess Details is Added!')
+                return redirect('/supplier-userpanal')
+
+        context = {
+            'supplier':supplier,
+        }
+        return render(request,'supplier/supplier-mess.html',context)
+
+    return redirect('/supplier-login')
+    
 
 
 
@@ -265,7 +340,6 @@ def CustomerDetails(request,pk):
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
             if request.method == 'POST':
-                print('hello world')
                 address = request.POST.get('address')
                 id_proof = request.FILES.get('id_proof')
 
