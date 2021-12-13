@@ -54,10 +54,9 @@
                                 <p>User Panal</p>
                             </a>
                             </li>
-
                             {% if mess %}
                             <li class="list__item">
-                                <a href="{% url 'add-supplier-mess' %}">
+                                <a href="{% url 'edit-supplier-mess' %}">
                                     <div>
                                         <img src="{% static 'icons/plus-sign.png' %}" alt="">
                                     </div>
@@ -117,7 +116,7 @@
           <div class="right">
             <header class="header">
                             <div class="left_username">
-                                <h2 class="header__heading">Welcome, <br>
+                                <h2 class="header__heading"><span style="font-size:15px;"> Welcome,</span> <br>
                                     <span>{{supplier.name}}</span></h2>
                             </div>
 

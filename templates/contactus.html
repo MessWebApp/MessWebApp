@@ -109,6 +109,7 @@
             </div>
 
             <form action="" method="POST">
+                {% csrf_token %}
                 <div class="input__field">
                     <input type="text" name="name" placeholder="Full Name">
                 </div>

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 
 # from django.contrib.auth.models import User
-from .models import Customer,Supplier,MessDetails,MessBooking,MessReview,User
+from .models import City, Customer, District, Feedback, State,Supplier,MessDetails,MessBooking,MessReview,User
 import random
 from django.core.mail import EmailMessage , send_mail
 from .form import ContactForm
@@ -19,10 +19,27 @@ def Home(request):
             customer = Customer.objects.get(user = user)
         elif Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
+    all_mess = MessDetails.objects.all()
+    all_user = len(User.objects.filter(is_superuser = False))
+    all_customer = len(Customer.objects.all())
+    all_supplier = len(Supplier.objects.all())
+    feedbacks = Feedback.objects.all()
+
+    states = State.objects.all()
+    districts = District.objects.all()
+    cities = City.objects.all()
     
     context = {
         'customer':customer,
-        'supplier':supplier
+        'supplier':supplier,
+        'all_mess':all_mess,
+        'all_user':all_user,
+        'all_customer':all_customer,
+        'all_supplier':all_supplier,
+        'feedbacks':feedbacks,
+        'states':states,
+        'districts':districts,
+        'cities':cities
     }
     return render(request,'index.html',context)
 
@@ -218,6 +235,92 @@ def AddMessDetails(request):
         return render(request,'supplier/supplier-mess.html',context)
 
     return redirect('/supplier-login')
+
+
+def EditMessDetails(request):
+    if request.user.is_active:
+        supplier = None
+        mess = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            if MessDetails.objects.filter(supplier = supplier).exists():
+                mess = MessDetails.objects.get(supplier = supplier)
+            
+                if request.method == 'POST':
+                    name = request.POST.get('mess_name')
+                    state = request.POST.get('state')
+                    city = request.POST.get('city')
+                    address = request.POST.get('address')
+                    number = request.POST.get('number')
+                    meal_type = request.POST.get('meal_type')
+                    mess_availability = request.POST.get('mess_availability')
+                    mess_feature = request.POST.get('meal_feature')
+                    mess_special = request.POST.get('meal_special')
+                    mess_map_link = request.POST.get('map_link')
+                    rating = request.POST.get('rating')
+                    price_per_tiffin = request.POST.get('per_tiffin')
+                    price_per_month = request.POST.get('per_week')
+                    price_with_veg = request.POST.get('price_with_veg')
+                    extra_for_non_veg = request.POST.get('extra_for_non_veg')
+                    image1 = request.FILES.get('image1')
+                    image2 = request.FILES.get('image2')
+                    image3 = request.FILES.get('image3')
+                    image4 = request.FILES.get('image4')
+                    
+
+                    mess.name = name
+                    mess.state = state
+                    mess.city = city
+                    mess.address = address
+                    mess.number = number
+                    mess.meal_type = meal_type
+                    mess.mess_availability = mess_availability
+                    mess.meal_feature = mess_feature
+                    mess.meal_special = mess_special
+                    mess.map_link = mess_map_link
+                    mess.rating = rating
+                    mess.price_per_tiffin = price_per_tiffin
+                    mess.price_per_month = price_per_month
+                    mess.price_with_veg = price_with_veg
+                    mess.extra_for_non_veg = extra_for_non_veg
+
+                    if image1 is not None:
+                        mess.mess_image1 = image1
+                    if image2 is not None:
+                        mess.mess_image2 = image2
+                    if image3 is not None:
+                        mess.mess_image3 = image3
+                    if image4 is not None:
+                        mess.mess_image4 = image4
+                    
+                    mess.save()
+                    messages.success(request,'Mess Details Successfully Updated.')
+            return render(request,'supplier/edit-messDetails.html',{'mess':mess,'supplier':supplier})
+
+        return redirect('/supplier-login')
+    
+    return redirect('/supplier-login')
+
+
+def SupplierCustomers(request):
+    if request.user.is_active:
+        supplier = None
+        mess = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            
+
+            return render(request,'supplier-customer.html',{})
+
+        return redirect('/supplier-login')
+    
+    return redirect('/supplier-login')
+
+
+
+
     
 
 

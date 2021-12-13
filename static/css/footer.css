@@ -65,14 +65,12 @@ a{
 
 
 .footer{
-    position: fixed;
-    bottom: 0;
     width: 100%;
     background: var(--secondary-color);
     border-top-left-radius: var(--mg-20);
     border-top-right-radius: var(--mg-20);
-    padding: var(--mg-15);
-    padding-top: var(--mg-20);
+    padding:var(--mg-40) var(--mg-15);
+    padding-top: var(--mg-40);
     padding-bottom: var(--mg-5);
     color: var(--white);
 }

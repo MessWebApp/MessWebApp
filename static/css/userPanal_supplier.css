@@ -77,7 +77,7 @@ a{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.267);
 }
 .user__panal__container .left .logo h2
 {
@@ -146,7 +146,7 @@ a{
     background-color: var(--light-bg);
     border-radius: var(--mg-20);
     overflow: hidden;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.267);
 }
 
 
@@ -158,12 +158,15 @@ a{
     padding: var(--mg-7) var(--mg-5);
 }
 
-.user__panal__container .right .header .left{
+.user__panal__container .right .header .left
+{
     flex-basis: 30%;
     box-shadow: none !important;
 }
 
-.user__panal__container .header__heading{
+.user__panal__container .header__heading
+{
+    margin-left: var(--mg-20);
     font-weight: 600;
     font-size: var(--secondary-font);
     text-align: left !important;
@@ -172,6 +175,7 @@ a{
 
 .user__panal__container .right .header .middle{
     flex-basis: 35%;
+
 }
 
 .input__field__header{
@@ -186,7 +190,7 @@ a{
     outline: none;
     border: 2px solid transparent;
     border-radius: 5px;
-    box-shadow: 1px 1px 10px .5px rgba(0, 0, 0, 0.247);
+    box-shadow: 1px 1px 5px .5px rgba(0, 0, 0, 0.247);
     transition: .3s ease;
 }
 
@@ -397,6 +401,7 @@ a{
 }
 
 #view__details__btn button{
+    margin-top: var(--mg-20);
     padding: var(--mg-5) var(--mg-15);
     border-radius: var(--mg-30);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.24);
