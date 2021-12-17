@@ -9,8 +9,24 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:root{
+    --primary-color : #FB6514;
+    --secondary-color : #FD853A;
+    --light-primary : #FE8273;
+    --light-secondary : #FDDCAB;
+    --light-light-primary : #FFEAD5;
+    --light-light-secondary : #FFF6ED;
+    --X-light : #FFFAF5;
+    --white : #fff;
+    --black : #000;
+    --green : green;
+    --red : red;
+    --light-bg: #FFEFD8;
+}
+
 .happy__users__section{
     width: 100%;
+    background-color: var(--light-light-secondary);
 }
 
 .happy__users__section .wrapper{
@@ -21,10 +37,10 @@
 }
 
 .happy__users__section .wrapper .card{
-    width: 320px;
-    height: 200px;
+    width: 400px;
+    height: 220px;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px .1px rgba(0,0,0,.2);
+    box-shadow: 1px 1px 5px .1px rgba(0,0,0,.2);
     background-image: linear-gradient(to right bottom,#EE61A5,#FD853A);
     margin: 20px 30px;
     display: flex;
@@ -39,7 +55,6 @@
 .happy__users__section .wrapper .card h3{
     font-size: 25px;
     font-weight: 600;
-    letter-spacing: 1px;
     color: white;
     word-spacing: 5px;
 }

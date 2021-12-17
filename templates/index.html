@@ -12,11 +12,10 @@
       crossorigin="anonymous" referrerpolicy="no-referrer" />
      
      <!-- Link Swiper's CSS -->
-     <link
-     rel="stylesheet"
-     href="https://unpkg.com/swiper/swiper-bundle.min.css"
-   />
-
+    <link  rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'css/happy-user.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testimonial.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 
@@ -94,6 +93,50 @@
     </main>  
 
 
+    <section class="happy__users__section">
+        <div class="section__title">
+        </div>
+        <div class="title__section">
+            <div class="title">
+                <h2>Happy Users</h2>
+            </div>
+            <div class="title__para">
+                <p>Feedbacks from the visitors</p>
+            </div>
+        </div>
+
+
+        <div class="wrapper">
+            <div class="card">
+                <h3>Happy Suppliers</h3>
+                <h3>{{all_supplier}}+</h3>
+
+                <div class="img__box">
+                    <img src="{% static 'images/supplier.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Happy Customers</h3>
+                <h3>{{all_customer}}+</h3>
+
+                <div class="img__box">
+                    <img src=" {% static 'images/customer.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Total Users</h3>
+                <h3>{{all_user}}+</h3>
+
+                <div class="img__box">
+                    <img src="{% static 'images/man.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- ======= Search Section and Service======= -->
     <section class="search__section">
 
@@ -114,8 +157,13 @@
                 <div class="search__form__1">
                     <div class="input__fields">
                         <div class="input__field">
-                            <select name="state">
+                            <select name="state" id="state">
                                 <option value="">select State</option>
+                                {% if states %}
+                                {% for state in states %}
+                                    <option value="{{state.state}}">{{state.state}}</option>
+                                {% endfor %}
+                                {% endif %}
                             </select>
                         </div>
 
@@ -224,30 +272,35 @@
         <div class="swiper mySwiper">
             
             <div class="swiper-wrapper">
+                {% if all_mess %}
+                {% for mess in all_mess %}
+                    <div class="swiper-slide" id="slider__card">
+                        <dic id="img__container">
+                            {% if mess.mess_image1 %}
+                                <img src="{{mess.mess_image1.url}}" alt="">
+                                {% else %}
+                                <img src="{% static 'images/download.jpg' %}" alt="">
+                            {% endif %}
+                        </dic>
 
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
+                        <div class="name">
+                            <h3>{{mess.name}}</h3>
+                        </div>
 
-                    <div class="name">
-                        <h3>John Smith</h3>
+                        <div class="price__container">
+                            <span class="price">{{mess.price_per_month}}</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                        </div>
+
+                        <div class="address">
+                            <p>{{mess.address}}</p>
+                        </div>
+
+                        <div class="button__container">
+                            <a href="#">View Details</a>
+                        </div>
                     </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
 
 
                 <div class="swiper-slide" id="slider__card">
@@ -382,6 +435,174 @@
         </div>
     </section>
 
+    <section class="testimonial__section">
+        <div class="title__section">
+            <div class="title">
+                <h2>Testimonial</h2>
+            </div>
+
+            <div class="title__para">
+                <p>Feedbacks from the visitors lorem lorem lorem loerm</p>
+            </div>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper mySwiperContainer">
+            <div class="swiper-wrapper">
+
+                {% if feedbacks %}
+                {% for feedback in feedbacks %}
+                    <div class="swiper-slide">
+                        <div class="testimonial__box">
+                            <div class="quote">
+                                <i class="fas fa-quote-right right__quote"></i>
+                            </div>
+
+                            <div class="content">
+                            <p>{{feedback.content}}</p>
+                            </div>
+
+                            <div class="details">
+                                <div class="imgBox">
+                                    {% if feedback.customer %}
+                                        {% if feedback.customer.image %}
+                                            <img src="{{feedback.customer.image.url}}" alt="">
+                                        {% else %}
+                                            <img src="./photo-1494790108377-be9c29b29330.jpg" alt="">
+                                        {% endif %}
+                                     {% else %}
+                                        {% if feedback.supplier.image %}
+                                            <img src="{{feedback.supplier.image.url}}" alt="">
+                                        {% else %}
+                                            <img src="./photo-1494790108377-be9c29b29330.jpg" alt="">
+                                        {% endif %}
+
+                                    {% endif %}
+                                </div>
+
+                                <h3>
+                                    {% if feedback.customer %}
+                                        {{feedback.customer.name}}
+                                        {% else %}
+                                        {{feedback.supplier.name}}
+                                    {% endif %} 
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+
+
+
+                <div class="swiper-slide">
+                    <div class="testimonial__box">
+                        <div class="quote">
+                            <i class="fas fa-quote-right right__quote"></i>
+                        </div>
+
+                        <div class="content">
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
+                                soluta maiores quos dignissimos veniam facere.
+                            </p>
+                        </div>
+
+                        <div class="details">
+                            <div class="imgBox">
+                                <img src="./photo-1506794778202-cad84cf45f1d.jpg" alt="">
+                            </div>
+
+                            <h3>Aditya Chandrikapure <br>
+                               <span>Createive Designer</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="swiper-slide">
+                    <div class="testimonial__box">
+                        <div class="quote">
+                            <i class="fas fa-quote-right right__quote"></i>
+                        </div>
+
+                        <div class="content">
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
+                                soluta maiores quos dignissimos veniam facere.
+                            </p>
+                        </div>
+
+                        <div class="details">
+                            <div class="imgBox">
+                                <img src="./photo-1513956589380-bad6acb9b9d4.jpg" alt="">
+                            </div>
+
+                            <h3>Ravindra Dudhane <br>
+                               <span>Createive Designer</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="swiper-slide">
+                    <div class="testimonial__box">
+                        <div class="quote">
+                            <i class="fas fa-quote-right right__quote"></i>
+                        </div>
+
+                        <div class="content">
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
+                                soluta maiores quos dignissimos veniam facere.
+                            </p>
+                        </div>
+
+                        <div class="details">
+                            <div class="imgBox">
+                                <img src="./photo-1517256673644-36ad11246d21.jpg" alt="">
+                            </div>
+
+                            <h3>Soham Sarde <br>
+                               <span>Createive Designer</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="swiper-slide">
+                    <div class="testimonial__box">
+                        <div class="quote">
+                            <i class="fas fa-quote-right right__quote"></i>
+                        </div>
+
+                        <div class="content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
+                                soluta maiores quos dignissimos veniam facere.
+                            </p>
+                        </div>
+
+                        <div class="details">
+                            <div class="imgBox">
+                                <img src="./photo-1512484776495-a09d92e87c3b.jpg" alt="">
+                            </div>
+
+                            <h3>Rushikesh Dudhe <br>
+                               <span>Createive Designer</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
 
 
 
@@ -437,9 +658,144 @@
     <div class="black__layer">
     </div>
     
+    <footer class="footer">
+
+        <div class="footer__wrapper">
+
+            <div class="info__footer">
+                 <div class="footer__logo">
+                     <a href="#">
+                        <div class="logo">
+                               <img src=" {% static 'images/hamburger.png' %}" alt="">
+                        </div>
+
+                        <div class="logo__txt">
+                            <h2>Food<br> Belly</h2>
+                        </div>
+                     </a>
+                 </div>
+
+                 <div class="details__para__footer">
+                     <p>Government College Of Engineering<br> Amravati
+                        Near Kathora Naka - 444061</p>
+                 </div>
+
+                 <div class="personal__details__footer">
+                     <p><i class="fas fa-circle dot"></i> Mo No : 8788299321</p>
+                     <p><i class="fas fa-circle dot"></i> Email : abcdefg34@gmail.com</p>
+                 </div>
+            </div>
+
+
+
+    
+            <div class="others__page__footer">
+                <div class="footer__section__title">
+                    <h2>Others Pages</h2>
+                </div>
+
+                <ul>
+                    <li>
+                        <a href="#" class="link__footer">Suppliers</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">term & services</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">Privacy Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">carrer</a>
+                    </li>
+                </ul>
+            </div>
+
+    
+
+            <div class="other__links__footer">
+                <div class="footer__section__title">
+                    <h2>Important Links</h2>
+                </div>
+
+                <ul>
+                    <li>
+                        <a href="#" class="link__footer">Suppliers</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">term & services</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">Privacy Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="link__footer">carrer</a>
+                    </li>
+                </ul>
+            </div>
+    
+
+
+            <div class="social__footer">
+                <div class="footer__section__title">
+                    <h2>Follow Us</h2>
+                </div>
+
+                <div class="social__icons">
+                    <div>
+                        <a href="#">
+                            <img src="{% static 'images/facebook (1).png' %}" alt="">
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#">
+                            <img src="{% static 'images/instagram (1).png' %}" alt="">
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#">
+                            <img src="{% static 'images/github-sign (1).png' %}" alt="">
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#">
+                            <img src="{% static 'images/linkedin (1).png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footer__bottom">
+            <p>&copy; Copyright <span class="current__year__footer"></span> All Rights are reserved.</p>
+        </div>
+
+    </footer>
       <!-- Swiper JS -->
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'js/topSupplierSlider.js' %}"></script>
+    <script src="{% static 'js/happy-user.js' %}"></script>
+    <script src="{% static 'js/footer.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/testimonial.js' %}"></script>
+    <script>
+        const states = document.querySelector('#state');
+
+        states.addEventListener('change',(e) =>
+        {
+            console.log(e.target.value);
+
+        })
+    </script>
 </body>
 </html>

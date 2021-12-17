@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User , AbstractUser
 from django.conf import settings
 from datetime import date
+from django.utils.text import slugify
 
 from django.db.models import base
 from django.http import request
@@ -12,6 +13,30 @@ class User(AbstractUser):
     is_supplier = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
 
+
+class State(models.Model):
+    state = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.state
+
+class District(models.Model):
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    district = models.CharField(max_length=500)
+
+    def __str__(self):
+        return str(self.state) + "-" + str(self.district)
+
+
+class City(models.Model):
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    city = models.CharField( max_length=500)
+
+    def __str__(self):
+        return str(self.state)  + "-" + str(self.city)
+    
+    
 
 
 class Supplier(models.Model):
@@ -51,6 +76,7 @@ class Customer(models.Model):
 
 class MessDetails(models.Model):
     supplier = models.ForeignKey(Supplier,on_delete=models.CASCADE)
+    slug = models.SlugField(default="",blank=True,null=True)
     name = models.CharField(max_length=5000,null=True,blank=True)
     state = models.CharField(max_length=100,null=True,blank=True)
     city = models.CharField(max_length=100,null=True,blank=True)
@@ -75,6 +101,10 @@ class MessDetails(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name +"-"+ str(self.city))
+        super(MessDetails, self).save(*args, **kwargs)
+
 class MessReview(models.Model):
     mess = models.ForeignKey(MessDetails, on_delete=models.CASCADE)
     content = models.CharField(max_length=50000,null=True,blank=True)
@@ -94,20 +124,18 @@ class MessBooking(models.Model):
     def __str__(self):
         return self.bookingId
     
+class RemindMe(models.Model):
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    mess = models.ForeignKey(MessDetails, on_delete=models.CASCADE)
 
-
-Type_CHOICES_rating = (
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
-)
+    def __str__(self):
+        return str(self.customer)
+    
 
 class Feedback(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,null=True)
-    rating = models.IntegerField(null=True, choices=Type_CHOICES_rating,default=0)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True,blank=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,null=True,blank=True)
+    rating = models.IntegerField(null=True,default=1)
     content = models.TextField(null=True,blank=True)
 
     def __str__(self):

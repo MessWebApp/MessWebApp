@@ -388,6 +388,7 @@ body{
     font-size: var(--xx-large);
     padding: var(--mg-15) 0;
     padding-bottom: var(--mg-5);
+    color: var(--primary-color);
     position: relative;
 }
 .title h2::before
@@ -399,13 +400,13 @@ body{
     transform: translateY(-50%);
     height: 3px ;
     width: 30%;
-    background-color: #000;
+    background-color: var(--primary-color);
 }
 .title__para p
 {
     font-size: 12px;
     word-spacing: 3px;
-    color: rgb(194, 193, 193) !important;
+    color: var(--light-primary) !important;
 }
 
 
@@ -600,6 +601,7 @@ body{
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.253);
     position: relative;
     overflow: hidden;
+    filter: blur(0) !important;
 }
 
 #img__container{

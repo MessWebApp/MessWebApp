@@ -19,6 +19,7 @@ urlpatterns = [
     path('supplier-register/',views.SupplierRegister,name='supplier-register'),
     path('supplier-userpanal/',views.SupplierUserpanal,name='supplier-userpanal'),
     path('add-supplier-mess/',views.AddMessDetails,name='add-supplier-mess'),
+    path('edit-supplier-mess/',views.EditMessDetails,name='edit-supplier-mess'),
     path('supplier-sendOtp/',views.SupplierSendOPT,name='supplier-otp'),
     path('supplier-details/<str:pk>',views.SupplierUserDetails,name='supplier-details'),
 ]
