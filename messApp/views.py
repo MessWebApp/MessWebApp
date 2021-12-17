@@ -426,7 +426,7 @@ def CustomerUserPanal(request):
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
             if not customer.address or not customer.id_proof:
-                return redirect(f'/customer-details/{customer.id}')
+                return redirect('/customer-editProfile')
 
         context = {
             'customer':customer
@@ -460,6 +460,96 @@ def CustomerDetails(request,pk):
         return render(request,'customer/fill-details.html',{'customer':customer})
 
     return redirect('/customer-login')
+
+
+def CustomerHistory(request):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            context = {
+                'customer':customer
+            }
+
+            return render(request,'customer/customer-history.html',context)
+    else:
+        return redirect('/customer-login')
+    
+    return redirect('/customer-login')
+
+def CustomerEditProfile(request):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            if request.method == 'POST':
+                name = request.POST.get('name')
+                number = request.POST.get('number')
+                address = request.POST.get('address')
+                addhar = request.FILES.get('addhar')
+
+                customer.name = name
+                customer.number = number
+                if addhar:
+                    customer.id_proof = addhar
+                customer.address = address
+                customer.save()
+                messages.success(request,'profile Info Successfully Updated')
+                return redirect('/customer-editProfile')
+
+            context = {
+                'customer':customer
+            }
+
+            return render(request,'customer/customer-edit.html',context)
+    else:
+        return redirect('/customer-login')
+    
+    return redirect('/customer-login')
+
+def CustomerEditProfilePic(request):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            print('hello world')
+            if request.method == 'POST':
+                profile = request.FILES.get('profile')
+                customer.image = profile
+                customer.save()
+                messages.success(request,'profile Pic Successfully Updated')
+                return redirect('/customer-editProfile')
+
+            context = {
+                'customer':customer
+            }
+
+            return render(request,'customer/customer-edit.html',context)
+    else:
+        return redirect('/customer-login')
+    
+    return redirect('/customer-login')
+
+
+def CustomerFeedback(request):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            context = {
+                'customer':customer
+            }
+
+            return render(request,'customer/customer-feedback.html',context)
+    else:
+        return redirect('/customer-login')
+    
+    return redirect('/customer-login')
+        
 
 
 

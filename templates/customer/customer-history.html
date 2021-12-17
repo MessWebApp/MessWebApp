@@ -1,0 +1,251 @@
+{% extends 'customer/customer-userpanal.html' %}
+{% load static %}
+    
+{% block title %}
+ Food Belly | Customer History
+{% endblock title %}
+    
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/customer-history.css' %}">
+{% endblock css %}
+
+{% block body %}
+<section id="mess__details___box">
+
+    <div class="section__title">
+        <h2>History</h2>
+    </div>
+
+   <div class="customer__hostory__wrapper">
+    <div class="wrapper">
+
+        <div class="card">
+                <div class="left">
+                    <div class="img__container">
+                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png">
+                    </div>
+                </div>
+
+                <div class="right">
+                        <header>
+                            <div>
+                                <div class="mess__name">
+                                    <h2>Maharaja Mess</h2>
+                                </div>
+                            </div>
+
+                            <div class="rating">
+                                <div class="wrapper">
+                                    <div class="stars">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+
+                                    <div class="rating__in__no">
+                                        <p>4.2</p>
+                                    </div>
+                                </div>
+                            </div>
+                     </header>
+
+
+                    <div class="details">
+                        <div class="status">
+                            <p>Status : <span class="actual__status">Accept</span></p>
+                        </div>
+
+                        <div class="contact">
+                            <p>Contact No : <span class="">1234567890</span></p>
+                        </div>
+
+                        <div>
+                            <p class="availability__txt">Availability : </p>
+                            <div class="availability__modes">
+                                <div class="availability__modes__item">
+                                    <p>
+                                        <i class="far fa-star"></i>
+                                        Morning
+                                    </p>
+                                </div>
+
+                                <div class="availability__modes__item">
+                                    <p>
+                                        <i class="far fa-star"></i>
+                                        Afternoon
+                                    </p>
+                                </div>
+
+                                <div class="availability__modes__item">
+                                    <p>
+                                        <i class="far fa-star"></i>
+                                        Evening
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bottom">
+                                <div class="map">
+                                    <p>Map Link : 
+                                        <span class="map__link">
+                                            <a href="#">www.google.map.com</a>
+                                        </span>
+                                    </p>
+                                </div>
+
+                                <div id="view__details__btn">
+                                    <button class="review__button">Review</button>
+                                    <button>View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+               </div>
+           </div>
+
+
+
+
+        <div class="card">
+            <div class="left">
+                <div class="img__container">
+                    <img src="./images/—Pngtree—indian food talley curry soup_6814449.png">
+                </div>
+            </div>
+
+            <div class="right">
+                    <header>
+                        <div>
+                            <div class="mess__name">
+                                <h2>Maharaja Mess</h2>
+                            </div>
+                        </div>
+
+                        <div class="rating">
+                            <div class="wrapper">
+                                <div class="stars">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+
+                                <div class="rating__in__no">
+                                    <p>4.2</p>
+                                </div>
+                            </div>
+                        </div>
+                </header>
+
+
+                <div class="details">
+                    <div class="status">
+                        <p>Status : <span class="actual__status">Accept</span></p>
+                    </div>
+
+                    <div class="contact">
+                        <p>Contact No : <span class="">1234567890</span></p>
+                    </div>
+
+                   <div>
+                        <p class="availability__txt">Availability : </p>
+                        <div class="availability__modes">
+                            <div class="availability__modes__item">
+                                <p>
+                                    <i class="far fa-star"></i>
+                                    Morning
+                                </p>
+                            </div>
+
+                            <div class="availability__modes__item">
+                                <p>
+                                    <i class="far fa-star"></i>
+                                    Afternoon
+                                </p>
+                            </div>
+
+                            <div class="availability__modes__item">
+                                <p>
+                                    <i class="far fa-star"></i>
+                                    Evening
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bottom">
+                            <div class="map">
+                                <p>Map Link : 
+                                    <span class="map__link">
+                                        <a href="#">www.google.map.com</a>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div id="view__details__btn">
+                                <button class="review__button">Review</button>
+                                <button>View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+         </div>
+
+
+
+      </div> 
+   </div>
+   
+
+</section>
+ <!-- review box -->
+
+ <div class="review__box">
+    <h2 class="review__heading">Review</h2>
+
+    <div class="mess__name">
+        <h3>Maharaja Mess, Amravati</h3>
+    </div>
+
+    <div class="rating__range">
+        <div class="rating__div">
+              <div class="input__range">
+                  <h3>Rating :</h3>
+                  <input type="range" min="1" max="5" value="4">
+              </div>
+
+              <div class="review__rating">
+                  <p><span><i class="fas fa-star rating__star"></i></span><span>4</span></p>
+              </div>
+        </div>
+    </div>
+
+    <div class="review__txt">
+       <h3 class="review__txt_txtarea">Review :</h3>
+       
+       <div class="textarea__container">
+           <textarea class="review__textarea" cols="30" rows="5" placeholder="Enter some text"></textarea>
+       </div>
+    </div>
+
+    <div class="send__review__button">
+        <button>Send Review</button>
+    </div>
+    
+  <i class="fas fa-times cross"></i>
+</div>
+
+<!-- overlay -->
+<div class="overlay">
+
+</div>
+
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/customer-history.js' %}"></script>
+{% endblock js %}
+

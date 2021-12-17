@@ -13,6 +13,10 @@ urlpatterns = [
     path('customer-register/',views.CustomerRegister,name='customer-register'),
     path('customer-userpanal/',views.CustomerUserPanal,name='customer-userpanal'),
     path('customer-details/<str:pk>',views.CustomerDetails,name='customer-details'),
+    path('customer-history/',views.CustomerHistory,name='customer-history'),
+    path('customer-editProfile/',views.CustomerEditProfile,name='customer-profile'),
+    path('customer-editProfilePic/',views.CustomerEditProfilePic,name='customer-profile-pic'),
+    path('customer-feedback/',views.CustomerFeedback,name='customer-feedback'),
 
     #  ================== customer login ==================
     path('supplier-login/',views.SupplierLoginView,name='supplier-login'),

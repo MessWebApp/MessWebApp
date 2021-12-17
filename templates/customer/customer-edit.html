@@ -1,0 +1,108 @@
+{% extends 'customer/customer-userpanal.html' %}
+{% load static %}
+
+{% block title %}Food Belly | Edit Profile {% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/customer-edit.css' %}">
+{% endblock css %}
+
+{% block body %}
+
+<section id="customer__edit">
+    <div class="wrapper">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="edit__profile">
+               <div class="edit__heading">
+                   <h2>Edit Profile</h2>
+               </div>
+
+               <div class="input__field">
+                   <label> Name : </label>
+                   <input type="text" name="name" value="{{customer.name}}" placeholder="Enter name">
+               </div>
+
+               <div class="input__field">
+                   <label> Email : </label>
+                    <input type="email" name="email" value="{{customer.email}}" placeholder="Enter email" disabled>
+                </div>
+
+                <div class="input__field">
+                    <label> Mobile No : </label>
+                    <input type="number" name="number" value="{{customer.number}}" placeholder="Enter Mobile No">
+                </div>
+
+                <div class="input__field">
+                    <label> Address : </label>
+                    <textarea class="customer__edit__textarea" name="address" placeholder="Enter your address">{{customer.address}}</textarea>
+                </div>
+                
+                <div class="input__field">
+                    <label> ID Proof : </label>
+                    <div class="file__input">
+                        <input class="custom-file-input" type="file" placeholder="Enter Id proof">
+                        <p class="view_addhar_btn">View Uploaded File</p>
+                    </div>
+                </div>
+
+                <div class="edit__button">
+                    <button type="submit">Edit Details</button>
+                </div>
+
+        </div>
+    </form>
+
+        <div class="edit__profile__photo">
+            <div class="edit__heading">
+                <h2>Edit Profile Pic</h2>
+            </div>
+
+            <form action="/customer-editProfilePic/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="pic__box">
+                    <div class="uper">
+                        {% if customer.image %}
+                            <img class="file-priview" src="{{customer.image.url}}" alt="">
+                        {% else %}
+                            <img class="file-priview" src="{% static 'images/—Pngtree—indian food talley curry soup_6814449.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="bottom">
+                        <input type="file" class="disable-pic-add" accept="image/*" name="profile" required/>
+                        <span class="add_profile_btn"><i class="fas fa-plus-circle add"></i></span>
+                        <p class="profile-img-label">Add Photo</p>
+                    </div>
+                </div>
+                    <div class="edit__button pic_edit_btn">
+                        <button>Edit Details Pic</button>
+                    </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+{% endblock body %}
+
+{% block js %}
+    <script src="{% static 'js/customer-edit.js' %}"></script>
+    <script>
+        const add_file_btn = document.querySelector('.add_profile_btn');
+        const file_input = document.querySelector('.disable-pic-add');
+        const file_label = document.querySelector('.profile-img-label');
+        const prev_img = document.querySelector('.file-priview');
+
+        add_file_btn.addEventListener('click',() =>
+        {
+            file_input.click();
+        })
+        file_input.addEventListener("change",(event) =>
+        {
+            file_label.textContent = file_input.files[0].name ;
+            console.log()
+            prev_img.src = URL.createObjectURL(file_input.files[0]);
+        })
+    </script>
+{% endblock js %}
+
