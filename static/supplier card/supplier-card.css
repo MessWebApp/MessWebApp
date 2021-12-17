@@ -1,0 +1,128 @@
+
+/* /////// cards */
+.cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: var(--mg-5) 40px;
+}
+
+.card{
+    width: 300px;
+    height: 420px;
+    border-radius: var(--mg-5);
+    background: var(--light-light-secondary);
+    padding: var(--mg-7);
+    margin: var(--mg-15) var(--mg-30);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.253);
+    position: relative;
+    overflow: hidden;
+}
+
+#img__container{
+    width: 100%;
+    height: 160px;
+    border-radius: var(--mg-5);
+}
+
+#img__container img{
+    width: 100%;
+    height: 160px;
+    border-radius: var(--mg-5);
+}
+
+
+.name h3{
+    font-weight: 500;
+    font-size: var(--secondary-font);
+    padding: var(--mg-7) 0;
+    padding-bottom: var(--mg-5);
+}
+
+.price__container{
+    padding: var(--mg-7) 0;
+}
+
+.price{
+    font-weight: 600;
+    font-size: var(--x-large);
+    margin-right: var(--mg-5);
+    color: var(--secondary-color);
+}
+
+.ruppes__sign{
+    font-weight: 600;
+    font-size: var(--x-large);
+    color: var(--secondary-color);
+}
+
+.address p{
+    font-weight: 500;
+    font-size: var(--primary-font);
+}
+
+
+
+.buttons__container{
+    width: 100%;
+    text-align: center;
+    padding: 5px 10px;
+    padding-bottom: var(--mg-12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--light-light-secondary);
+}
+
+.buttons__container a{
+    text-decoration: none;
+    padding: 7px 20px;
+    border-radius: 10px;
+    font-size: var(--primary-font);
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.219);
+    background-color: var(--primary-color);
+    color: var(--white);
+    letter-spacing: .5px;
+    cursor: pointer;
+}
+
+.view__details{
+    padding: 7px 40px !important;
+}
+
+.price__and__rating{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.to__discount .price
+{
+   font-size: 1rem;
+}
+
+.to__discount p{
+    text-decoration: line-through;
+    color: orange
+}
+
+.to__discount__i{
+    font-size: 16px;
+}
+
+.card__rating p{
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px .1px rgba(0, 0, 0, 0.1);
+}
+
+.card__rating p i{
+    font-size: 16px;
+    padding-left: 5px;
+}
