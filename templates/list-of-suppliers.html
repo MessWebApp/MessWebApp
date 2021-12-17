@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Belly</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+     <!-- Link Swiper's CSS -->
+
+   
+    <link rel="stylesheet" href="./css/list-of-suppliers.css">
+</head>
+
+<body>
+
+            <section class="happy__users__section">
+                <div class="section__title">
+                    <h2>All Suppliers List</h2>
+                    <!-- <p>Feedbacks from the visitors</p> -->
+                </div>
+        
+        
+                <div class="wrapper">
+                    <div class="card">
+                        <h3>Happy Suppliers</h3>
+                        <h3>100+</h3>
+                    </div>
+        
+                    <div class="card">
+                        <h3>Happy Customers</h3>
+                        <h3>300+</h3>
+                    </div>
+        
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <h3>500+</h3>
+                    </div>
+                </div>
+            </section>
+
+
+            
+            <div class="sort">
+                <label for="sort">Sort :</label>
+                <select name="sort" id="sort">
+                    <option value="accept">Active</option>
+                    <option value="declined">Inactive</option>
+                  </select>
+            </div>
+
+            <section id="all__requests">
+                <!-- <div class="all__request__heading">
+                    <h2>List Of Suppliers :</h2>
+                </div> -->
+
+                <div class="table__container">
+                    <table border="1">
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Supplier Name</th>
+                            <th>Email</th>
+                            <th>contact No.</th>
+                            <th>Address</th>
+                            <th>addhar</th>
+                            <th>Action</th>
+                        </tr>
+
+                        <tr>
+                          <td>1</td>
+                          <td>Ankush Rajesh Chavhan</td>
+                          <td>ankuchavhan11@gmail.com</td>
+                          <td>7312344578</td>
+                          <td>Shivaji Nagar, Chirde layout Ner(p)</td>
+                          <td><button class="view__addhar">View</button></td>
+                         
+                          <td >
+                                <select name="status" class="accept__declined__status">
+                                  <option value="accept">Accept</option>
+                                  <option value="pending">Pending</option>
+                                  <option value="declined">Declined</option>
+                                </select>
+                          </td>
+                      </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Ankush Rajesh Chavhan</td>
+                            <td>ankuchavhan11@gmail.com</td>
+                            <td>7312344578</td>
+                            <td>Shivaji Nagar, Chirde layout Ner(p)</td>
+                            <td><button class="view__addhar">View</button></td>
+                        
+                            <td >
+                                <select name="status" class="accept__declined__status">
+                                    <option value="accept">Accept</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="declined">Declined</option>
+                                </select>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+          </section>
+
+        
+
+      <!-- ======= declined model ======== -->
+      <div class="declined__model">
+            <form action="#">
+                <h2>Send Reason</h2>
+
+                <h3>Message</h3>
+                
+                <div class="textarea__container"> 
+                   <textarea class="textarea__declined__msg" cols="30" rows="6" placeholder="Enter some message"></textarea>
+                </div>
+
+                <div class="send__mail__btn">
+                    <button>Send Mail</button>
+                </div>
+            </form>
+
+            <i class="fas fa-times declined__model__close"></i>
+      </div>
+     
+
+      <!-- ======= Addhar model ======= -->
+      <div class="addhar__model">
+           <div class="addhar__container">
+               <!-- <img src="./download (3).jpg" alt=""> -->
+               <iframe src="https://www.youtube.com/watch?v=Q1NKMPhP8PY" frameborder="0"></iframe>
+           </div>
+          
+          <i class="fas fa-times addhar__closed__btn"></i>
+      </div>
+
+      <!-- overlay -->
+      <div class="overlay"></div>
+    
+      <script src="./js/list-of-suppliers.js"></script>
+</body>
+</html>
