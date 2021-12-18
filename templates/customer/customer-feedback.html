@@ -10,42 +10,38 @@
 
 {% block body %}
 <form action="" method="POST" id="customer__edit">
-
-    <div class="review__box">
+    {% csrf_token %}
+    <div class="form__container">
         <h2 class="review__heading">Send Feedback</h2>
-
-
-        <div class="rating__range">
-            <div class="rating__div">
-                  <div class="input__range">
-                      <h3>Rating :</h3>
-                      <div class="rating_input">
-                          <label class="dec_btn">-</label> 
-                          <input class="input__typ__range" name="rating" type="range" min="1" max="5" value="1">
-                          <label class="inc_btn">+</label>
-                      </div>
-                      <div class="review__rating">
-                          <p><span><i class="fas fa-star rating__star"></i></span><span class="rating-count">1</span></p>
-                      </div>
-                  </div>
+        <div class="input__block">
+                <h3>Rating :</h3>
+                <div class="rating__box">
+                    <div class="rating_input">
+                        <label class="dec_btn">-</label> 
+                        <input class="input__typ__range" name="rating" type="range" min="1" max="5" value="1">
+                        <label class="inc_btn">+</label>
+                    </div>
+                    <div class="review__rating">
+                        <p><span><i class="fas fa-star rating__star"></i></span><span class="rating-count">1</span></p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="review__txt">
-           <h3 class="review__txt_txtarea">Message :</h3>
-           
-           <div class="textarea__container">
-               <textarea class="review__textarea" value="content" cols="30" rows="7" placeholder="Enter some text"></textarea>
-           </div>
-        </div>
-
-        <div class="send__review__button">
-            <button type="submit">Send Your Message</button>
-        </div>
-        
-    </div>
-
     
+            <div class="input__block">
+               <h3>Message :</h3>
+               
+               <div class="textarea__container">
+                   <textarea class="review__textarea" name="content" cols="30" rows="7" placeholder="Enter some text"></textarea>
+               </div>
+            </div>
+    
+            <div class="send__review__button">
+                <button type="submit">Send Your Message</button>
+            </div>
+            
+        </div>
+
+    </div>
 </form>
 {% endblock body %}
 
@@ -62,6 +58,12 @@
             rating_input.value = parseInt(rating_input.value) + 1;
             value_label.textContent = rating_input.value;
             
+        })
+        
+        rating_input.addEventListener('change',() =>
+        {
+            value_label.textContent = rating_input.value;
+
         })
         
         dec_btn.addEventListener('click',() =>

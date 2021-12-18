@@ -1,3 +1,4 @@
+from django.contrib.messages.api import success
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib import messages 
@@ -154,6 +155,10 @@ def SupplierUserpanal(request):
         if Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
             mess_details = MessDetails.objects.filter(supplier = supplier).first()
+
+            if mess_details is None:
+                return redirect('/supplier-add-supplier-mess')
+
             if not supplier.address or not supplier.id_proof:
                 messages.info(request,'complete Your Profile.')
                 return redirect(f'/supplier-details/{supplier.id}')
@@ -338,8 +343,7 @@ def CustomerLoginView(request):
                 customer = Customer.objects.get(user = user)
                 if customer.email_verify:
                     login(request,user)
-                    print('hello world')
-                    redirect('/customer-userpanal')
+                    return redirect('/customer-userpanal')
                 else:
                     messages.warning(request,'your account not verified please verified then login.')
                     redirect('/email-verification')
@@ -425,11 +429,16 @@ def CustomerUserPanal(request):
         user = User.objects.get(username = request.user.username)
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
+            booking = MessBooking.objects.filter(customer = customer)
+            if len(booking) == 0:
+                return redirect('/customer-editProfile')
+
             if not customer.address or not customer.id_proof:
                 return redirect('/customer-editProfile')
 
         context = {
-            'customer':customer
+            'customer':customer,
+            'bookings':booking
         }
     else:
         return redirect('/customer-login')
@@ -468,10 +477,13 @@ def CustomerHistory(request):
         user = User.objects.get(username = request.user.username)
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
+            booking = MessBooking.objects.filter(customer = customer)
+            if len(booking) == 0:
+                return redirect('/customer-userpanal')
             context = {
-                'customer':customer
+                'customer':customer,
+                'bookings':booking
             }
-
             return render(request,'customer/customer-history.html',context)
     else:
         return redirect('/customer-login')
@@ -540,6 +552,15 @@ def CustomerFeedback(request):
         user = User.objects.get(username = request.user.username)
         if Customer.objects.filter(user = user).exists():
             customer = Customer.objects.get(user = request.user)
+            if request.method == 'POST':
+                rating = request.POST.get('rating')
+                content = request.POST.get('content')
+
+                feedback = Feedback(customer = customer , rating = rating,content = content)
+                feedback.save()
+
+                messages.success(request,'Your Feedback is Received.')
+                return redirect('/customer-userpanal')
             context = {
                 'customer':customer
             }

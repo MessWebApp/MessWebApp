@@ -122,7 +122,7 @@ class MessBooking(models.Model):
     message = models.TextField(default="")
     
     def __str__(self):
-        return self.bookingId
+        return str(self.bookingId)
     
 class RemindMe(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
@@ -139,7 +139,7 @@ class Feedback(models.Model):
     content = models.TextField(null=True,blank=True)
 
     def __str__(self):
-        return self.content
+        return str(self.content)
 
 
 class ContactMe(models.Model):

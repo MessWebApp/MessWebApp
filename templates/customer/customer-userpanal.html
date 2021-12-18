@@ -85,7 +85,7 @@
 
 
                   <div class="logout">
-                    <a href="/customer-logout">
+                    <a href="/logout/">
                         <div>
                             <img src="{% static 'icons/logout.png' %}" alt="">
                         </div>
@@ -124,122 +124,163 @@
               </header>
 
               {% block body %}
-                <div id="mess__details___box">
-                    <div class="wrapper">
-                        <div class="left">
-                                <div class="img__container">
-                                    <img src="{% static 'images/—Pngtree—indian food talley curry soup_6814449.png' %}">
-                                </div>
-                        </div>
 
-                        <div class="right">
-                            
-                            <header>
-                                    <div>
-                                        <div class="mess__name">
-                                            <h2>Maharaja Mess</h2>
-                                        </div>
+              {% if bookings %}
+                    <div id="mess__details___box">
+                        <div class="wrapper">
+                            <div class="left">
+                                    <div class="img__container">
+                                        <img src="{{bookings.0.mess.mess_image1.url}}">
                                     </div>
-        
-                                    <div class="rating">
-                                        <div class="wrapper">
-                                            <div class="stars">
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-        
-                                            <div class="rating__in__no">
-                                                <p>4.2</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </header>
-
-
-                            <div class="details">
-                                <div class="status">
-                                    <p>Status : <span class="actual__status">Accept</span></p>
-                                </div>
-
-                                <div>
-                                    <p class="availability__txt">Availability : </p>
-                                    <div class="availability__modes">
-                                        <div class="availability__modes__item">
-                                            <p>
-                                                <i class="far fa-star"></i>
-                                                Morning
-                                            </p>
-                                        </div>
-
-                                        <div class="availability__modes__item">
-                                            <p>
-                                                <i class="far fa-star"></i>
-                                                Afternoon
-                                            </p>
-                                        </div>
-
-                                        <div class="availability__modes__item">
-                                            <p>
-                                                <i class="far fa-star"></i>
-                                                Evening
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="bottom">
-                                        <div class="map">
-                                            <p>Map Link : 
-                                                <span class="map__link">
-                                                    <a href="#">www.google.map.com</a>
-                                                </span>
-                                            </p>
-                                        </div>
-        
-                                        <div id="view__details__btn">
-                                            <button>View Details</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                        </div>
-
-
-                            
-                            
-                        </div>
-                </div>
-
-
-
-                    <div class="history__container">
-                            <div>
-                                <h2 class="history__titile">History</h2>
                             </div>
 
-                            <div class="mess__blocks">
-                                <div class="mess__block">
-                                    <p>Maharaja Mess</p>
-                                </div>
+                            <div class="right">
+                                
+                                <header>
+                                        <div>
+                                            <div class="mess__name">
+                                                <h2>{{bookings.0.mess.name}}</h2>
+                                            </div>
+                                        </div>
+            
+                                        <div class="rating">
+                                            <div class="wrapper">
+                                                <div class="stars">
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+            
+                                                <div class="rating__in__no">
+                                                    <p>{{bookings.0.mess.rating}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </header>
 
-                                <div class="mess__block">
-                                    <p>Mahesh Bhatt</p>
-                                </div>
 
-                                <div class="mess__block">
-                                    <p>Saurabh Shukla</p>
-                                </div>
+                                <div class="details">
+                                    <div class="status">
+                                        <p>Status : <span class="actual__status">
+                                            {% if bookings.0.status %}
+                                                Accept
+                                            {% else %}
+                                                Panding
+                                            {% endif %}
+                                        </span></p>
+                                    </div>
 
+                                    <div class="contact">
+                                        <p>Contact No : <span class="">{{bookings.0.mess.number}}</span></p>
+                                    </div>
+
+                                    <div>
+                                        <p class="availability__txt">Availability : </p>
+                                        <div class="availability__modes">
+                                            {% if bookings.0.mess.mess_availability == 'morning-Night' %}
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Morning
+                                                    </p>
+                                                </div>
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Evening
+                                                    </p>
+                                                </div>
+                                                {% elif bookings.0.mess.mess_availability == 'morning-AfterNoon-Night' %}  
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Morning
+                                                    </p>
+                                                </div>
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Afternoon
+                                                    </p>
+                                                </div>
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Evening
+                                                    </p>
+                                                </div>
+                                                {% elif booking.0.mess.mess_availability == 'Morning' %}
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Morning
+                                                    </p>
+                                                </div>
+                                                {% elif  booking.0.mess.mess_availability == 'Night' %}
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Evening
+                                                    </p>
+                                                </div>
+                                                {% elif booking.0.mess.mess_availability == 'morning-AfterNoon' %}
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Morning
+                                                    </p>
+                                                </div>
+                                                <div class="availability__modes__item">
+                                                    <p>
+                                                        <i class="far fa-star"></i>
+                                                        Afternoon
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+    
+    
+                                        </div>
+
+                                        <div class="bottom">
+                                            <div class="map">
+                                                <p>Map Link : 
+                                                    <span class="map__link">
+                                                        <a href="#">{{bookings.0.mess.map_link}}</a>
+                                                    </span>
+                                                </p>
+                                            </div>
+            
+                                            <div id="view__details__btn">
+                                                <button>View Details</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                            </div>
                             </div>
                     </div>
+              {% endif %}
 
-
-
-
+            {% if bookings %}
+            <div class="history__container">
+                <div>
+                    <h2 class="history__titile">History</h2>
                 </div>
-              {% endblock body %}
+                
+                <div class="mess__blocks">
+                    {% for booking in bookings %}
+                        <div class="mess__block" style="background-image: url({{booking.mess.mess_image1.url}});">
+                             <a href="#">{{booking.mess.name}}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    {% endblock body %}
 
           </div>
       </div>
@@ -249,6 +290,19 @@
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       <script src="{% static 'js/topSupplierSlider.js' %}"></script>
       <script src="{% static 'js/customerUserPanal.js' %}"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script>
+          {% if messages %}
+              {% for message in messages %}
+                  swal({
+                      title: "{{message}}",
+                      text: "click the btn",
+                      icon: "{{message.tags}}",
+                  });
+              {% endfor %}
+          {% endif %}
+      </script>
       {% block js %}{% endblock js %}
+
 </body>
 </html>

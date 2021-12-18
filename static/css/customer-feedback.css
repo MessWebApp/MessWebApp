@@ -61,146 +61,136 @@ a{
 }
 
 /* ========= Customer Edit section ==========  */
-.all__request__heading h2{
+.all__request__heading h2
+{
     font-size: var(--large-font);
     font-weight: 600;
     padding: var(--mg-10) var(--mg-20);
 }
 
-
-/* =========== Review Box ========= */
-
-.review__box{
-    width: 75%;
-    margin: 15px auto;
-    background-color: white;
-    border-radius: 10px;
-    padding: var(--mg-10) 0
-}
-
-.cross
+/* ============================ feedback form ==========================*/
+#customer__edit
 {
-    font-size: 35px;
-    color: var(--primary-color);
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-}
-
-.show-review{
-    display: block;
-}
-
-.review__heading{
-    color: var(--primary-color);
-    padding :var(--mg-5) var(--mg-20);
-}
-
-.rating__div{
-    display: flex;
+    width: 100%;
+    display: flex !important;
     justify-content: center;
     align-items: center;
-    margin: var(--mg-10) var(--mg-5);
-    margin-top: var(--mg-12);
-    margin-bottom: var(--mg-5);
+    margin: var(--mg-20) auto;
 }
-
-.input__range h3{
-    font-weight: 700;
-    padding: var(--mg-7) 0;
-}
-.input__range
+.form__container
 {
+    background-color: #fff;
+    width: 60%;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: var(--mg-20);
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+.review__heading
+{
+    padding: 10px;
+}
+.input__block
+{
+    display: flex;
+    flex-direction: column;
+}
+.input__block h3
+{
+    flex: 1;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 10px 0;
+}
+.input__block .rating__box
+{
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    
 }
-.rating_input
+.rating__box .rating_input
 {
+    flex: 0.8;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 }
 .rating_input label
 {
     border: 1px solid black;
-    padding: 10px;
+    padding:5px 10px;
+    text-align: center;
     cursor: pointer;
     border-radius: 5px;
+    margin: 0 var(--mg-10);
     transition: all 0.5s ease;
+    font-size: 16px;
 }
 .rating_input label:hover
 {
-    border:1px solid var(--primary-color);
     color: var(--primary-color);
-}
-
-.review__rating
-{
-    flex-basis: 25%;
-    padding-left: 30px;
+    border: 1px solid var(--primary-color);
 }
 .rating_input input
 {
-    width: 100%;
+    flex: 1;
 }
-.review__rating p{
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 500;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px .1px rgba(0, 0, 0, 0.199);
-    padding: 5px var(--mg-10);
-    margin-top: var(--mg-8);
-}
-
-.rating__star{
-    margin-right: 7px;
-    font-size: 20px;
-    color: var(--secondary-color);
-}
-
-.review__txt{
-    margin-top: var(--mg-10);
-}
-
-.review__txt_txtarea{
-    padding: var(--mg-5) 0;
-    padding-left: 80px;
-}
-
-.textarea__container{
-    width: 100%;
+.rating__box .review__rating
+{
+    flex: 0.2;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+.review__rating p
+{
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    padding: 5px var(--mg-5);
+    letter-spacing: 1px ;
+    border-radius:10px ;
+}
+.review__rating .rating__star
+{
+    color: gold;
+    margin:0 10px;
 }
 
-.review__textarea{
+.textarea__container
+{
+    flex: 1;
+    width: 100%;
+    /* margin: 10px; */
+    padding: 10px;
+}
+.textarea__container textarea
+{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
     resize: none;
-    width: 80%;
-    margin: var(--mg-5) auto;
+}
+
+.send__review__button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send__review__button button
+{
+    padding: 10px var(--mg-10);
+    border-radius: 20px;
+    border: none;
     outline: none;
-    border: none;
-    box-shadow: 1px 1px 5px .1px rgba(0, 0, 0, 0.164);
-    border-radius: 5px;
-    padding: var(--mg-5) var(--mg-10);
-}
-
-.send__review__button{
+    background-color: var(--primary-color);
+    color: #fff;
     text-align: center;
-    padding: var(--mg-10);
-    padding-top: var(--mg-10);
-}
-
-.send__review__button button{
-    padding: var(--mg-7) var(--mg-30);
-    border-radius: 25px;
-    box-shadow: 1px 1px 10px .1px rgba(0,0,0,0.2);
-    font-weight: 600;
-    background-color: var(--secondary-color);
-    font-size: var(--primary-font);
-    color: var(--white);
-    margin-top: 10px;
-    box-shadow: 1px 1px 10px .1px rgba(0, 0, 0, 0.425);
-    border: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+.send__review__button button:hover
+{
+    transform: scale(1.05);
 }

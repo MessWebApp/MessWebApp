@@ -18,185 +18,143 @@
 
    <div class="customer__hostory__wrapper">
     <div class="wrapper">
+        {% if bookings %}
+            {% for booking in bookings %}
+                <div class="card">
+                        <div class="left">
+                            <div class="img__container">
+                                <img src="{{booking.mess.mess_image1.url}}">
+                            </div>
+                        </div>
+        
+                        <div class="right">
+                                <header>
+                                    <div>
+                                        <div class="mess__name">
+                                            <h2>{{booking.mess.name}}</h2>
+                                        </div>
+                                    </div>
+        
+                                    <div class="rating">
+                                        <div class="wrapper">
+                                            <div class="stars">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+        
+                                            <div class="rating__in__no">
+                                                <p>{{booking.mess.rating}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </header>
+        
+        
+                            <div class="details">
+                                <div class="status">
+                                    <p>Status : <span class="actual__status">
+                                        {% if booking.status %}
+                                            Accept
+                                        {% else %}
+                                            Panding
+                                        {% endif %}
+                                    </span></p>
+                                </div>
+        
+                                <div class="contact">
+                                    <p>Contact No : <span class="">{{booking.mess.number}}</span></p>
+                                </div>
+        
+                                <div>
+                                    <p class="availability__txt">Availability : </p>
+                                    <div class="availability__modes">
+                                        {% if booking.mess.mess_availability == 'morning-Night' %}
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Morning
+                                                </p>
+                                            </div>
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Evening
+                                                </p>
+                                            </div>
+                                            {% elif booking.mess.mess_availability == 'morning-AfterNoon-Night' %}  
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Morning
+                                                </p>
+                                            </div>
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Afternoon
+                                                </p>
+                                            </div>
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Evening
+                                                </p>
+                                            </div>
+                                            {% elif booking.mess.mess_availability == 'Morning' %}
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Morning
+                                                </p>
+                                            </div>
+                                            {% elif  booking.mess.mess_availability == 'Night' %}
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Evening
+                                                </p>
+                                            </div>
+                                            {% elif booking.mess.mess_availability == 'morning-AfterNoon' %}
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Morning
+                                                </p>
+                                            </div>
+                                            <div class="availability__modes__item">
+                                                <p>
+                                                    <i class="far fa-star"></i>
+                                                    Afternoon
+                                                </p>
+                                            </div>
+                                        {% endif %}
 
-        <div class="card">
-                <div class="left">
-                    <div class="img__container">
-                        <img src="./images/—Pngtree—indian food talley curry soup_6814449.png">
+
+                                    </div>
+        
+                                    <div class="bottom">
+                                        <div class="map">
+                                            <p>Map Link : 
+                                                <span class="map__link">
+                                                    <a href="#">{{booking.mess.map_link}}</a>
+                                                </span>
+                                            </p>
+                                        </div>
+        
+                                        <div id="view__details__btn">
+                                            <button class="review__button">Review</button>
+                                            <button>View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                     </div>
                 </div>
-
-                <div class="right">
-                        <header>
-                            <div>
-                                <div class="mess__name">
-                                    <h2>Maharaja Mess</h2>
-                                </div>
-                            </div>
-
-                            <div class="rating">
-                                <div class="wrapper">
-                                    <div class="stars">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-
-                                    <div class="rating__in__no">
-                                        <p>4.2</p>
-                                    </div>
-                                </div>
-                            </div>
-                     </header>
-
-
-                    <div class="details">
-                        <div class="status">
-                            <p>Status : <span class="actual__status">Accept</span></p>
-                        </div>
-
-                        <div class="contact">
-                            <p>Contact No : <span class="">1234567890</span></p>
-                        </div>
-
-                        <div>
-                            <p class="availability__txt">Availability : </p>
-                            <div class="availability__modes">
-                                <div class="availability__modes__item">
-                                    <p>
-                                        <i class="far fa-star"></i>
-                                        Morning
-                                    </p>
-                                </div>
-
-                                <div class="availability__modes__item">
-                                    <p>
-                                        <i class="far fa-star"></i>
-                                        Afternoon
-                                    </p>
-                                </div>
-
-                                <div class="availability__modes__item">
-                                    <p>
-                                        <i class="far fa-star"></i>
-                                        Evening
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <div class="map">
-                                    <p>Map Link : 
-                                        <span class="map__link">
-                                            <a href="#">www.google.map.com</a>
-                                        </span>
-                                    </p>
-                                </div>
-
-                                <div id="view__details__btn">
-                                    <button class="review__button">Review</button>
-                                    <button>View Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-               </div>
-           </div>
-
-
-
-
-        <div class="card">
-            <div class="left">
-                <div class="img__container">
-                    <img src="./images/—Pngtree—indian food talley curry soup_6814449.png">
-                </div>
-            </div>
-
-            <div class="right">
-                    <header>
-                        <div>
-                            <div class="mess__name">
-                                <h2>Maharaja Mess</h2>
-                            </div>
-                        </div>
-
-                        <div class="rating">
-                            <div class="wrapper">
-                                <div class="stars">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-
-                                <div class="rating__in__no">
-                                    <p>4.2</p>
-                                </div>
-                            </div>
-                        </div>
-                </header>
-
-
-                <div class="details">
-                    <div class="status">
-                        <p>Status : <span class="actual__status">Accept</span></p>
-                    </div>
-
-                    <div class="contact">
-                        <p>Contact No : <span class="">1234567890</span></p>
-                    </div>
-
-                   <div>
-                        <p class="availability__txt">Availability : </p>
-                        <div class="availability__modes">
-                            <div class="availability__modes__item">
-                                <p>
-                                    <i class="far fa-star"></i>
-                                    Morning
-                                </p>
-                            </div>
-
-                            <div class="availability__modes__item">
-                                <p>
-                                    <i class="far fa-star"></i>
-                                    Afternoon
-                                </p>
-                            </div>
-
-                            <div class="availability__modes__item">
-                                <p>
-                                    <i class="far fa-star"></i>
-                                    Evening
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="bottom">
-                            <div class="map">
-                                <p>Map Link : 
-                                    <span class="map__link">
-                                        <a href="#">www.google.map.com</a>
-                                    </span>
-                                </p>
-                            </div>
-
-                            <div id="view__details__btn">
-                                <button class="review__button">Review</button>
-                                <button>View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-         </div>
-
-
-
-      </div> 
+            {% endfor %}
+        {% endif %}
    </div>
    
 
