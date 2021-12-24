@@ -1,7 +1,7 @@
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 4,
+    slidesPerView: 5,
     spaceBetween: 20,
-    slidesPerGroup: 3,
+    slidesPerGroup: 5,
     loop: true,
     loopFillGroupWithBlank: true,
     pagination: {
@@ -13,6 +13,8 @@ var swiper = new Swiper(".mySwiper", {
       prevEl: ".swiper-button-prev",
     },
   });
+
+  
 // // ======= active link =======
 // const menuLinks = document.querySelectorAll(".menu .list-item a");
 

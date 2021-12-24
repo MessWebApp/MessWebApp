@@ -244,3 +244,39 @@ a{
   {
       display: none;
   }
+
+
+
+/* ================= addhar view Block ===================== */
+.addhar_view_block
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 650px;
+    overflow: hidden;
+    border-radius: 10px;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+    display: none;
+}
+.cross__btnSection
+{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.cross__btnSection .cross__btn
+{
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+.addhar_view_block iframe
+{
+    margin-top: 3rem;
+    width: 800px;
+    height: 600px;
+}

@@ -130,7 +130,7 @@
                         <div class="wrapper">
                             <div class="left">
                                     <div class="img__container">
-                                        <img src="{{bookings.0.mess.mess_image1.url}}">
+                                        <img src="{{bookings.0.mess.mess_image1.url}}" alt="">
                                     </div>
                             </div>
 
@@ -162,21 +162,32 @@
 
 
                                 <div class="details">
-                                    <div class="status">
+                                    <div class="data__info">
                                         <p>Status : <span class="actual__status">
-                                            {% if bookings.0.status %}
+                                            {% if bookings.0.label == 'accept' %}
                                                 Accept
+                                            {% elif bookings.0.label == 'reject' %}
+                                                Reject
                                             {% else %}
                                                 Panding
                                             {% endif %}
                                         </span></p>
                                     </div>
 
-                                    <div class="contact">
-                                        <p>Contact No : <span class="">{{bookings.0.mess.number}}</span></p>
+                                    {% if bookings.0.status %}
+                                        <div class="data__info">
+                                            <p>Contact No : <span class="">{{bookings.0.mess.number}}</span></p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="data__info">
+                                        <p>Address : </p>
+                                        <span class="map__link">
+                                            <p>{{bookings.0.mess.address}}</p>
+                                        </span>
                                     </div>
 
-                                    <div>
+                                    <div class="data__info">
                                         <p class="availability__txt">Availability : </p>
                                         <div class="availability__modes">
                                             {% if bookings.0.mess.mess_availability == 'morning-Night' %}
@@ -242,37 +253,35 @@
     
     
                                         </div>
-
-                                        <div class="bottom">
-                                            <div class="map">
-                                                <p>Map Link : 
-                                                    <span class="map__link">
-                                                        <a href="#">{{bookings.0.mess.map_link}}</a>
-                                                    </span>
-                                                </p>
-                                            </div>
-            
-                                            <div id="view__details__btn">
-                                                <button>View Details</button>
-                                            </div>
-                                        </div>
-
                                     </div>
+                                    
+                                    <div class="data__info">
+                                        <p>Map Link : </p>
+                                        <span class="map__link">
+                                            <a href="{{bookings.0.mess.map_link}}">{{bookings.0.mess.map_link}}</a>
+                                        </span>
+                                    </div>
+            
+                                    <div class="data__info data__btn">
+                                        <a href="/mess/{{bookings.0.mess.slug}}">View Details</a>
+                                    </div>
+
+                                </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
               {% endif %}
 
             {% if bookings %}
             <div class="history__container">
                 <div>
-                    <h2 class="history__titile">History</h2>
+                    <h2 class="history__titile">History : </h2>
                 </div>
                 
                 <div class="mess__blocks">
                     {% for booking in bookings %}
-                        <div class="mess__block" style="background-image: url({{booking.mess.mess_image1.url}});">
-                             <a href="#">{{booking.mess.name}}</a>
+                        <div class="mess__block" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)) ,url({{booking.mess.mess_image1.url}});">
+                             <a href="/mess/{{booking.mess.slug}}">{{booking.mess.name}}</a>
                         </div>
                     {% endfor %}
                 </div>

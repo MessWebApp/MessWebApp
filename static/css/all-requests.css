@@ -60,182 +60,6 @@ a{
     text-decoration: none;
 }
 
-/* ======== user panal ========= */
-.user__panal__container{
-    width: 100vw;
-    height: 100vh;
-    padding: var(--mg-12) var(--mg-20);
-    display: flex;
-    justify-content: space-between;
-}
-
-.user__panal__container .left{
-    flex-basis: 9%;
-    padding: var(--mg-5) 0px;
-    background-color: var(--light-bg);
-    border-radius: var(--mg-20);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
-    overflow: hidden;
-}
-.user__panal__container .left .logo h2{
-    color: var(--primary-color);
-}
-
-.panal__links__container ul{
-    width: 100%;
-    list-style: none;
-}
-
-.panal__links__container ul .list__item{
-    display: block;
-}
-
-.panal__links__container ul .list__item a,.logout a{
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--black);
-    padding: var(--mg-5) var(--mg-20);
-    transition: .3s ease;
-}
-.panal__links__container ul .list__item a:hover{
-    background-color: #fe817381;
-    color: var(--white);
-}
-
-.panal__links__container ul .list__item a img{
-    width: 30px;
-}
-
-
-.logout img{
-    width: 30px;
-}
-
-.logout a{
-    padding: var(--mg-5) var(--mg-30);
-}
-
-.logout a:hover{
-    background-color: #fe817381;
-    color: var(--white);
-}
-
-
-
-.user__panal__container .right{
-    flex-basis: 88%;
-    background-color: var(--light-bg);
-    border-radius: var(--mg-20);
-    overflow: hidden;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
-}
-
-
-.user__panal__container .right .header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--mg-7) var(--mg-5);
-}
-
-.user__panal__container .right .header .left{
-    flex-basis: 30%;
-    box-shadow: none !important;
-}
-
-.user__panal__container .header__heading{
-    font-weight: 600;
-    font-size: var(--secondary-font);
-    font-size: var(--large-font);
-    text-align: left !important;
-    font-family: 'Lobster', cursive;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Sansita', sans-serif;
-}
-
-.wlc{
-    font-family: 'Lobster', cursive;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Sansita', sans-serif;
-    color: gray;
-}
-.user__name{
-    font-family: 'Lobster', cursive;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Sansita', sans-serif;
-}
-
-
-.user__panal__container .right .header .middle{
-    flex-basis: 35%;
-}
-
-.input__field__header{
-    width: 100%;
-    position: relative;
-}
-
-.input__field__header input{
-    width: 100%;
-    padding: var(--mg-7) var(--mg-15);
-    padding-right: var(--mg-20);
-    outline: none;
-    border: 2px solid transparent;
-    border-radius: var(--mg-10);
-    box-shadow: 1px 1px 10px .5px rgba(0, 0, 0, 0.247);
-    transition: .3s ease;
-}
-
-.input__field__header input:focus{
-    border: 2px solid rgb(39, 230, 255);
-}
-
-.search__btn__header{
-    font-size: 1.1rem;
-    position: absolute;
-    top: 50%;
-    right: 14px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.search__btn__header:hover{
-    color: var(--primary-color);
-}
-
-
-.user__panal__container .right .header #right{
-    flex-basis: 25%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: var(--mg-30);
-}
-
-.profile__container__header{
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background-color: var(--white);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.profile__container__header img{
-    width: 100%;
-    height: 100%;
-}
-
-
 /* ========= All requests section ==========  */
 .all__request__heading h2{
     font-size: var(--large-font);
@@ -257,6 +81,7 @@ a{
 .table__container table{
     width: 100%;
     text-align: center;
+    border: 1px solid black;
 }
 
 th, td{
@@ -269,7 +94,144 @@ td{
     font-weight: 500;
 }
 
-#status{
+.status{
     width: 100%;
     height: 100%;
+}
+
+.message__block
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-height: 100px;
+    width: 400px;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    display: none;
+}
+
+.message__form
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.close__btn , .close_addharBlock
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.close__btn p , .close_addharBlock p
+{
+    transform: rotate(45deg);
+    font-size: 30px;
+    padding: 0 10px;
+    cursor: pointer;
+
+}
+.input__block
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.input__block label
+{
+    flex: 0.2;
+}
+.input__block p , .input__block input
+{
+    flex: 0.8;
+    width: 100%;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    margin:0 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.input__block input
+{
+    border: none;
+    outline: none;
+    height: 50px;
+}
+.form__btn 
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+.form__btn button
+{
+    padding: 10px 2rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.form__btn button:hover
+{
+    transform: scale(1.05);
+}
+
+
+/*================== addhar view block  ===================== */
+.addhar__block
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 600px;
+    width: 800px;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: none;
+
+}
+.addhar__container
+{
+    width: 100%;
+    display: flex;
+    height: 550px;
+}
+.addhar__container iframe
+{
+    width: 100%;
+    height: 100%;
+}
+.view_dahar_btn
+{
+    padding:10px 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.status
+{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
 }

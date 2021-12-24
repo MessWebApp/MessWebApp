@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Belly</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./css/supplier-card.css">
-    <link rel="stylesheet" href="./css//all-suppliers.css">
+    <link rel="stylesheet" href="{% static 'css/all-suppliers.css' %}">
+    <link rel="stylesheet" href="{% static 'css/supplier-card.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}">
 </head>
 
 <body>
@@ -17,9 +21,9 @@
     <header class="header">
         <nav class="navbar">
             <div class="logo__cont">
-                 <a href="#">
+                 <a href="/">
                      <div class="logo__img">
-                         <img src="./images/hamburger.png" alt="logo">
+                         <img src="{% static 'images/hamburger.png' %}" alt="logo">
                      </div>
 
                      <div class="logo__text">
@@ -30,18 +34,15 @@
 
             <div class="menu">
                 <ul class="ul-list">
-                    <li class="list-item"><a href="#" class="active">Home</a></li>
-                    <li class="list-item"><a href="#">Services</a></li>
-                    <li class="list-item"><a href="#">Contact</a></li>
-                    <li class="list-item"><a href="#">Suppliers</a></li>
+                    <li class="list-item"><a href="/">Home</a></li>
+                    <li class="list-item"><a href="/#services">Services</a></li>
+                    <li class="list-item"><a href="{% url 'contact' %}">Contact</a></li>
+                    <li class="list-item"><a href="{% url 'all-supliers' %}" class="active">Mess</a></li>
                 </ul>
             </div>
 
             <div class="auth__container">
-                <div>
-                    <p class="auth">Auth</p>
-                </div>
-
+                <p class="auth">Auth</p>
                 <div class="down__btn">
                     <i class="fas fa-angle-down"></i>
                 </div>
@@ -49,7 +50,7 @@
         </nav>
 
     </header>
-
+    <!-- ========= header ======== -->
 
     <!-- ========= main ======== -->
     <main class="main"> 
@@ -69,417 +70,48 @@
         </div> -->
 
 
-
+        {% if all_mess %}
         <div class="cards">
-
-             <div class="card">
+            {% for mess in all_mess %}
+            <div class="card">
                     <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
+                        <img src="{{mess.mess_image1.url}}" alt="{{mess.name}}">
                     </dic>
-
+    
                     <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
+                        <h3>{{mess.name}}</h3>
                     </div>
                     
-
+    
                     <div class="price__and__rating">
                         <div class="price__container">
                             <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
+                            <span class="price">{{mess.price_per_month}}</span>
                         </div>
-
+    
                         <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                           
+                            <span class="price">per Month</span>
                         </div>
-
+    
                         <div class="card__rating">
                              <p>
-                                 <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
+                                 <span>{{mess.rating}}/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
                              </p>
                         </div>
                     </div>
-
+    
                         <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
+                            <p>{{mess.address}}</p>
                         </div>
-
+    
                         <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
+                            <a href="/mess/{{mess.slug}}" class="view__details">View Details</a>
                             <a href="#">More</a>
                         </div>
-                </div>
-
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                        
-                        </div>
-
-                        <div class="card__rating">
-                            <p>
-                                <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                            </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-               
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                           
-                        </div>
-
-                        <div class="card__rating">
-                             <p>
-                                 <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                             </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-
-
-
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                        
-                        </div>
-
-                        <div class="card__rating">
-                            <p>
-                                <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                            </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-               
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                           
-                        </div>
-
-                        <div class="card__rating">
-                             <p>
-                                 <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                             </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                        
-                        </div>
-
-                        <div class="card__rating">
-                            <p>
-                                <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                            </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-               
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                           
-                        </div>
-
-                        <div class="card__rating">
-                             <p>
-                                 <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                             </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                        
-                        </div>
-
-                        <div class="card__rating">
-                            <p>
-                                <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                            </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-               
-
-
-                <div class="card">
-                    <dic id="img__container">
-                        <img src="./images/download.jpg" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>Mahaesh Bhatt</h3>
-                    </div>
-                    
-
-                    <div class="price__and__rating">
-                        <div class="price__container">
-                            <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                            <span class="price">1500</span>
-                        </div>
-
-                        <div class="to__discount">
-                            <p>
-                                <span><i class="fas fa-rupee-sign ruppes__sign to__discount__i"></i></span>
-                                <span class="price">2000</span>
-                            </p>
-                           
-                        </div>
-
-                        <div class="card__rating">
-                             <p>
-                                 <span>4/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
-                             </p>
-                        </div>
-                    </div>
-
-                        <div class="address">
-                            <p>Shivaji Nagar Chirde
-                                Layout , Amravati 445106
-                            </p>
-                        </div>
-
-                        <div class="buttons__container">
-                            <a href="#" class="view__details">View Details</a>
-                            <a href="#">More</a>
-                        </div>
-                </div>
-
-
-      
-        </div>
+            </div>
+            {% endfor %}  
+        </div>  
+        {% endif %}
     </main>
     
 
@@ -530,10 +162,6 @@
 
     </div>
 
-
-
-
-
     <!-- ======== footer ========= -->
     <footer class="footer">
 
@@ -543,7 +171,7 @@
                  <div class="footer__logo">
                      <a href="#">
                         <div class="logo">
-                               <img src="./images/hamburger.png" alt="">
+                               <img src=" {% static 'images/hamburger.png' %}" alt="">
                         </div>
 
                         <div class="logo__txt">
@@ -558,8 +186,8 @@
                  </div>
 
                  <div class="personal__details__footer">
-                     <p><i class="fas fa-circle dot"></i> Mo No : 8788299321</p>
-                     <p><i class="fas fa-circle dot"></i> Email : abcdefg34@gmail.com</p>
+                     <p><i class="fas fa-phone dot"></i> Mo No : 8788299321</p>
+                     <p><i class="fas fa-envelope dot"></i> Email : abcdefg34@gmail.com</p>
                  </div>
             </div>
 
@@ -594,7 +222,7 @@
 
             <div class="other__links__footer">
                 <div class="footer__section__title">
-                    <h2>Others Links</h2>
+                    <h2>Important Links</h2>
                 </div>
 
                 <ul>
@@ -625,27 +253,19 @@
 
                 <div class="social__icons">
                     <div>
-                        <a href="#">
-                            <img src="./images/facebook (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/instagram (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-instagram-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/github-sign (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-github-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/linkedin (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -661,6 +281,6 @@
     
 
 
-    <script src="./js/all-suppliers.js"></script>
+    <script src="{% static 'js/all-suppliers.js' %}"></script>
 </body>
 </html>

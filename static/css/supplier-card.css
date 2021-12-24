@@ -9,11 +9,11 @@
 
 .card{
     width: 300px;
-    height: 420px;
+    min-height: 450px;
     border-radius: var(--mg-5);
     background: var(--light-light-secondary);
     padding: var(--mg-7);
-    margin: var(--mg-15) var(--mg-30);
+    margin: var(--mg-15) var(--mg-10);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.253);
     position: relative;
     overflow: hidden;

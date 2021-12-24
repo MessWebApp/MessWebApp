@@ -54,21 +54,32 @@
         
         
                             <div class="details">
-                                <div class="status">
+                                <div class="data__info">
                                     <p>Status : <span class="actual__status">
-                                        {% if booking.status %}
+                                        {% if booking.label == 'accept' %}
                                             Accept
+                                        {% elif booking.label == 'reject' %}
+                                            Reject
                                         {% else %}
                                             Panding
                                         {% endif %}
                                     </span></p>
                                 </div>
-        
-                                <div class="contact">
-                                    <p>Contact No : <span class="">{{booking.mess.number}}</span></p>
+
+                                {% if bookings.0.status %}
+                                    <div class="data__info">
+                                        <p>Contact No : <span class="">{{booking.mess.number}}</span></p>
+                                    </div>
+                                {% endif %}
+
+                                <div class="data__info">
+                                    <p>Address : </p>
+                                    <span class="map__link">
+                                        <p>{{booking.mess.address}}</p>
+                                    </span>
                                 </div>
-        
-                                <div>
+
+                                <div class="data__info">
                                     <p class="availability__txt">Availability : </p>
                                     <div class="availability__modes">
                                         {% if booking.mess.mess_availability == 'morning-Night' %}
@@ -103,21 +114,21 @@
                                                     Evening
                                                 </p>
                                             </div>
-                                            {% elif booking.mess.mess_availability == 'Morning' %}
+                                            {% elif booking.0.mess.mess_availability == 'Morning' %}
                                             <div class="availability__modes__item">
                                                 <p>
                                                     <i class="far fa-star"></i>
                                                     Morning
                                                 </p>
                                             </div>
-                                            {% elif  booking.mess.mess_availability == 'Night' %}
+                                            {% elif  booking.0.mess.mess_availability == 'Night' %}
                                             <div class="availability__modes__item">
                                                 <p>
                                                     <i class="far fa-star"></i>
                                                     Evening
                                                 </p>
                                             </div>
-                                            {% elif booking.mess.mess_availability == 'morning-AfterNoon' %}
+                                            {% elif booking.0.mess.mess_availability == 'morning-AfterNoon' %}
                                             <div class="availability__modes__item">
                                                 <p>
                                                     <i class="far fa-star"></i>
@@ -134,23 +145,20 @@
 
 
                                     </div>
-        
-                                    <div class="bottom">
-                                        <div class="map">
-                                            <p>Map Link : 
-                                                <span class="map__link">
-                                                    <a href="#">{{booking.mess.map_link}}</a>
-                                                </span>
-                                            </p>
-                                        </div>
-        
-                                        <div id="view__details__btn">
-                                            <button class="review__button">Review</button>
-                                            <button>View Details</button>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div> 
+                                
+                                <div class="data__info">
+                                    <p>Map Link : </p>
+                                    <span class="map__link">
+                                        <a href="{{booking.mess.map_link}}">{{booking.mess.map_link}}</a>
+                                    </span>
+                                </div>
+        
+                                <div class="data__info data__btn">
+                                    <a href="/mess/{{booking.mess.slug}}">View Details</a>
+                                    <button class="send__review">Send Review</button>
+                                </div>
+                            </div>
                     </div>
                 </div>
             {% endfor %}
@@ -205,5 +213,24 @@
 
 {% block js %}
 <script src="{% static 'js/customer-history.js' %}"></script>
+<script>
+    const reviewBox = document.querySelector(".review__box");
+    const closeButton = document.querySelector(".cross");
+    const reviewButton = document.querySelectorAll(".send__review");
+    const overlay = document.querySelector(".overlay");
+
+    reviewButton.forEach((btn) =>
+    {
+    btn.addEventListener("click", ()=>{
+        reviewBox.classList.toggle("show-review")
+        overlay.classList.toggle("show-overlay");
+    })
+    })
+
+    closeButton.addEventListener("click", ()=>{
+    reviewBox.classList.toggle("show-review");
+    overlay.classList.toggle("show-overlay");
+    });
+</script>
 {% endblock js %}
 

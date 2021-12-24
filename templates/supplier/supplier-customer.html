@@ -16,139 +16,34 @@
 
     <div class="customer__cards__container">
 
-
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
-
-
-             <div class="customer__card">
-                 <div class="img__container">
-                     <img src="./download (1).jpg" alt="">
-                 </div>
-
-                     <div class="customer__details">
-                         <div class="name">
-                             <p>Ankush Chavhan</p>
-                         </div>
-
-                         <div class="mobile">
-                             <p>Mb no :</p>
-                             <p class="mb__no">1234567890</p>
-                         </div>
-
-                         <div class="view__details">
-                             <button>View Details</button>
-                         </div>
-                     </div>
-             </div>
-
+        {% if bookings %}
+            {% for booking in bookings %}
+            <div class="customer__card">
+                <div class="img__container">
+                    {% if booking.customer.image %}
+                        <img src="{{booking.customer.image.url}}" alt="">
+                    {% else %}
+                        <img src="{% static 'images/—Pngtree—indian food talley curry soup_6814449.png' %}" alt="">
+                    {% endif %}
+                </div>
+    
+                    <div class="customer__details">
+                        <div class="name">
+                            <p>{{booking.customer.name}}</p>
+                        </div>
+    
+                        <div class="mobile">
+                            <p>Mb no :</p>
+                            <p class="mb__no">{{booking.customer.number}}</p>
+                        </div>
+    
+                        <div class="view__details">
+                            <button>View Details</button>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}    
+        {% endif %}
 
     </div>
 

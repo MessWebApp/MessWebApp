@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,107 +7,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Belly</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
      
      <!-- Link Swiper's CSS -->
-     <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
    
-    <!-- <link rel="stylesheet" href="./css/userPanal_supplier__slider.css"> -->
-    <link rel="stylesheet" href="./product-details.css">
+     <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+     
 </head>
 
 <body>
-
-    <!-- ======== Navbar ======== -->
-       <!-- ======== header ========== -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo__cont">
-                 <a href="#">
-                     <div class="logo__img">
-                         <img src="./images/hamburger.png" alt="logo">
-                     </div>
-
-                     <div class="logo__text">
-                         <h2><i>Food <br/> Belly</i></h2>
-                     </div>
-                 </a>
-            </div>
-
-            <div class="menu">
-                <ul class="ul-list">
-                    <li class="list-item"><a href="#" class="active">Home</a></li>
-                    <li class="list-item"><a href="#">Services</a></li>
-                    <li class="list-item"><a href="#">Contact</a></li>
-                    <li class="list-item"><a href="#">Suppliers</a></li>
-                </ul>
-            </div>
-
-            <div class="auth__container">
-                <div>
+        <!-- ======== header ========== -->
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo__cont">
+                     <a href="/">
+                         <div class="logo__img">
+                             <img src="{% static 'images/hamburger.png' %}" alt="logo">
+                         </div>
+    
+                         <div class="logo__text">
+                             <h2><i>Food <br/> Belly</i></h2>
+                         </div>
+                     </a>
+                </div>
+    
+                <div class="menu">
+                    <ul class="ul-list">
+                        <li class="list-item"><a href="/">Home</a></li>
+                        <li class="list-item"><a href="/#services">Services</a></li>
+                        <li class="list-item"><a href="{% url 'contact' %}">Contact</a></li>
+                        <li class="list-item"><a href="{% url 'all-supliers' %}" class="active">Mess</a></li>
+                    </ul>
+                </div>
+    
+                <div class="auth__container">
                     <p class="auth">Auth</p>
+                    <div class="down__btn">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
                 </div>
+            </nav>
+    
+        </header>
 
-                <div class="down__btn">
-                    <i class="fas fa-angle-down"></i>
-                </div>
+
+     {% if mess %}
+        <header>
+            <div class="mess__title">
+                <h2>{{mess.name}}</h2>
             </div>
-        </nav>
 
-    </header>
-   
-
-
-   
-      <header>
-          <div class="mess__title">
-              <h2>Maharaja Mess</h2>
-          </div>
-
-          <div class="product__slider">
+            <div class="product__slider">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
+                        {% if mess.mess_image1 %}
                         <div class="swiper-slide">
-                            <div class="img__container">
-                                <img src="./download (2).jpg" alt="">
-                            </div>
+                                <div class="img__container">
+                                    <img src="{{mess.mess_image1.url}}" alt="{{mess.name}}">
+                                </div>
                         </div>
+                        {% endif %}
+                        {% if mess.mess_image2 %}
+                        <div class="swiper-slide">
+                                <div class="img__container">
+                                    <img src="{{mess.mess_image2.url}}" alt="{{mess.name}}">
+                                </div>
+                        </div>
+                        {% endif %}
+                        {% if mess.mess_image3 %}
+                        <div class="swiper-slide">
+                                <div class="img__container">
+                                    <img src="{{mess.mess_image3.url}}" alt="{{mess.name}}">
+                                </div>
+                        </div>
+                        {% endif %}
+                        {% if mess.mess_image4 %}
+                        <div class="swiper-slide">
+                                <div class="img__container">
+                                    <img src="{{mess.mess_image4.url}}" alt="{{mess.name}}">
+                                </div>
+                        </div>
+                        {% endif %}
 
-                        <div class="swiper-slide">
-                            <div class="img__container">
-                                <img src="./53110049.gif" alt="">
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="img__container">
-                                <img src="./download (2).jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="img__container">
-                                <img src="./maxresdefault.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="img__container">
-                                <img src="./saucy-ramen-noodles-for-WP-500x500.png" alt="">
-                            </div>
-                        </div>
+                       
                     </div>
 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                     <!-- <div class="swiper-pagination"></div> -->
                 </div>
-          </div>
+            </div>
 
-          <div class="rating">
+            <div class="rating">
             <div class="wrapper">
                 <div class="stars">
                     <i class="far fa-star"></i>
@@ -117,45 +113,52 @@
                 </div>
 
                 <div class="rating__in__no">
-                    <p>4.2</p>
+                    <p>{{mess.rating}}</p>
                 </div>
             </div>
-        </div>
+          </div>
 
-    </header>
+        </header>
 
 
 
     <main>
         <section class="features__and__type">
-               <div class="features">
+                <div class="features">
                     <div class="title">
                         <h2>Mess Features :</h2>
                     </div>
 
                     <div class="features__items">
-                        <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                        <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                        <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
-                        <p><i class="fas fa-circle dot__icon"></i> Lorem ipsum dolor, sit amet consectetur.</p>
+                        {{mess.meal_feature}}
                     </div>
                 </div>
 
-               <div class="different__type">
+                <div class="different__type">
                     <div class="title">
-                        <h2>Different Types Availablility :</h2>
+                        <h2>Different Typs of Meal :</h2>
                     </div>
 
                     <div class="types">
-                        <div class="meal__type veg__img"> 
-                            <p class="type">Veg</p>
-                        </div>
-
-                        <div class="meal__type non-veg__img">
-                            <p class="type">Non-Veg</p>
-                        </div>
+                        {% if mess.meal_type == 'Both' %}
+                            <div class="meal__type veg__img"> 
+                                <p class="type">Veg</p>
+                            </div>
+                            
+                            <div class="meal__type non-veg__img">
+                                <p class="type">Non-Veg</p>
+                            </div>
+                            {% elif mess.meal_type == 'Veg' %}
+                            <div class="meal__type veg__img"> 
+                                <p class="type">Veg</p>
+                            </div>
+                            {% elif mess.meal_type == 'Non-veg' %}
+                            <div class="meal__type non-veg__img">
+                                <p class="type">Non-Veg</p>
+                            </div>  
+                        {% endif %}
                     </div>
-               </div>
+                </div>
         </section>
 
 
@@ -164,11 +167,24 @@
                 <div class="title">
                     <h2>Mess Availability :</h2>
                 </div>
-
                 <div class="availability">
-                          <p><i class="far fa-star star"></i> <span>Morning</span></p>
-                          <p><i class="far fa-star star"></i> <span>Afternoon</span></p>
-                          <p><i class="far fa-star star"></i> <span>Evening</span></p>
+                    {% if mess.mess_availability == 'morning-Night' %}
+                            <p><i class="far fa-star star"></i> <span>Morning</span></p>
+                            <p><i class="far fa-star star"></i> <span>Night</span></p>
+                        {% elif mess.mess_availability == 'morning-AfterNoon-Night' %}  
+                            <p><i class="far fa-star star"></i> <span>Morning</span></p>
+                            <p><i class="far fa-star star"></i> <span>Afternoon</span></p>
+                            <p><i class="far fa-star star"></i> <span>Evening</span></p>
+                        {% elif mess.mess_availability == 'Morning' %}
+                        <p><i class="far fa-star star"></i> <span>Morning</span></p>
+                        {% elif  mess.mess_availability == 'Night' %}
+                        <p><i class="far fa-star star"></i> <span>Night</span></p>
+                        {% elif mess.mess_availability == 'morning-AfterNoon' %}
+                            <p><i class="far fa-star star"></i> <span>Morning</span></p>
+                            <p><i class="far fa-star star"></i> <span>AfterNoon</span></p>
+                    {% endif %}
+
+
                 </div>
             </div>
 
@@ -178,17 +194,23 @@
                 </div>
 
                 <div class="prices__container">
-                     <div class="price__item">
-                         <span>50</span>
-                         <span><i class="fas fa-rupee-sign"></i></span>
-                          <span>per Tifin</span>
-                     </div>
+                        <div class="price__item">
+                            <span>{{mess.price_per_tiffin}}</span>
+                            <span><i class="fas fa-rupee-sign"></i></span>
+                            <span>per Tifin</span>
+                        </div>
 
-                     <div class="price__item">
-                        <span>1500</span>
+                        <div class="price__item">
+                        <span>{{mess.price_per_month}}</span>
                         <span><i class="fas fa-rupee-sign"></i></span>
-                         <span>per month</span>
-                     </div>
+                            <span>per month</span>
+                        </div>
+
+                        <div class="price__item">
+                        <span>{{mess.extra_for_non_veg}}</span>
+                        <span><i class="fas fa-rupee-sign"></i></span>
+                            <span>Extra For Non-Veg</span>
+                        </div>
 
                 </div>
             </div>
@@ -202,33 +224,7 @@
 
 
             <div class="special__wrapper">
-                <div class="common__days">
-                    <div class="title">
-                        <h2>Common Days (Mon to Fri) :</h2>
-
-                        <div class="items">
-                            <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Bhaji Poli</span></p>
-                            <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Varan Bhat</span></p>
-                            <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Papad</span></p>
-                            <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Lonch</span></p>
-                        </div>
-                    </div>
-    
-                </div>
-
-                <div class="special__day">
-                    <div class="title">
-                        <h2>Special Day (Sunday) :</h2>
-                    </div>
-
-                    <div class="items">
-                        <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Non-Veg</span></p>
-                        <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Varan Bhat</span></p>
-                        <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Papad</span></p>
-                        <p><span><i class="fas fa-long-arrow-alt-right right__arrow"></i></span> <span>Lonch</span></p>
-                    </div>
-    
-                </div>
+                {{mess.meal_special}}
             </div>
         </section>
 
@@ -237,34 +233,98 @@
         <section id="supplier__details">
             <div class="address">
                 <h3>Address</h3>
-                <p>
-                   Shivaji Nagar, Chirde Layout Ner Persopant 445102
-                </p>
+                <p>{{mess.address}}</p>
             </div>
 
             <div class="owner__details">
                 <h3>Owner Details :</h3>
-                  <div>
-                      <p class="owner__details-name">Name : <span>Ankush Chavhan</span></p>
-                      <!-- <p class='owner__details-mb'>Mobile No : <span>1234567890</span></p> -->
-                  </div>
+                    <div>
+                        <p class="owner__details-name">Name : <span>{{mess.supplier.name}}</span></p>
+                    </div>
 
             </div>
 
             <div class="map__link">
                 <h3>Map Link :</h3>
-                <p><a href="#">www.gogglemap.com</a></p>  
+                <p><a href="#">{{mess.map_link}}</a></p>  
             </div>
         </section>
 
 
         <section id="book__button__section">
-                <button>Book Now</button>
-                <button>Bookmark for later</button>
+            {% if supplier %}
+            {% elif customer %}
+                <a href="/bookMess/{{mess.slug}}">Book Now</a>
+                <a href="#">Bookmark for later</a>
+            {% else %}
+                <a href="/customer-login"> Book Now</a>
+                <a href="/customer-login">Bookmark for later</a>
+            {% endif %}
+
         </section>
     </main>
+     {% endif %}
 
 
+
+    <!-- ======= modal for authentication -->
+    <div class="authentication__model">
+        <div>
+            <p class="auth__heading">Authentication</p>
+        </div>
+
+        <div>
+            <p class="auth__link customer__auth__link">
+                {% if customer  %}
+                <i class="fas fa-user"></i> Customer Auth <span style="font-size: 12px;">(Logged in)</span></p>
+                {% else %}
+                <i class="fas fa-user"></i> Customer Auth</p>
+                {% endif %}
+            <p class="auth__link supplier__auth__link">
+                {% if supplier %}
+                <i class="fas fa-user"></i> Mess Supplier Auth<span style="font-size: 12px;">(Logged in)</span> </p>
+                {% else %}
+                <i class="fas fa-user"></i> Mess Supplier Auth</p>
+                {% endif %}
+        </div>
+    </div>
+
+    <div class="customer__authentication__model">
+        <div>
+            <p class="auth__heading">Customer Authentication</p>
+        </div>
+
+        <div>
+            {% if customer %}
+                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link"><i class="far fa-address-card"></i> UserPanal</a>
+                <a href="{% url 'logout' %}" class="auth__link customer__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="supplier__authentication__model">
+        <div>
+            <p class="auth__heading">Supplier Authentication</p>
+        </div>
+
+        <div>
+            {% if supplier %}
+                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link"><i class="far fa-address-card"></i> UserPanal </a>
+                <a href="{% url 'logout' %}" class="auth__link supplier__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link"><i class="fas fa-sign-in-alt"></i> Login </a>
+                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!--====== black layer -->
+    <div class="black__layer">
+    </div>
     
     <!-- ======== footer ========= -->
     <footer class="footer">
@@ -275,7 +335,7 @@
                  <div class="footer__logo">
                      <a href="#">
                         <div class="logo">
-                               <img src="./images/hamburger.png" alt="">
+                               <img src=" {% static 'images/hamburger.png' %}" alt="">
                         </div>
 
                         <div class="logo__txt">
@@ -290,8 +350,8 @@
                  </div>
 
                  <div class="personal__details__footer">
-                     <p><i class="fas fa-circle dot"></i> Mo No : 8788299321</p>
-                     <p><i class="fas fa-circle dot"></i> Email : abcdefg34@gmail.com</p>
+                     <p><i class="fas fa-phone dot"></i> Mo No : 8788299321</p>
+                     <p><i class="fas fa-envelope dot"></i> Email : abcdefg34@gmail.com</p>
                  </div>
             </div>
 
@@ -326,7 +386,7 @@
 
             <div class="other__links__footer">
                 <div class="footer__section__title">
-                    <h2>Others Links</h2>
+                    <h2>Important Links</h2>
                 </div>
 
                 <ul>
@@ -357,27 +417,19 @@
 
                 <div class="social__icons">
                     <div>
-                        <a href="#">
-                            <img src="./images/facebook (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/instagram (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-instagram-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/github-sign (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-github-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/linkedin (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -391,56 +443,11 @@
 
     </footer>
 
-
-    
-    <!-- ======= modal for authentication -->
-    <div class="authentication__model">
-        <div>
-            <p class="auth__heading">Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link customer__auth__link">Customer Auth</a>
-            <a href="#" class="auth__link supplier__auth__link">Mess Supplier Auth</a>
-        </div>
-    </div>
-
-    <div class="customer__authentication__model">
-        <div>
-            <p class="auth__heading">Customer Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link customer__login__link">Login</a>
-            <a href="#" class="auth__link customer__register__link">Registration</a>
-        </div>
-    </div>
-
-
-    <div class="supplier__authentication__model">
-        <div>
-            <p class="auth__heading">Supplier Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link supplier__login__link">Login </a>
-            <a href="#" class="auth__link supplier__register__link">Registration</a>
-        </div>
-    </div>
-
-    <!--====== black layer -->
-    <div class="black__layer">
-    </div>
-
-
-
-
-    
       <!-- Swiper JS -->
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
       <!-- <script src="./js/userPanal_supplier_slider.js"></script> -->
 
-      <script src="./product-details.js"></script>
+      <script src="{% static 'js/product-details.js' %}"></script>
 </body>
 </html>

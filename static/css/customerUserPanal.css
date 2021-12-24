@@ -128,7 +128,7 @@ a{
 
 
 .user__panal__container .right{
-    flex-basis: 90%;
+    flex-basis: 89%;
     background-color: var(--light-bg);
     border-radius: var(--mg-20);
     overflow: hidden;
@@ -219,22 +219,25 @@ a{
 
 
 /* ======= mess details box ====== */
-#mess__details___box{
+#mess__details___box
+{
     width: 100%;
 }
 
-#mess__details___box .wrapper{
+#mess__details___box .wrapper
+{
     width: 90%;
     margin: var(--mg-5) auto;
     border-radius: 10px;
-    background-color:var(--light-primary);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.11);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    background-color:var(--secondary-color);
+    color: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.11);
 }
 
-#mess__details___box .wrapper .left{
+#mess__details___box .wrapper .left
+{
     flex-basis: 25%;
     display: flex;
     justify-content: center;
@@ -242,23 +245,25 @@ a{
     box-shadow: none !important;
     background: transparent !important;
 
-
 }
 
-#mess__details___box .wrapper .left .img__container{
+.wrapper .left .img__container
+{
     width: 95%;
     height: 95%;
     border-radius: var(--mg-15);
     overflow: hidden;
 }
 
-#mess__details___box .wrapper .left .img__container img{
-    width: 100%;
-    height: 100%;
+.wrapper .left .img__container img
+{
+    width: 400px;
+    height: 280px;
 }
 
 
-#mess__details___box .wrapper .right{
+#mess__details___box .wrapper .right
+{
     flex-basis: 73%;
     padding: 0 var(--mg-15);
     box-shadow: none !important;
@@ -266,7 +271,8 @@ a{
 
 }
 
-#mess__details___box .wrapper .right header{
+#mess__details___box .wrapper .right header
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -275,40 +281,50 @@ a{
 
 }
 
-.rating .wrapper{
+.rating .wrapper
+{
     padding: var(--mg-5) var(--mg-15);
     border-radius: var(--mg-15);
     background-color: var(--white) !important;
     display: flex;
     align-items: center;
-
-
 }
 
-#mess__details___box .wrapper .right .mess__name h2{
-    font-weight: 600;
+#mess__details___box .wrapper .right .data__info
+{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: var(--mg-5);
 }
 
-.rating .wrapper .stars{
+.rating .wrapper .stars
+{
   display: flex;
   justify-content: center;
 }
 
-.rating__in__no p{
+.rating__in__no p
+{
+    color: #000;
     padding: 0 var(--mg-10);
 }
 
-.rating .wrapper .stars i{
+.rating .wrapper .stars i
+{
     margin: 3px;
     color: var(--primary-color);
 }
 
 
-#mess__details___box .wrapper .right .details{
+.wrapper .right .details
+{
     padding: 0 var(--mg-12);
+    display: flex;
+    flex-direction: column;
 }
-
-#mess__details___box .wrapper .right .details .status p{
+.wrapper .right .details .status p
+{
     font-weight: 600;
     font-size: var(--large-primary-font);
 
@@ -318,56 +334,55 @@ a{
     font-size: var(--large-primary-font);
     color: green;
 }
-
-.availability__txt{
+.availability__txt
+{
     font-size: var(--large-primary-font);
-    font-weight: 600;
-    padding-top: var(--mg-7);
+    font-weight: 500;
+    flex: 0.2;
 }
 
-.availability__modes{
+.availability__modes
+{
+    flex: 0.8;
     width: 100%;
     display: flex;
+    justify-content: flex-start;
     font-size: var(--large-primary-font);
-    padding-left: var(--mg-30);
 }
 
-.availability__modes__item{
+.availability__modes__item
+{
     font-size: var(--large-primary-font);
-    margin: var(--mg-5) var(--mg-20);
     font-weight: 600;
     color: var(--primary-font);
+    padding: 0 var(--mg-5) ; 
 }
-
-#mess__details___box .wrapper .right .details .bottom{
-    font-size: var(--large-primary-font);
-    padding: var(--mg-15) 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#mess__details___box .wrapper .right .details .bottom .map{
-    font-weight: 600;
-}
-
-.map__link{
+.map__link
+{
     margin-left: var(--mg-10);
 }
 
-#view__details__btn button{
+.data__btn
+{
+    justify-content: flex-end;
+}
+.data__btn a
+{
     padding: var(--mg-5) var(--mg-15);
     border-radius: var(--mg-30);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.24);
     outline: none;
     border: none;
-    font-weight: 500;
     font-size: var(--primary-font);
-    background-color: var(--light-primary);
-    color: var(--white);
-    letter-spacing: .5px;
-    word-spacing: 1px;
+    background-color: #fff;
+    font-weight: 500;
+    color: #000;
     cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.24);
+    transition: all 0.5s ease;
+}
+.data__btn a:hover
+{
+    transform:scale(1.05);
 }
 
 
@@ -375,44 +390,47 @@ a{
 /* =======history ==== */
 .history__container
 {
-    padding: 0 var(--mg-20);
+    padding: 0 var(--mg-40);
 }
 
-.history__titile{
-    padding: 0 var(--mg-10);
-    padding-left: var(--mg-30);
+.history__titile
+{
+    padding:var(--mg-5);
     font-weight: 600;
-    font-size: var(--large-font);
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
-.mess__blocks{
-    height: 240px;
+.mess__blocks
+{
+    height: 220px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     overflow-y: auto;
-    /* background: var(--white); */
+    background: var(--secondary-color);
     border-radius: var(--mg-15);
-    /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.11); */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.11);
 }
 
 .mess__block
 {
     width: 340px;
-    height: 200px;
-    background-position: center;
-    background-size: cover;
+    height: 180px;
+    background-position: center !important;
+    background-size: contain !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: var(--mg-10) var(--mg-20);
+    margin: 0 var(--mg-20);
     border-radius: var(--mg-10);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.151);
 }
 
-.mess__block p
+.mess__block a
 {
+    color: #fff;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     font-size: var(--secondary-font);
 }

@@ -48,6 +48,7 @@ class Supplier(models.Model):
     id_proof = models.ImageField(upload_to='supplier-id/', height_field=None, width_field=None, max_length=None)
     address = models.TextField(null=True,blank=True)
     active = models.BooleanField(default=False)
+    label = models.CharField(max_length=500,default='panding',null=True,blank=True)
     date_of_joining = models.DateField(auto_now=False, auto_now_add=True)
     experience = models.IntegerField(default=0)
     otp = models.CharField(max_length=50,null=True,blank=True)
@@ -119,6 +120,7 @@ class MessBooking(models.Model):
     bookingId = models.IntegerField(default=0)
     booking_date = models.DateTimeField(auto_now=False, auto_now_add=True)
     status = models.BooleanField(default=False)
+    label = models.CharField(max_length=100,default="panding",null=True,blank=True)
     message = models.TextField(default="")
     
     def __str__(self):

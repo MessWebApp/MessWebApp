@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{% static 'css/happy-user.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/testimonial.css' %}">
+    <link rel="stylesheet" href="{% static 'css/supplier-card.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 
@@ -40,7 +41,7 @@
                     <li class="list-item"><a href="#" class="active">Home</a></li>
                     <li class="list-item"><a href="#services">Services</a></li>
                     <li class="list-item"><a href="{% url 'contact' %}">Contact</a></li>
-                    <li class="list-item"><a href="#">Suppliers</a></li>
+                    <li class="list-item"><a href="{% url 'all-supliers' %}">Mess</a></li>
                 </ul>
             </div>
 
@@ -53,8 +54,6 @@
         </nav>
 
     </header>
-
-
     <!-- ========= header ======== -->
     <main class="main">
         <div class="left">
@@ -73,7 +72,7 @@
              </div>
 
              <div class="register__btn">
-                 <a href="#">Explore Idea</a>
+                 <a href="{% url 'all-supliers' %}">Explore All Mess</a>
              </div>
         </div>
 
@@ -107,7 +106,7 @@
 
 
         <div class="wrapper">
-            <div class="card">
+            <div class="cardData">
                 <h3>Happy Suppliers</h3>
                 <h3>{{all_supplier}}+</h3>
 
@@ -116,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="cardData">
                 <h3>Happy Customers</h3>
                 <h3>{{all_customer}}+</h3>
 
@@ -125,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="cardData">
                 <h3>Total Users</h3>
                 <h3>{{all_user}}+</h3>
 
@@ -153,7 +152,7 @@
 
         <div class="search__box__container">
             
-            <form action="#" class="form1">
+            <form action="/search-with-city/" method="GET" class="form1">
                 <div class="search__form__1">
                     <div class="input__fields">
                         <div class="input__field">
@@ -168,33 +167,33 @@
                         </div>
 
                         <div class="input__field">
-                            <select name="District">
+                            <select name="district" id="district">
                                 <option value="">select District</option>
                             </select>
                         </div>
 
                         <div class="input__field">
-                            <select name="city">
+                            <select name="city" id="city">
                                 <option value="">select City</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="search__btn">
-                        <button>Search</button>
+                        <button type="submit">Search</button>
                     </div>
                 </div>
             </form>
 
 
-            <form action="#">
+            <form action="/search/" method="GET">
                 <div class="search__form__2">
                      <div class="input__field">
                          <input type="search" name="search" placeholder="Search Mess" />
                      </div>
 
                     <div class="search__btn">
-                        <button>Search</button>
+                        <button type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -274,159 +273,44 @@
             <div class="swiper-wrapper">
                 {% if all_mess %}
                 {% for mess in all_mess %}
-                    <div class="swiper-slide" id="slider__card">
+                    <div class="card swiper-slide" id="slider__card">
                         <dic id="img__container">
-                            {% if mess.mess_image1 %}
-                                <img src="{{mess.mess_image1.url}}" alt="">
-                                {% else %}
-                                <img src="{% static 'images/download.jpg' %}" alt="">
-                            {% endif %}
+                            <img src="{{mess.mess_image1.url}}" alt="{{mess.name}}">
                         </dic>
-
+        
                         <div class="name">
                             <h3>{{mess.name}}</h3>
                         </div>
-
-                        <div class="price__container">
-                            <span class="price">{{mess.price_per_month}}</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                        
+        
+                        <div class="price__and__rating">
+                            <div class="price__container">
+                                <span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
+                                <span class="price">{{mess.price_per_month}}</span>
+                            </div>
+        
+                            <div class="to__discount">
+                                <span class="price">per Month</span>
+                            </div>
+        
+                            <div class="card__rating">
+                                 <p>
+                                     <span>{{mess.rating}}/5</span><span><i class="fas fa-star ruppes__sign"></i></span>
+                                 </p>
+                            </div>
                         </div>
-
-                        <div class="address">
-                            <p>{{mess.address}}</p>
-                        </div>
-
-                        <div class="button__container">
-                            <a href="#">View Details</a>
-                        </div>
-                    </div>
+        
+                            <div class="address">
+                                <p>{{mess.address}}</p>
+                            </div>
+        
+                            <div class="buttons__container">
+                                <a href="/mess/{{mess.slug}}" class="view__details">View Details</a>
+                                <a href="#">More</a>
+                            </div>
+                </div>
                 {% endfor %}
                 {% endif %}
-
-
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>John Smith</h3>
-                    </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
-
-
-
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>John Smith</h3>
-                    </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>John Smith</h3>
-                    </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>John Smith</h3>
-                    </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
-
-
-
-                <div class="swiper-slide" id="slider__card">
-                    <dic id="img__container">
-                        <img src="{% static 'images/download.jpg' %}" alt="">
-                    </dic>
-
-                    <div class="name">
-                        <h3>John Smith</h3>
-                    </div>
-
-                    <div class="price__container">
-                        <span class="price">1800</span><span><i class="fas fa-rupee-sign ruppes__sign"></i></span>
-                    </div>
-
-                    <div class="address">
-                        <p>Kathora Nake Chauk
-                             , Amravati 445106
-                        </p>
-                    </div>
-
-                    <div class="button__container">
-                        <a href="#">View Details</a>
-                    </div>
-                </div>
                
             </div>
             <div class="swiper-button-next"></div>
@@ -438,7 +322,7 @@
     <section class="testimonial__section">
         <div class="title__section">
             <div class="title">
-                <h2>Testimonial</h2>
+                <h2>Feedbacks</h2>
             </div>
 
             <div class="title__para">
@@ -460,7 +344,11 @@
 
                             <div class="content">
                             <p>{{feedback.content}}</p>
-                            </div>
+                        </div>
+                        <div class="rating__feedback_block">
+                            <p>Rating For site</p>
+                            <p><i class="fas fa-star" style="color: gold;"></i> {{feedback.rating}}</p>
+                        </div>
 
                             <div class="details">
                                 <div class="imgBox">
@@ -482,123 +370,19 @@
 
                                 <h3>
                                     {% if feedback.customer %}
-                                        {{feedback.customer.name}}
+                                        {{feedback.customer.name}} <br>
+                                        <span>Customer</span>
                                         {% else %}
-                                        {{feedback.supplier.name}}
+                                        {{feedback.supplier.name}}<br/>
+                                        <span>Supplier</span>
                                     {% endif %} 
                                 </h3>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-                {% endif %}
-
-
-
-                <div class="swiper-slide">
-                    <div class="testimonial__box">
-                        <div class="quote">
-                            <i class="fas fa-quote-right right__quote"></i>
-                        </div>
-
-                        <div class="content">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
-                                soluta maiores quos dignissimos veniam facere.
-                            </p>
-                        </div>
-
-                        <div class="details">
-                            <div class="imgBox">
-                                <img src="./photo-1506794778202-cad84cf45f1d.jpg" alt="">
-                            </div>
-
-                            <h3>Aditya Chandrikapure <br>
-                               <span>Createive Designer</span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="swiper-slide">
-                    <div class="testimonial__box">
-                        <div class="quote">
-                            <i class="fas fa-quote-right right__quote"></i>
-                        </div>
-
-                        <div class="content">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
-                                soluta maiores quos dignissimos veniam facere.
-                            </p>
-                        </div>
-
-                        <div class="details">
-                            <div class="imgBox">
-                                <img src="./photo-1513956589380-bad6acb9b9d4.jpg" alt="">
-                            </div>
-
-                            <h3>Ravindra Dudhane <br>
-                               <span>Createive Designer</span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="swiper-slide">
-                    <div class="testimonial__box">
-                        <div class="quote">
-                            <i class="fas fa-quote-right right__quote"></i>
-                        </div>
-
-                        <div class="content">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
-                                soluta maiores quos dignissimos veniam facere.
-                            </p>
-                        </div>
-
-                        <div class="details">
-                            <div class="imgBox">
-                                <img src="./photo-1517256673644-36ad11246d21.jpg" alt="">
-                            </div>
-
-                            <h3>Soham Sarde <br>
-                               <span>Createive Designer</span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="swiper-slide">
-                    <div class="testimonial__box">
-                        <div class="quote">
-                            <i class="fas fa-quote-right right__quote"></i>
-                        </div>
-
-                        <div class="content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, molestiae id? Iste perspiciatis in ipsum totam odit commodi ad, soluta maiores quos dignissimos veniam facere.
-                                soluta maiores quos dignissimos veniam facere.
-                            </p>
-                        </div>
-
-                        <div class="details">
-                            <div class="imgBox">
-                                <img src="./photo-1512484776495-a09d92e87c3b.jpg" alt="">
-                            </div>
-
-                            <h3>Rushikesh Dudhe <br>
-                               <span>Createive Designer</span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                
+                {% endif %} 
             </div>
-
             <div class="swiper-pagination"></div>
         </div>
     </section>
@@ -615,9 +399,17 @@
 
         <div>
             <p class="auth__link customer__auth__link">
-                <i class="fas fa-sign-in-alt"></i> Customer Auth</p>
+                {% if customer  %}
+                <i class="fas fa-user"></i> Customer Auth <span style="font-size: 12px;">(Logged in)</span></p>
+                {% else %}
+                <i class="fas fa-user"></i> Customer Auth</p>
+                {% endif %}
             <p class="auth__link supplier__auth__link">
-                <i class="fas fa-sign-in-alt"></i> Mess Supplier Auth</p>
+                {% if supplier %}
+                <i class="fas fa-user"></i> Mess Supplier Auth<span style="font-size: 12px;">(Logged in)</span> </p>
+                {% else %}
+                <i class="fas fa-user"></i> Mess Supplier Auth</p>
+                {% endif %}
         </div>
     </div>
 
@@ -628,11 +420,11 @@
 
         <div>
             {% if customer %}
-                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link">UserPanal</a>
-                <a href="{% url 'logout' %}" class="auth__link customer__register__link">Logout</a>
+                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link"><i class="far fa-address-card"></i> UserPanal</a>
+                <a href="{% url 'logout' %}" class="auth__link customer__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
             {% else %}
-                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link">Login</a>
-                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link">Registration</a>
+                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link"><i class="far fa-registered"></i> Registration</a>
             {% endif %}
         </div>
     </div>
@@ -645,11 +437,11 @@
 
         <div>
             {% if supplier %}
-                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link">UserPanal </a>
-                <a href="{% url 'logout' %}" class="auth__link supplier__register__link">Logout</a>
+                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link"><i class="far fa-address-card"></i> UserPanal </a>
+                <a href="{% url 'logout' %}" class="auth__link supplier__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
             {% else %}
-                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link">Login </a>
-                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link">Registration</a>
+                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link"><i class="fas fa-sign-in-alt"></i> Login </a>
+                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link"><i class="far fa-registered"></i> Registration</a>
             {% endif %}
         </div>
     </div>
@@ -681,8 +473,8 @@
                  </div>
 
                  <div class="personal__details__footer">
-                     <p><i class="fas fa-circle dot"></i> Mo No : 8788299321</p>
-                     <p><i class="fas fa-circle dot"></i> Email : abcdefg34@gmail.com</p>
+                     <p><i class="fas fa-phone dot"></i> Mo No : 8788299321</p>
+                     <p><i class="fas fa-envelope dot"></i> Email : abcdefg34@gmail.com</p>
                  </div>
             </div>
 
@@ -748,27 +540,19 @@
 
                 <div class="social__icons">
                     <div>
-                        <a href="#">
-                            <img src="{% static 'images/facebook (1).png' %}" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="{% static 'images/instagram (1).png' %}" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-instagram-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="{% static 'images/github-sign (1).png' %}" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-github-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="{% static 'images/linkedin (1).png' %}" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -789,13 +573,55 @@
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/testimonial.js' %}"></script>
     <script>
-        const states = document.querySelector('#state');
+        const state = document.querySelector('#state');
+        const district = document.querySelector('#district');
+        const city = document.querySelector('#city');
 
-        states.addEventListener('change',(e) =>
+        let select_district = `<option value="">Select District</option>`;
+        let select_city = `<option value="">Select City</option>`;
+        
+        state.addEventListener('change',(e) =>
         {
-            console.log(e.target.value);
-
+            let select_district = `<option value="">Select District</option>`;
+            let select_city = `<option value="">Select City</option>`;
+            {% if districts %}
+            {%for dis in districts%}
+            if (e.target.value === `{{dis.state}}`) 
+            {
+                    select_district += `<option value="{{dis.district}}">{{dis.district}}</option>`;
+                }
+                {% endfor %}
+            {% endif %}
+            district.innerHTML = select_district;
+            city.innerHTML = select_city;
         })
+        
+        district.addEventListener('change',(e) =>
+        {
+            let select_city = `<option value="">Select City</option>`;
+            {% if cities %}
+                {% for ct in cities %}
+                if (e.target.value === `{{ct.district.district}}`) 
+                {
+                    select_city += `<option value="{{ct.city}}">{{ct.city}}</option>`;
+                }
+                {% endfor %}
+            {% endif %}
+            city.innerHTML = select_city;
+        })
+    </script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                swal({
+                    title: "{{message}}",
+                    text: "click the btn",
+                    icon: "{{message.tags}}",
+                });
+            {% endfor %}
+        {% endif %}
     </script>
 </body>
 </html>

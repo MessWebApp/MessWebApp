@@ -1,0 +1,146 @@
+{% extends 'supplier/supplier-userpanal.html' %}
+{% load static %}
+
+{% block title %}Food Belly | Requests{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/all-requests.css' %}">
+{% endblock css %}
+
+{% block body %}
+<section id="all__requests">
+    <div class="all__request__heading">
+        <h2>All Requests</h2>
+    </div>
+
+    <div class="table__container">
+        <table border="1">
+            <tr>
+                <th>Booking Id</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>contact No.</th>
+                <th>Address</th>
+                <th>addhar</th>
+                <th>Date Of Booking</th>
+                <th>Action</th>
+            </tr>
+            {% if bookings %}
+                {% for booking in bookings reversed%}
+                <tr>
+                    <td class="bookingId">{{booking.bookingId}}</td>
+                    <td>{{booking.customer.name}}</td>
+                    <td>{{booking.customer.email}}</td>
+                    <td>{{booking.customer.number}}</td>
+                    <td>{{booking.customer.address}}</td>
+                    <td>
+                        <button class="view_dahar_btn" data-url="{{booking.customer.id_proof.url}}">View</button>
+                    </td>
+                    <td>{{booking.booking_date}}</td>
+                    <td >
+                        {% if booking.label == 'accept' %}
+                            <select name="status" class="status" disabled>
+                                <option value="accept" selected>Accept</option>
+                            </select>
+                        {% elif booking.label == 'reject' %}
+                            <select name="status" class="status" disabled>
+                                <option value="reject" selected>Reject</option>
+                            </select>
+                        {% else %}
+                            <select name="status" class="status">
+                                <option value="">Select Option</option>
+                                <option value="accept">Accept</option>
+                                <option value="reject">Reject</option>
+                            </select>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</section>
+<div class="message__block">
+    <form action="/supplier-request-accept/" method="POST" class="message__form">
+        {% csrf_token %}
+        <div class="close__btn">
+            <p class="close_btn">+</p>
+        </div>
+        <div class="input__block">
+            <label>BookingId</label>
+            <p class="selected_bookingId"></p>
+            <input type="hidden" name="bookingId" class="bookingId__value" value=""/>
+        </div>
+        <div class="input__block">
+            <label>Status</label>
+            <p class="seletced__status"></p>
+            <input type="hidden" name="value" class="status__value" value="" />
+        </div>
+        <div class="input__block">
+            <label>Message</label>
+            <input type="text" name="message" class="status__value" value="Your Request is Accepted." />
+        </div>
+        <div class="form__btn">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>
+
+<div class="addhar__block">
+    <div class="close_addharBlock">
+        <p class="close_addhar_btn">+</p>
+    </div>
+    <div class="addhar__container">
+        <iframe class="addhar__preview" src="" frameborder="0"></iframe>
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+    <script src="{% static 'js/all-requests.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        const select_input = document.querySelectorAll('.status');
+        const status_input = document.querySelector('.status__value');
+        const label_status = document.querySelector('.seletced__status');
+        const bookingId_input = document.querySelector('.bookingId__value');
+        const label_bookingId = document.querySelector('.selected_bookingId');
+        const booking_id = document.querySelectorAll('.bookingId');
+        const view_addhar = document.querySelectorAll('.view_dahar_btn');
+
+        select_input.forEach((select_inp,index) =>
+        {
+            select_inp.addEventListener('change',(e) =>
+            {
+                $('.message__block').fadeIn(500);
+                status_input.value = e.target.value;
+                label_status.textContent = e.target.value;
+                bookingId_input.value = booking_id[index].textContent;
+                label_bookingId.textContent = booking_id[index].textContent;
+
+            })
+
+        })
+
+        $('.close_btn').click(() =>
+        {
+            $('.message__block').fadeOut(500);
+        })
+        
+        view_addhar.forEach((v_a,index) =>
+        {
+            v_a.addEventListener('click',(e) =>
+            {
+                $('.addhar__block').fadeIn(500);
+                document.querySelector('.addhar__preview').src = v_a.getAttribute('data-url') ;
+                
+            })
+            
+        })
+        
+        $('.close_addhar_btn').click(() =>
+        {
+            $('.addhar__block').fadeOut(500);
+        })
+    </script>
+{% endblock js %}

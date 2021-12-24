@@ -41,7 +41,7 @@
                 <div class="input__field">
                     <label> ID Proof : </label>
                     <div class="file__input">
-                        <input class="custom-file-input" type="file" placeholder="Enter Id proof">
+                        <input class="custom-file-input" name="id_proof" type="file" placeholder="Enter Id proof">
                         <p class="view_addhar_btn">View Uploaded File</p>
                     </div>
                 </div>
@@ -83,15 +83,39 @@
     </div>
 </section>
 
+<div class="addhar_view_block">
+    <div class="cross__btnSection">
+        <p class="cross__btn">+</p>
+    </div>
+    <iframe class="addhar__iframe" src="{% if customer.id_proof %} {{customer.id_proof.url}}{% endif %} " frameborder="0"></iframe>
+</div>
+
 {% endblock body %}
 
 {% block js %}
     <script src="{% static 'js/customer-edit.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         const add_file_btn = document.querySelector('.add_profile_btn');
         const file_input = document.querySelector('.disable-pic-add');
         const file_label = document.querySelector('.profile-img-label');
         const prev_img = document.querySelector('.file-priview');
+        const addhar__input = document.querySelector('.custom-file-input');
+        const iframe_addhar = document.querySelector('.addhar__iframe');
+
+        addhar__input.addEventListener('change',() =>
+        {
+            $('.addhar_view_block').fadeIn(500);
+            iframe_addhar.src = URL.createObjectURL(addhar__input.files[0]) ;
+            console.log(URL.createObjectURL(addhar__input.files[0]));
+        })
+        
+        $('.view_addhar_btn').click(() =>
+        {
+            $('.addhar_view_block').fadeIn(500);
+
+        })
 
         add_file_btn.addEventListener('click',() =>
         {
@@ -100,9 +124,15 @@
         file_input.addEventListener("change",(event) =>
         {
             file_label.textContent = file_input.files[0].name ;
-            console.log()
             prev_img.src = URL.createObjectURL(file_input.files[0]);
         })
+
+
+        $('.cross__btn').click(() =>
+        {
+            $('.addhar_view_block').fadeOut(500);
+        })
+
     </script>
 {% endblock js %}
 

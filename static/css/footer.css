@@ -121,10 +121,11 @@ a{
     display: flex;
     align-items: center;
     padding-left: var(--mg-5);
+    margin-bottom: 5px;
 }
 
 .dot{
-    font-size: 8px;
+    font-size: 15px;
     margin-right: 10px;
 }
 
@@ -177,23 +178,49 @@ li{
 
 }
 
-.social__icons{
+.social__icons
+{
     display: flex;
     justify-content: center;
 }
 
-.social__icons img{
-    width: 25px;
-    height: 25px;
+.social__icons a{
+    width: 50px;
+    height: 50px;
     margin: 10px;
+    color: #fff;
     transition: .3s;
+
+}
+.social__icons .fab
+{
+    font-size: 2rem;
+    transition: all 0.5s ease;
+}
+.social__icons .fa-facebook-square:hover
+{
+    transform: scale(1.2);
+    color: #3b5998;
 }
 
-.social__icons img:hover{
-    transform: scale(1.1);
+.social__icons .fa-instagram-square:hover
+{
+    transform: scale(1.2);
+    color: rgb(245, 49, 49);
+
 }
+.social__icons .fa-github-square:hover
+{
+    transform: scale(1.2);
+    color: rgb(15, 15, 15);
 
+}
+.social__icons .fa-linkedin:hover
+{
+    transform: scale(1.2);
+    color: #0077b5;
 
+}
 
 .footer__bottom{
     text-align: center;

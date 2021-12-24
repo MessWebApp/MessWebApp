@@ -7,7 +7,7 @@ from django.conf import settings
 # from django.contrib.auth.models import User
 from .models import City, Customer, District, Feedback, State,Supplier,MessDetails,MessBooking,MessReview,User
 import random
-from django.core.mail import EmailMessage , send_mail
+from django.core.mail import EmailMessage, message , send_mail
 from .form import ContactForm
 
 # Create your views here.
@@ -43,6 +43,140 @@ def Home(request):
         'cities':cities
     }
     return render(request,'index.html',context)
+
+def SearchWithCity(request):
+    state = request.GET.get('state')
+    district = request.GET.get('district')
+    city = request.GET.get('city')
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+
+    all_mess = MessDetails.objects.filter(state = state,city = city)
+
+    context ={
+        'customer':customer,
+        'supplier':supplier,
+        'state':state,
+        'district':district,
+        'city':city,
+        'all_mess':all_mess,
+    }
+    return render(request,'searchResult.html',context)
+
+def SearchWithInput(request):
+    search = request.GET.get('search')
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+
+    all_mess = MessDetails.objects.filter(name__icontains =search)
+
+    context ={
+        'search':search,
+        'customer':customer,
+        'supplier':supplier,
+        'all_mess':all_mess,
+    }
+    return render(request,'searchResult.html',context)
+
+def AllSupplier(request):
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+    all_mess = MessDetails.objects.all()
+
+    context = {
+        'all_mess':all_mess,
+        'customer':customer,
+        'supplier':supplier
+    }
+
+    return render(request,'all-suppliers.html',context)
+
+
+
+
+def SupplierList(request):
+    suppliers = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if user is not None:
+            if user.is_superuser:
+                suppliers = Supplier.objects.all()
+                count_sup = len(suppliers)
+                len_active = len(Supplier.objects.filter(active = True))
+                count_not_act = len(Supplier.objects.filter(active = False))
+                context = {
+                    'suppliers':suppliers,
+                    'active_count':len_active,
+                    'total_count':count_sup,
+                    'not_active':count_not_act
+                }
+                return render(request,'list-of-suppliers.html',context)
+
+    return redirect('/')
+
+
+def AdminAction(request):
+    suppliers = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if user is not None:
+            if user.is_superuser:
+                if request.method == 'POST':
+                    label = request.POST.get('label')
+                    supplier_id = request.POST.get('supplier_id')
+                
+                    supplier = Supplier.objects.get(id = supplier_id)
+                    supplier.label = label
+                    if label == 'accept':
+                        supplier.active = True
+                        messages.success(request,'Your Account is activated.')
+                    elif label == 'declined':
+                        messages.warning(request,'Your Account is Not activated.')
+
+                    supplier.save()
+                    return redirect('/supplier-list')
+    return redirect('/')
+
+
+
+
+def EachMess(request,slug):
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+    print(supplier)
+    mess = MessDetails.objects.get(slug = slug)
+    context = {
+        'mess':mess,
+        'supplier':supplier,
+        'customer':customer
+    }
+
+    return render(request,'product-details.html',context)
+
 
 def Search(request):
     return render(request,'serach.html',{})
@@ -89,7 +223,7 @@ def SupplierRegister(request):
         
         if password != vpassword:
             messages.warning(request,'Password is not veririfed check again.')
-            return redirect('/supplier-login')
+            return render(request,'supplier/supplier-register.html',{'name':name,'email':email,'number':number})
 
         user = User(email = email,first_name = name,number = number,username = email,is_supplier = True)
         user.set_password(password)
@@ -133,7 +267,8 @@ def SupplierSendOPT(request):
                 request.session['email'] = ''
                 supplier.email_verify = True
                 supplier.save()
-                return redirect('/supplier-userpanal')
+                messages.success(request,'Your account is activated. Enjoy the experience of our site')
+                return redirect('/supplier-login')
             else:
                 messages.info(request,'otp is wrong please try again')
                 return redirect('/supplier-sendOTP')
@@ -141,6 +276,24 @@ def SupplierSendOPT(request):
         return render(request,'supplier/supplier-otp.html',{'email':email})
     else:
         return redirect('/supplier-login')
+
+def RecentOPT(request):
+    email = request.session['email']
+    if email:
+        supplier = Supplier.objects.get(email = email)
+
+        mail_body = f'Hello {supplier.name}, \n welcome to messo web App. \n for verification her is your otp {supplier.otp}.\n enjoy the journey.'
+
+        mail = EmailMessage(
+            subject='Account Verification',
+            body=mail_body,
+            from_email=settings.EMAIL_HOST_USER,
+            to=[email,]
+            )
+        mail.send()
+
+        messages.success(request,'OTP is recent to your Mail.')
+        return render(request,'supplier/supplier-otp.html',{'email':email})
 
 
 # =================== register supplier =============================
@@ -156,12 +309,13 @@ def SupplierUserpanal(request):
             supplier = Supplier.objects.get(user = user)
             mess_details = MessDetails.objects.filter(supplier = supplier).first()
 
-            if mess_details is None:
-                return redirect('/supplier-add-supplier-mess')
 
             if not supplier.address or not supplier.id_proof:
                 messages.info(request,'complete Your Profile.')
                 return redirect(f'/supplier-details/{supplier.id}')
+
+            if mess_details is None:
+                return redirect('/add-supplier-mess')
         context = {
             'supplier':supplier,
             'mess':mess_details
@@ -308,6 +462,69 @@ def EditMessDetails(request):
     return redirect('/supplier-login')
 
 
+def SupplierCustomersRequest(request):
+    if request.user.is_active:
+        supplier = None
+        mess = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            mess = MessDetails.objects.get(supplier = supplier)
+            bookings = MessBooking.objects.filter(mess = mess)
+            if len(bookings) == 0:
+                return redirect('/supplier-userpanal')
+
+            context = {
+                'bookings':bookings,
+                'supplier':supplier,
+                'mess':mess
+            }
+
+            return render(request,'supplier/customer-request.html',context)
+
+        return redirect('/supplier-login')
+    
+    return redirect('/supplier-login')
+
+
+def SupplierAcceptBooking(request):
+    if request.user.is_active:
+        supplier = None
+        user = User.objects.get(username = request.user.username)
+        if Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+            if request.method == 'POST':
+                bookingId = request.POST.get('bookingId')
+                value = request.POST.get('value')
+                message = request.POST.get('message')
+
+                bookingMess = MessBooking.objects.get(bookingId = bookingId)
+                if value == 'accept':
+                    bookingMess.status = True
+                    bookingMess.label = 'accept'
+                elif value == 'reject':
+                    bookingMess.label = 'reject'
+                bookingMess.message = message
+                bookingMess.save()
+                customer = Customer.objects.get(id = bookingMess.customer.id)
+                mail_body = f'Hello {customer.name}, \n welcome to messo web App. \n Your Request is accepted by the supplier. \n your mess continue from tonight not your given address. \n regards, \n {supplier.name} \n {supplier.number}'
+
+                mail = EmailMessage(
+                    subject='Accept Mess Request',
+                    body=mail_body,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[customer.email,]
+                    )
+                mail.send()
+
+                messages.success(request,'Booking Is Approved.')
+                return redirect('/supplier-requests')
+
+        return redirect('/supplier-login')
+    
+    return redirect('/supplier-login')
+
+
 def SupplierCustomers(request):
     if request.user.is_active:
         supplier = None
@@ -315,19 +532,21 @@ def SupplierCustomers(request):
         user = User.objects.get(username = request.user.username)
         if Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
-            
+            mess = MessDetails.objects.get(supplier = supplier)
+            bookings = MessBooking.objects.filter(mess = mess,status = True)
+            if len(bookings) == 0:
+                return redirect('/supplier-userpanal')
 
-            return render(request,'supplier-customer.html',{})
+            context = {
+                'bookings':bookings,
+                'supplier':supplier,
+                'mess':mess
+            }
+            return render(request,'supplier/supplier-customer.html',context)
 
         return redirect('/supplier-login')
     
     return redirect('/supplier-login')
-
-
-
-
-    
-
 
 
 # ======================== customer login =========================
@@ -412,7 +631,7 @@ def CustomerSendOPT(request):
                 request.session['email'] = ''
                 customer.email_verify = True
                 customer.save()
-                messages.info(request,'Your account is activated. Enjoy the experience of our site')
+                messages.success(request,'Your account is activated. Enjoy the experience of our site')
                 return redirect('/customer-login')
             else:
                 messages.info(request,'otp is wrong please try again')
@@ -444,6 +663,40 @@ def CustomerUserPanal(request):
         return redirect('/customer-login')
 
     return render(request,'customer/customer-userpanal.html',context)
+
+def BookMess(request,slug):
+    customer = None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = request.user)
+            mess = MessDetails.objects.get(slug = slug)
+            supplier = Supplier.objects.get(id = mess.supplier.id)
+
+            booking_id = random.randint(100000,9999999)
+            if MessBooking.objects.filter(bookingId = booking_id).exists():
+                booking_id = random.randint(100000,9999999)
+            
+            if MessBooking.objects.filter(customer = customer , mess = mess).exists():
+                messages.info(request,'you Have Already Booked The Mess')
+                return redirect('/customer-userpanal')
+
+            booking = MessBooking(customer = customer,mess = mess,bookingId = booking_id ,message = 'Book the mess')
+            booking.save()
+            messages.success(request,'You Have Successfully Booked the Mess. \n wait for Approval.')
+            mail_body = f'Hello {supplier.name}, \n welcome to messo web App. \n Our Customer {customer.name} having Mail {customer.email} \n number : {customer.number} \n Address : {customer.address} \n Check your dashboard and perform specific action.'
+
+            mail = EmailMessage(
+                    subject='Accept Mess Request',
+                    body=mail_body,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[supplier.email,]
+                    )
+            mail.send()
+            return redirect('/customer-userpanal')
+    else:
+        return redirect('/customer-login')
+    return redirect('/customer-login')
 
 def CustomerDetails(request,pk):
     customer = None
@@ -500,7 +753,7 @@ def CustomerEditProfile(request):
                 name = request.POST.get('name')
                 number = request.POST.get('number')
                 address = request.POST.get('address')
-                addhar = request.FILES.get('addhar')
+                addhar = request.FILES.get('id_proof')
 
                 customer.name = name
                 customer.number = number
@@ -544,6 +797,7 @@ def CustomerEditProfilePic(request):
         return redirect('/customer-login')
     
     return redirect('/customer-login')
+
 
 
 def CustomerFeedback(request):

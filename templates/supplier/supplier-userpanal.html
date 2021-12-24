@@ -17,8 +17,8 @@
     </title>
     
     <link rel="stylesheet" href="{% static 'css/userPanal_supplier__slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/userPanal_supplier.css' %}" >
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/userPanal_supplier.css' %}" >
     {% endblock css %}
 </head>
 
@@ -26,7 +26,7 @@
       <!-- ======== User Panal ========= -->
       <div class="user__panal__container">
         {% if supplier %}
-        {% if supplier.active %}
+        {% if supplier.label == 'accept' %}
           <div class="left">
                   <div class="logo">
                       <a href="/">
@@ -75,20 +75,20 @@
                             {% endif %}
 
                             <li class="list__item">
-                                <a href="#">
-                                    <div>
-                                        <img src="{% static 'icons/customer-review.png' %}" alt="">
-                                    </div>
-                                    <p>Customers</p>
-                                </a>
-                            </li>
-
-                            <li class="list__item">
-                                <a href="#">
+                                <a href="{% url 'supplier-request' %}">
                                     <div>
                                         <img src="{% static 'icons/request.png' %}" alt="">
                                     </div>
                                     <p>Requests</p>
+                                </a>
+                            </li>
+
+                            <li class="list__item">
+                                <a href="{% url 'supplier-customers' %}">
+                                    <div>
+                                        <img src="{% static 'icons/customer-review.png' %}" alt="">
+                                    </div>
+                                    <p>Customers</p>
                                 </a>
                             </li>
 
@@ -300,7 +300,7 @@
                                                 </div>
                     
                                                 <div id="view__details__btn">
-                                                    <button>View Details</button>
+                                                    <button><a href="/mess/{{mess.slug}}" style="color:#fff;"> View Details </a></button>
                                                 </div>
                                             </div>
 
@@ -314,6 +314,10 @@
                     </section>
                 {% endif %}
             {% endblock body %}
+                {% elif supplier.label == 'declined' %}
+                <div class="container">
+                    <h2>Your Request Is declined !</h2>
+                </div>
                 {% else %}
                 <div class="container">
                     <h2>Your Account is Not Activated At Wait for 1 Day. We Check Your Details Then Activate your Account Sortly.
@@ -330,6 +334,19 @@
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
       <script src="{% static 'js/userPanal_supplier_slider.js' %}"></script>
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script>
+          {% if messages %}
+              {% for message in messages %}
+                  swal({
+                      title: "{{message}}",
+                      text: "click the btn",
+                      icon: "{{message.tags}}",
+                  });
+              {% endfor %}
+          {% endif %}
+      </script>
 
       {% block js %}
         <script src="{% static 'js/userPanal_supplier.js' %}"></script>

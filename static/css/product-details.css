@@ -13,8 +13,8 @@
     --secondary-color : #FD853A;
     --light-primary : #FE8273;
     --light-secondary : #FDDCAB;
-    --light-light-primary : #FFEAD5;
-    --light-light-secondary : #FFF6ED;
+    --light-light-primary : #faf0e7;
+    --light-light-secondary : #fcfcfc;
     --X-light : #FFFAF5;
     --white : #fff;
     --black : #000;
@@ -59,7 +59,6 @@ a{
 }
 
 
-/* ====== Navbar ====== */
 
 /* ======== header ========= */
 .header{
@@ -72,7 +71,7 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: var(--mg-20) 85px;
-    padding-top: var(--mg-30);
+    padding-top: var(--mg-25);
     z-index: 10px;
 }
 
@@ -109,16 +108,16 @@ a{
 }
 
 .menu .list-item{
-    margin: 0 30px;
+    margin: 0 20px;
 }
 
 .menu .list-item a{
     text-decoration: none;
     padding: var(--mg-5) var(--mg-5);
     padding-bottom: var(--mg-5);
-    font-size: var(--large-primary-font);
+    font-size: var(--primary-font);
     font-weight: 500;
-    letter-spacing: 1px;
+    color: black;
     position: relative;
     transition: .3s ease;
 }
@@ -214,21 +213,21 @@ a{
     align-items: center;
     background: var(--light-secondary);
     color: var(--primary-color);
-    padding: var(--mg-5) var(--mg-20);
+    padding: var(--mg-5) var(--mg-12);
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.089);
     border-radius: 25px;
     cursor: pointer;
     z-index: 7;
 }
 
-.auth__container:hover{
-
+.auth__container:hover .down__btn i 
+{
+    transform: translateY(3px);
 }
 
 .auth{
     font-weight: 600;
-    margin-right: var(--mg-10);
-    letter-spacing: 1px;
+    margin-right: var(--mg-5);
 }
 
 .down__btn i{
@@ -302,7 +301,7 @@ a{
 
   .product__slider{
       width: 90%;
-      height: 420px;
+      height: 450px;
       padding: var(--mg-5) var(--mg-30) !important;
       border-radius: var(--mg-15);
       background-color: var(--light-light-primary);
@@ -345,6 +344,7 @@ a{
     width: 100%;
     height: 100%;
     border-radius: 7px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.226);
 }
 
 .swiper-slide-active{
@@ -476,12 +476,12 @@ a{
 }
 
 .veg__img{
-    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url("./download\ \(2\).jpg");
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url('../images/photo-1494790108377-be9c29b29330.jpg');
 
 }
 
 .non-veg__img{
-    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url("./download\ \(2\).jpg");
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url("../images/photo-1494790108377-be9c29b29330.jpg");
 }
 
 /* .meal__type__img{
@@ -534,10 +534,11 @@ a{
 }
 
 .price__item{
-    padding: var(--mg-5)var(--mg-20);
+    padding: var(--mg-5)var(--mg-10);
     border-radius: var(--mg-10);
     background-color: var(--light-light-primary);
-    margin: var(--mg-7) var(--mg-20);
+    margin: var(--mg-7) var(--mg-10);
+    font-size: 16px;
 }
 
 .price__item span{
@@ -639,7 +640,9 @@ a{
     text-align: center;
 }
 
-#book__button__section button{
+#book__button__section a
+{
+    color: #fff;
     padding: var(--mg-7) var(--mg-25);
     font-size: var(--primary-font);
     font-weight: 600;
@@ -806,13 +809,14 @@ li{
 
 
 
+
 /* ======= authentication models */
 .authentication__model,.customer__authentication__model,
 .supplier__authentication__model{
     width:250px;
     height: 160px;
     position: absolute;
-    top:4.3rem;
+    top:5rem;
     right: 90px;
     background:white;
     border-radius: 5px;
@@ -827,13 +831,13 @@ li{
 }
 
 .customer__authentication__model{
-    top:210px;
-    right:340px;
+    top:200px;
+    right:380px;
 }
 
 .supplier__authentication__model{
-    top:210px;
-    right:340px;
+    top:200px;
+    right:380px;
 }
 
 .auth__heading{
@@ -843,10 +847,21 @@ li{
     padding-bottom: var(--mg-5);
 }
 
-.auth__link{
-    margin: var(--mg-5) var(--mg-10);
+.auth__link
+{
+    margin: var(--mg-10) var(--mg-10);
     display: block;
     text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.auth__link:hover
+{
+    color: var(--primary-color);
+    transform: translateX(20px);
 }
 
 /* ======= black Layer */
