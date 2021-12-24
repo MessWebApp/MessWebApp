@@ -11,6 +11,7 @@ urlpatterns = [
     path('bookMess/<slug>',views.BookMess,name='book-mess'),
     path('search-with-city/',views.SearchWithCity,name='search-with-city'),
     path('search/',views.SearchWithInput,name='search-with-input'),
+    path('about-us/',views.AboutUs,name='about-us'),
 
     #  ================== customer login ==================
     path('customer-login/',views.CustomerLoginView,name='customer-login'),

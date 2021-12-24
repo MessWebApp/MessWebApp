@@ -55,7 +55,7 @@ body{
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 /* ======== user panal ========= */
@@ -65,6 +65,7 @@ a{
     padding: var(--mg-12) var(--mg-20);
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .user__panal__container .left 
@@ -77,7 +78,7 @@ a{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.267);
 }
 .user__panal__container .left_username
 {
@@ -89,23 +90,28 @@ a{
 .user__panal__container .left .logo h2
 {
     color: var(--primary-color);
+    font-weight: 700 !important;
+    font-size: 25px !important;
 }
 
 .panal__links__container ul
 {
     width: 100%;
     list-style: none;
+    margin-bottom: 0px !important;
 }
 
 .panal__links__container ul .list__item
 {
-    display: block;
+    display: block !important;
 }
 
 .panal__links__container ul .list__item a,
-.logout a{
+.logout a
+{
     display: block;
-    margin: 10px;
+    margin: 10px !important;
+    margin-bottom: 10px !important;
     text-align: center;
     text-decoration: none;
     font-weight: 600;
@@ -125,7 +131,7 @@ a{
 }
 .panal__links__container ul .list__item p
 {
-    font-size: 12px;
+    font-size: 12px !important;
 }
 .panal__links__container ul .list__item a img
 {
@@ -153,7 +159,7 @@ a{
     background-color: var(--light-bg);
     border-radius: var(--mg-20);
     overflow: hidden;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.267);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.267);
 }
 
 
@@ -501,6 +507,9 @@ a{
       position: relative;
       width: fit-content;
       margin: 10px;
+      font-weight: 700 !important;
+      font-size: 25px !important;
+      letter-spacing: 0px !important;
   }
   .mess__heading h2::before
   {
@@ -517,7 +526,7 @@ a{
   {
       display: flex;
       justify-content: space-between;
-      align-items: initial;
+      align-items: baseline;
   }
   .input__block .label_box
   {
@@ -533,6 +542,7 @@ a{
   {
       flex: 0.85;
       width: 100%;
+
   }
 
   .input__block .input_box input , .input_box select
@@ -542,17 +552,17 @@ a{
       border: none;
       outline: none;
       border-radius: 10px;
-      padding: 10px;
+      padding:5px 10px !important;
       margin: 10px 0;
       background-color: #fff;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.349);
 
   }
 
-  .input__block .input_box textarea
+  .input__block .input_box textarea , .input_box .note-editor
   {
-    width: 90%;
-    height: 150px;
+    width: 90% !important;
+    height: 200px !important;
     border: none;
     outline: none;
     border-radius: 10px;

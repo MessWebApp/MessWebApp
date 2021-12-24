@@ -1,12 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Belly</title>
+    <title>Food Belly | About Us</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+     integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
      
      <!-- Link Swiper's CSS -->
      <link
@@ -15,49 +18,45 @@
     />
    
     <!-- <link rel="stylesheet" href="./css/userPanal_supplier__slider.css"> -->
-    <link rel="stylesheet" href="./about-us.css">
+    <link rel="stylesheet" href="{% static 'css/about-us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 </head>
 
 <body>
 
-    <!-- ======== Navbar ======== -->
-       <!-- ======== header ========== -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo__cont">
-                 <a href="#">
-                     <div class="logo__img">
-                         <img src="./images/hamburger.png" alt="logo">
-                     </div>
-
-                     <div class="logo__text">
-                         <h2><i>Food <br/> Belly</i></h2>
-                     </div>
-                 </a>
-            </div>
-
-            <div class="menu">
-                <ul class="ul-list">
-                    <li class="list-item"><a href="#" class="active">Home</a></li>
-                    <li class="list-item"><a href="#">Services</a></li>
-                    <li class="list-item"><a href="#">Contact</a></li>
-                    <li class="list-item"><a href="#">Suppliers</a></li>
-                </ul>
-            </div>
-
-            <div class="auth__container">
-                <div>
+        <!-- ======== header ========== -->
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo__cont">
+                     <a href="/">
+                         <div class="logo__img">
+                             <img src="{% static 'images/hamburger.png' %}" alt="logo">
+                         </div>
+    
+                         <div class="logo__text">
+                             <h2><i>Food <br/> Belly</i></h2>
+                         </div>
+                     </a>
+                </div>
+    
+                <div class="menu">
+                    <ul class="ul-list">
+                        <li class="list-item"><a href="/" class="active">Home</a></li>
+                        <li class="list-item"><a href="/#services">Services</a></li>
+                        <li class="list-item"><a href="{% url 'contact' %}">Contact</a></li>
+                        <li class="list-item"><a href="{% url 'all-supliers' %}">Mess</a></li>
+                    </ul>
+                </div>
+    
+                <div class="auth__container">
                     <p class="auth">Auth</p>
+                    <div class="down__btn">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
                 </div>
-
-                <div class="down__btn">
-                    <i class="fas fa-angle-down"></i>
-                </div>
-            </div>
-        </nav>
-
-    </header>
-   
+            </nav>
+    
+        </header>
 
 
    
@@ -112,7 +111,7 @@
              <div class="developer__cards">
                       <div class="developer__card">
                             <div class="img__container">
-                                <img src="./maxresdefault.jpg" alt="">
+                                <img src="{% static 'images/aditya.jpg' %}" alt="">
                             </div>
 
                             <div class="developer__details">
@@ -156,7 +155,7 @@
 
                         <div class="developer__card">
                             <div class="img__container">
-                                <img src="./maxresdefault.jpg" alt="">
+                                <img src="{% static 'images/ankush.jpg' %}" alt="">
                             </div>
 
                             <div class="developer__details">
@@ -202,7 +201,7 @@
 
                         <div class="developer__card">
                             <div class="img__container">
-                                <img src="./maxresdefault.jpg" alt="">
+                                <img src="{% static 'images/raksha2.jpg' %}" alt="">
                             </div>
 
                             <div class="developer__details">
@@ -254,6 +253,65 @@
 
 
 
+
+    <!-- ======= modal for authentication -->
+    <div class="authentication__model">
+        <div>
+            <p class="auth__heading">Authentication</p>
+        </div>
+
+        <div>
+            <p class="auth__link customer__auth__link">
+                {% if customer  %}
+                <i class="fas fa-user"></i> Customer Auth <span style="font-size: 12px;">(Logged in)</span></p>
+                {% else %}
+                <i class="fas fa-user"></i> Customer Auth</p>
+                {% endif %}
+            <p class="auth__link supplier__auth__link">
+                {% if supplier %}
+                <i class="fas fa-user"></i> Mess Supplier Auth<span style="font-size: 12px;">(Logged in)</span> </p>
+                {% else %}
+                <i class="fas fa-user"></i> Mess Supplier Auth</p>
+                {% endif %}
+        </div>
+    </div>
+
+    <div class="customer__authentication__model">
+        <div>
+            <p class="auth__heading">Customer Authentication</p>
+        </div>
+
+        <div>
+            {% if customer %}
+                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link"><i class="far fa-address-card"></i> UserPanal</a>
+                <a href="{% url 'logout' %}" class="auth__link customer__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="supplier__authentication__model">
+        <div>
+            <p class="auth__heading">Supplier Authentication</p>
+        </div>
+
+        <div>
+            {% if supplier %}
+                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link"><i class="far fa-address-card"></i> UserPanal </a>
+                <a href="{% url 'logout' %}" class="auth__link supplier__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link"><i class="fas fa-sign-in-alt"></i> Login </a>
+                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!--====== black layer -->
+    <div class="black__layer">
+    </div>
     
     <!-- ======== footer ========= -->
     <footer class="footer">
@@ -262,9 +320,9 @@
 
             <div class="info__footer">
                  <div class="footer__logo">
-                     <a href="#">
+                     <a href="/">
                         <div class="logo">
-                               <img src="./images/hamburger.png" alt="">
+                               <img src=" {% static 'images/hamburger.png' %}" alt="">
                         </div>
 
                         <div class="logo__txt">
@@ -279,8 +337,8 @@
                  </div>
 
                  <div class="personal__details__footer">
-                     <p><i class="fas fa-circle dot"></i> Mo No : 8788299321</p>
-                     <p><i class="fas fa-circle dot"></i> Email : abcdefg34@gmail.com</p>
+                     <p><i class="fas fa-phone dot"></i> Mo No : 8788299321</p>
+                     <p><i class="fas fa-envelope dot"></i> Email : abcdefg34@gmail.com</p>
                  </div>
             </div>
 
@@ -315,12 +373,12 @@
 
             <div class="other__links__footer">
                 <div class="footer__section__title">
-                    <h2>Others Links</h2>
+                    <h2>Important Links</h2>
                 </div>
 
                 <ul>
                     <li>
-                        <a href="#" class="link__footer">Suppliers</a>
+                        <a href="/about-us/" class="link__footer">About Us</a>
                     </li>
 
                     <li>
@@ -346,27 +404,19 @@
 
                 <div class="social__icons">
                     <div>
-                        <a href="#">
-                            <img src="./images/facebook (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/instagram (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-instagram-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/github-sign (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-github-square"></i></a>
                     </div>
 
                     <div>
-                        <a href="#">
-                            <img src="./images/linkedin (1).png" alt="">
-                        </a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -381,46 +431,6 @@
     </footer>
 
 
-    
-    <!-- ======= modal for authentication -->
-    <div class="authentication__model">
-        <div>
-            <p class="auth__heading">Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link customer__auth__link">Customer Auth</a>
-            <a href="#" class="auth__link supplier__auth__link">Mess Supplier Auth</a>
-        </div>
-    </div>
-
-    <div class="customer__authentication__model">
-        <div>
-            <p class="auth__heading">Customer Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link customer__login__link">Login</a>
-            <a href="#" class="auth__link customer__register__link">Registration</a>
-        </div>
-    </div>
-
-
-    <div class="supplier__authentication__model">
-        <div>
-            <p class="auth__heading">Supplier Authentication</p>
-        </div>
-
-        <div>
-            <a href="#" class="auth__link supplier__login__link">Login </a>
-            <a href="#" class="auth__link supplier__register__link">Registration</a>
-        </div>
-    </div>
-
-    <!--====== black layer -->
-    <div class="black__layer">
-    </div>
-
 
 
 
@@ -430,6 +440,6 @@
 
       <!-- <script src="./js/userPanal_supplier_slider.js"></script> -->
 
-      <script src="./about-us.js"></script>
+      <script src="{% static 'js/about-us.js' %}"></script>
 </body>
 </html>

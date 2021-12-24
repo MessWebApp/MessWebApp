@@ -69,6 +69,23 @@ def SearchWithCity(request):
     }
     return render(request,'searchResult.html',context)
 
+def AboutUs(request):
+    customer =None
+    supplier =None
+    if request.user.is_active:
+        user = User.objects.get(username = request.user.username)
+        if Customer.objects.filter(user = user).exists():
+            customer = Customer.objects.get(user = user)
+        elif Supplier.objects.filter(user = user).exists():
+            supplier = Supplier.objects.get(user = user)
+
+    context ={
+        'supplier':supplier,
+        'customer':customer
+    }
+
+    return render(request,'about-us.html',context)
+
 def SearchWithInput(request):
     search = request.GET.get('search')
     customer =None
@@ -353,6 +370,8 @@ def AddMessDetails(request):
     if request.user.is_active:
         supplier = None
         mess_details = None
+        states = State.objects.all()
+        cities = City.objects.all()
         user = User.objects.get(username = request.user.username)
         if Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
@@ -390,6 +409,8 @@ def AddMessDetails(request):
 
         context = {
             'supplier':supplier,
+            'states':states,
+            'cities':cities
         }
         return render(request,'supplier/supplier-mess.html',context)
 
@@ -401,6 +422,8 @@ def EditMessDetails(request):
         supplier = None
         mess = None
         user = User.objects.get(username = request.user.username)
+        states = State.objects.all()
+        cities = City.objects.all()
         if Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
             if MessDetails.objects.filter(supplier = supplier).exists():
@@ -455,7 +478,7 @@ def EditMessDetails(request):
                     
                     mess.save()
                     messages.success(request,'Mess Details Successfully Updated.')
-            return render(request,'supplier/edit-messDetails.html',{'mess':mess,'supplier':supplier})
+            return render(request,'supplier/edit-messDetails.html',{'mess':mess,'supplier':supplier,'states':states,'cities':cities})
 
         return redirect('/supplier-login')
     
@@ -856,6 +879,9 @@ def ContactUs(request):
         'form':form
     }
     return render(request,'contactus.html',context)
+
+
+    
 
 
 
