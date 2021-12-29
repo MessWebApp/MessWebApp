@@ -119,6 +119,7 @@
 
 
 
+
     <!-- ======= modal for authentication -->
     <div class="authentication__model">
         <div>
@@ -126,8 +127,18 @@
         </div>
 
         <div>
-            <a href="#" class="auth__link customer__auth__link">Customer Auth</a>
-            <a href="#" class="auth__link supplier__auth__link">Mess Supplier Auth</a>
+            <p class="auth__link customer__auth__link">
+                {% if customer  %}
+                <i class="fas fa-user"></i> Customer Auth <span style="font-size: 12px;">(Logged in)</span></p>
+                {% else %}
+                <i class="fas fa-user"></i> Customer Auth</p>
+                {% endif %}
+            <p class="auth__link supplier__auth__link">
+                {% if supplier %}
+                <i class="fas fa-user"></i> Mess Supplier Auth<span style="font-size: 12px;">(Logged in)</span> </p>
+                {% else %}
+                <i class="fas fa-user"></i> Mess Supplier Auth</p>
+                {% endif %}
         </div>
     </div>
 
@@ -137,8 +148,13 @@
         </div>
 
         <div>
-            <a href="#" class="auth__link customer__login__link">Login</a>
-            <a href="#" class="auth__link customer__register__link">Registration</a>
+            {% if customer %}
+                <a href="{% url 'customer-userpanal' %}" class="auth__link customer__login__link"><i class="far fa-address-card"></i> UserPanal</a>
+                <a href="{% url 'logout' %}" class="auth__link customer__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'customer-login' %}" class="auth__link customer__login__link"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="{% url 'customer-register' %}" class="auth__link customer__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
         </div>
     </div>
 
@@ -149,8 +165,13 @@
         </div>
 
         <div>
-            <a href="#" class="auth__link supplier__login__link">Login </a>
-            <a href="#" class="auth__link supplier__register__link">Registration</a>
+            {% if supplier %}
+                <a href="{% url 'supplier-userpanal' %}" class="auth__link supplier__login__link"><i class="far fa-address-card"></i> UserPanal </a>
+                <a href="{% url 'logout' %}" class="auth__link supplier__register__link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'supplier-login' %}" class="auth__link supplier__login__link"><i class="fas fa-sign-in-alt"></i> Login </a>
+                <a href="{% url 'supplier-register' %}" class="auth__link supplier__register__link"><i class="far fa-registered"></i> Registration</a>
+            {% endif %}
         </div>
     </div>
 

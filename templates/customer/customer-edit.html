@@ -134,5 +134,17 @@
         })
 
     </script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script>
+         {% if messages %}
+             {% for message in messages %}
+                 swal({
+                     title: "{{message}}",
+                     text: "click the btn",
+                     icon: "{{message.tags}}",
+                 });
+             {% endfor %}
+         {% endif %}
+     </script>
 {% endblock js %}
 

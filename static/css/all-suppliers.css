@@ -289,14 +289,13 @@ body{
 
 
 
-
 /* ======= authentication models */
 .authentication__model,.customer__authentication__model,
 .supplier__authentication__model{
     width:250px;
     height: 160px;
     position: absolute;
-    top:4rem;
+    top:5rem;
     right: 90px;
     background:white;
     border-radius: 5px;
@@ -312,12 +311,12 @@ body{
 
 .customer__authentication__model{
     top:200px;
-    right:340px;
+    right:380px;
 }
 
 .supplier__authentication__model{
     top:200px;
-    right:340px;
+    right:380px;
 }
 
 .auth__heading{
@@ -327,28 +326,34 @@ body{
     padding-bottom: var(--mg-5);
 }
 
-.auth__link{
-    margin: var(--mg-5) var(--mg-10);
+.auth__link
+{
+    margin: var(--mg-10) var(--mg-10);
     display: block;
     text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.5s ease;
 }
 
-
+.auth__link:hover
+{
+    color: var(--primary-color);
+    transform: translateX(20px);
+}
 
 /* ======= black Layer */
 .black__layer{
     display: none;
-    width:100vw;
+    width:100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.432);
-    z-index: 1;
 }
 
 .show__layer{
     display: block;
 }
-
-

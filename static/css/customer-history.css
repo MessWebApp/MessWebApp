@@ -57,8 +57,11 @@ a{
     padding-left: 40px;
 }
 
-.customer__hostory__wrapper{
+.customer__hostory__wrapper
+{
     height: 530px;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
 }
 
@@ -74,6 +77,7 @@ a{
     margin: var(--mg-5) auto;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     background-color:var(--secondary-color);
     color: #fff;
@@ -254,7 +258,8 @@ a{
     display: none;
 }
 
-.cross{
+.cross
+{
     font-size: 35px;
     color: var(--primary-color);
     position: absolute;

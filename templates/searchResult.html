@@ -110,7 +110,11 @@
                                 <a href="#">More</a>
                             </div>
                     </div>
-                {% endfor %}    
+                {% endfor %}   
+            {% else %}
+            <div class="container data-not-found">
+                <p>Data Not Found Try again with different search value!</p>
+            </div> 
             {% endif %}
         </div>
     </main>

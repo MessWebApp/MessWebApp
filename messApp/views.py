@@ -9,6 +9,7 @@ from .models import City, Customer, District, Feedback, State,Supplier,MessDetai
 import random
 from django.core.mail import EmailMessage, message , send_mail
 from .form import ContactForm
+from django.db.models import Q
 
 # Create your views here.
 def Home(request):
@@ -97,7 +98,7 @@ def SearchWithInput(request):
         elif Supplier.objects.filter(user = user).exists():
             supplier = Supplier.objects.get(user = user)
 
-    all_mess = MessDetails.objects.filter(name__icontains =search)
+    all_mess = MessDetails.objects.filter(Q(name__icontains =search) | Q(address__icontains = search))
 
     context ={
         'search':search,
@@ -676,6 +677,7 @@ def CustomerUserPanal(request):
                 return redirect('/customer-editProfile')
 
             if not customer.address or not customer.id_proof:
+                messages.info(request,'Please Enter your Address and id proof for bookings.')
                 return redirect('/customer-editProfile')
 
         context = {

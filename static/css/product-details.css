@@ -431,7 +431,8 @@ a{
 
 
 
-.features__items{
+.features__items
+{
     padding: var(--mg-15) var(--mg-15);
     padding-left: var(--mg-40);
 }
@@ -476,12 +477,16 @@ a{
 }
 
 .veg__img{
-    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url('../images/photo-1494790108377-be9c29b29330.jpg');
-
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url('../images/auth/thali-1.jpg');
+    background-position: center;
+    background-size: cover;
+    
 }
 
 .non-veg__img{
-    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url("../images/photo-1494790108377-be9c29b29330.jpg");
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.250), rgba(0, 0, 0, 0.250)) , url("../images/auth/thali-1.jpg");
+    background-position: center;
+    background-size: cover;
 }
 
 /* .meal__type__img{

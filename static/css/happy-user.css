@@ -41,8 +41,7 @@
     width: 400px;
     height: 200px;
     border-radius: 10px;
-    box-shadow: 1px 1px 5px .1px #00000033;
-    background:var(--primary-color);
+    background:linear-gradient(to right,rgba(247, 132, 37, 0.897),rgba(236, 157, 93, 0.897),rgba(252, 194, 107, 0.623),rgba(226, 169, 122, 0.685));
     margin: 10px 30px;
     display: flex;
     justify-content: center;
@@ -50,6 +49,7 @@
     flex-direction: column;
     position: relative;
     padding-top: 40px;
+    box-shadow: 1px 1px 5px .1px #0000008c;
 }
 
 
@@ -65,8 +65,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    box-shadow: 1px 1px 20px .1px rgba(0, 0, 0, 0.212);
-    background:var(--primary-color) ;
+    background:linear-gradient(to right,rgba(247, 132, 37, 0.897),rgba(243, 132, 42, 0.897),rgba(247, 153, 12, 0.623),rgba(226, 169, 122, 0.685)) ;
     position: absolute;
     top:-50px;
     left: 50%;
@@ -74,20 +73,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 1px 1px 5px .1px rgba(0, 0, 0, 0.671);
 }
 
-.happy__users__section .wrapper .cardData .img__box img{
+.happy__users__section .wrapper .cardData .img__box img
+{
     width: 60%;
     height: 60%;
     object-fit: fill;
 }
 
-.happy__users__section .section__title{
+.happy__users__section .section__title
+{
     text-align: center;
     padding: 20px;
 }
 
-.happy__users__section .section__title h2{
+.happy__users__section .section__title h2
+{
     font-weight: 600;
     font-size: 30px;
     letter-spacing: .3px;
